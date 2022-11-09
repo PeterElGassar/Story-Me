@@ -1,0 +1,246 @@
+<p-toast position="top-right" key="CVErrorMs"></p-toast>
+<p-toast position="top-right" key="ImageErrorMs"></p-toast>
+<p-toast position="top-center" key="addInstructor"></p-toast>
+
+<form #f="ngForm" >
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group d-flex justify-content-center flex-column">
+        <img class="img-fluid rounded" width="100%" [src]="img_path">
+        <!-- <input class="mt-4" (change)="uploadPhoto($event.target)" type="file" name="" id=""> -->
+
+        <input accept="image/*" type="file" id="imageFile" (change)="uploadPhoto($event.target)" />
+        <label for="imageFile" class="btn-2">upload</label>
+      </div>
+    </div>
+    <div class="col-1"></div>
+    <div class="col-md-7">
+
+      <div class="form-group">
+        <span class="p-float-label  mt-4">
+          <input
+          required
+          class=" w-100 p-inputtext-md"
+           type="text"
+           pInputText
+           [(ngModel)]="this.first_name"
+           name="this.first_name"
+           ngModel
+           #fNameTemp="ngModel"
+           />
+          <label  for="float-input">الاسم الاول</label>
+        </span>
+        <p class="text-danger" *ngIf="!fNameTemp.valid && fNameTemp.touched">أدخل الاسم الاول</p>
+      </div>
+
+      <div class="form-group">
+        <span class="p-float-label  mt-4">
+          <input class="w-100"
+          
+           class="p-inputtext-md"
+            name="this.second_name" 
+            type="text"
+            ngModel
+            #sNameTemp="ngModel"
+            
+           pInputText [(ngModel)]="this.second_name"/>
+
+          <label  for="float-input"> الاسم الثاني </label>
+        </span>
+        <p class="text-danger" *ngIf="!sNameTemp.valid && sNameTemp.touched"> أدخل الاسم الثاني</p>
+
+      </div>
+
+      <div class="form-group">
+        <span class="p-float-label  mt-4">
+          <input 
+          ngModel
+          
+          #lNameTemp="ngModel"
+          class="p-inputtext-md" 
+          name="this.last_name"
+           type="text"
+           pInputText 
+           [(ngModel)]="this.last_name"/>
+
+          <label  for="float-input">الاسم الاخير</label>
+        </span>
+        <p class="text-danger" *ngIf="!lNameTemp.valid && lNameTemp.touched">  أدخل الاسم الاخير</p>
+      </div>
+      <div class="form-group">
+        <span class="p-float-label  mt-4">
+          <input 
+          ngModel
+          required
+          #EmialTemp="ngModel"
+          class="p-inputtext-md" 
+          name="this.email"
+           type="email"
+           pInputText 
+           [(ngModel)]="this.email"/>
+
+          <label  for="float-input">البريد الالكتروني</label>
+        </span>
+        <p class="text-danger" *ngIf="!EmialTemp.valid && EmialTemp.touched">أدخل البريد الالكتروني</p>
+      </div>
+
+          <!-- Specs -->
+          <div class="form-group ">
+            <p-multiSelect class="w-100 d-flex justify-content-center"
+             defaultLabel="اختر التخصصات"
+             [options]="instructorsSpecs"
+             name="instructorsSpecs"
+             [(ngModel)]="selectedSpecs"
+             optionLabel="name"
+             [maxSelectedLabels]="5"
+             required
+             ngModel
+             #specTemp="ngModel"
+
+               >         
+            </p-multiSelect>
+            <p class="text-danger mr-2" *ngIf="!specTemp.valid && specTemp.touched"> أختر تخصص واحد علي الاقل</p>
+
+          </div>
+          <!-- ///Specs/// -->
+
+      <div class="row">
+        <div class="col-12 col-md-6 form-group">
+          <span class="mt-4">
+            <label  for="float-input">رقم الموبيل</label>
+             <p-inputMask 
+             
+             mask="(999) 9999-9999"
+             [(ngModel)]="this.phone"
+             name="this.phone"
+             placeholder="(120) 9999-9999"
+             ngModel
+             required
+             #phoneTemp="ngModel">
+              
+              </p-inputMask>
+          </span>
+          <p class="text-danger" *ngIf="!phoneTemp.valid && phoneTemp.touched">  أدخل رقم الموبيل </p>
+        </div>
+  
+  
+        <div class="col-12 col-md-6 form-group">
+          <label for="yxz">سنين الخبرة</label>
+          <p-inputNumber  
+          [showButtons]="true" 
+          buttonLayout="horizontal" 
+          inputId="horizontal" 
+          spinnerMode="horizontal" 
+          [step]="1"
+          decrementButtonClass="p-button-danger" 
+          incrementButtonClass="p-button-success"
+           incrementButtonIcon="pi pi-plus" 
+           decrementButtonIcon="pi pi-minus"
+            minFractionDigits="1"
+            maxFractionDigits="2"
+            [min]="0" [max]="40"
+            [(ngModel)]="this.experience"
+            name="this.experience"
+
+            required
+            ngModel
+            #experienceTemp="ngModel"
+          
+            >
+          </p-inputNumber>
+          <p class="text-danger req-ms-number" *ngIf="!experienceTemp.valid && experienceTemp.touched">  أدخل رقم الموبيل </p>
+
+        </div>
+      </div>
+
+      <!-- <div class="form-group">
+        <label for="yxz">cv المدرب</label>
+
+        <input class="mt-4" (change)="uploadCv($event.target)" type="file" >
+      </div> -->
+
+
+
+      <!-- <span class="p-float-label  mt-4">
+        <input class="w-100" class="p-inputtext-md" name="last_name" type="text"
+         pInputText [(ngModel)]="last_name" />
+        <label class="" for="float-input">الاسم الاخير</label>
+        <p-fileUpload mode="basic"   accept="pdf" maxFileSize="1000000" (change)="uploadCv($event.target)" (onUpload)="uploadCv($event.target)">
+        </p-fileUpload>
+      </span> -->
+
+
+    </div>
+
+    <div class="col-12 my-4">
+      <span class="p-float-label ">
+        <!-- <textarea pInputTextarea name="this.description" [(ngModel)]="this.description"></textarea> -->
+        <label class="" for="float-input">نبذة عن المدرب</label>
+        <p-editor  
+        [(ngModel)]="this.description"
+         [style]="{'height':'220px'}"
+         ngModel
+         name="this.description"
+         #descriptionTemp="ngModel"
+         required
+
+        >
+
+
+        </p-editor>
+      </span>
+      <p class="text-danger" *ngIf="!descriptionTemp.valid && descriptionTemp.touched">  أدخل  نبذة عن المدرب</p>
+
+    </div>
+
+    <div class="col-8 mx-auto my-2 px-2 d-flex justify-content-center">
+    
+      <!-- <p-fileUpload (change)="uploadCv($event.target)" (change)="onUpload($event)" accept=".pdf, .doc, .docx"
+        maxFileSize="5000000">
+        <ng-template pTemplate="content">
+          <ul *ngIf="uploadedFiles.length">
+            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+          </ul>
+        </ng-template>
+      </p-fileUpload> -->
+
+
+ 
+      <!-- <mat-form-field>
+        <ngx-mat-file-input formControlName="basicfile" placeholder="Basic Input" ></ngx-mat-file-input>
+        <mat-icon matSuffix>folder</mat-icon>
+      </mat-form-field> -->
+<!-- 
+      <div class="form-group">
+        <input class="mt-4" (change)="uploadCv($event.target)" type="file" >
+      </div> -->
+
+      <div class="input-file-container">  
+        <input type="file"
+         (change)="uploadCv($event.target)"
+          id="fileCV"
+          accept=".pdf, .doc, .docx"
+          maxFileSize="100000"/>
+        <label  for="fileCV" class="btn-3">
+          <!-- <span *ngIf="this.selectedFileCv !== null | async">{{this.selectedFileCv.name}}</span>
+          <span *ngIf="this.selectedFileCv === null | async">Upload CV</span> -->
+          <span >Upload CV</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+
+
+      <button [disabled]="!f.valid" (click)="addInstructor()" *ngIf="instructor.id == 0" class="btn btn-primary">
+        إضافة المحاضر جديد
+      </button>
+
+      <button [disabled]="!f.valid" (click)="updateCourse()" *ngIf="instructor.id != 0" class="btn btn-primary">
+        تعديل بيانات المحاضر
+      </button>
+    </div>
+  </div>
+
+
+</form>

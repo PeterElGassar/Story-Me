@@ -1,0 +1,63 @@
+
+<p-toast position="top-center" key="addInstructor"></p-toast>
+<p-toast position="top-right" key="ImageErrorMs"></p-toast>
+
+<div class="sb2-2-add-blog sb2-2-1 mt-4">
+  <!-- <p-steps [model]="items"></p-steps> -->
+  <p-tabView>
+    <p-tabPanel header="أضافة الدورة" [selected]="true">
+
+      <add-course (nextTab)="onOpenNextTab($event.value)" (CourseIdForCurriculim)="initialCourseId($event)">
+      </add-course>
+
+
+      
+    </p-tabPanel>
+
+    <p-tabPanel [disabled]="isOpen" header="إضافة منهج الدورة ">
+      <!-- <add-editcurriculum></add-editcurriculum> -->
+      <div class="form-group">
+        <label for="CourseSectionName">عنوان القسم</label>
+        <input name="CourseSectionName" [(ngModel)]="CourseSectionName" type="text" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="employeeSecondName">أسماء الدروس بالترييب</label>
+        <br>
+        <br>
+
+        <p-chips [(ngModel)]="LuctrueNames">
+          <ng-template let-item pTemplate="item">
+            {{item}} - (active) <i class="pi pi-user p-ml-2"></i>
+          </ng-template>
+        </p-chips>
+      </div>
+
+      <div class="form-group">
+        <label for="employeeSecondName">لينكات الدروس بالترييب</label>
+        <br>
+        <br>
+        <p-chips (keyup.enter)="incrementCouter()" [(ngModel)]="LuctrueUrls">
+          <ng-template let-item pTemplate="item">
+            {{item}} -
+            <!-- (<span class="mx-2">{{coutNumber}}</span>) -->
+          </ng-template>
+        </p-chips>
+      </div>
+
+
+      <div class="form-group">
+
+        <button (click)="AddCurriculum()" pButton pRipple type="button" 
+        label="إضافة منهج الدورة" icon="pi pi-check"
+          class="p-button-success">
+
+        </button>
+
+      </div>
+    </p-tabPanel>
+
+  </p-tabView>
+
+
+</div>

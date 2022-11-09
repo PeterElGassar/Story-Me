@@ -1,0 +1,136 @@
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+
+<div class="container-fluid" style="min-height:100vh">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <table class="table table-striped" *ngIf="(basket$ | async) as Basket">
+        <thead class="tbl-header">
+          <tr class="tbl-tr">
+            <th scope="col">صورة الدورة</th>
+
+            <th scope="col">عنوان الدورة</th>
+            <th scope="col">سعر الدورة</th>
+
+            <th scope="col"></th>
+
+          </tr>
+        </thead>
+        <tbody class="tbl-body">
+          <tr *ngFor="let item of (Basket).basketItems">
+
+            <td>
+              <img class="img-fluid rounded" src="{{item.img_path}}"  width="150">
+            </td>
+
+            <th>
+              {{item.name}}
+            </th>
+            <th>
+              {{item.price_after_discount}} <span class="">جنيه</span>
+            </th>
+            <th  scope="row">
+              <button (click)="confirmDeleteCourseItem(item)" class="btn btn-danger btn-sm">
+                <i class="pi pi-trash"></i>
+              </button>
+            </th>
+
+            <!-- <th *ngIf="item.type === 'diploma'" scope="row">
+              <button (click)="confirmDeleteDiplomaItem(item)" class="btn btn-danger btn-sm">
+                <i class="pi pi-trash"></i>
+              </button>
+            </th> -->
+
+            <td></td>
+          </tr>
+          <tr *ngFor="let diploma of (Basket).diplomaItems">
+
+            <td>
+              <img class="img-fluid rounded" src="{{diploma.img_path}}"  width="150">
+            </td>
+
+            <th>
+              {{diploma.name}}
+            </th>
+            <th>
+              {{diploma.price_after_discount}} <span class="">جنيه</span>
+            </th>
+            <th  scope="row">
+              <button (click)="confirmDeleteDiplomaItem(diploma)" class="btn btn-danger btn-sm">
+                <i class="pi pi-trash"></i>
+              </button>
+            </th>
+
+            <!-- <th *ngIf="item.type === 'diploma'" scope="row">
+              <button (click)="confirmDeleteDiplomaItem(item)" class="btn btn-danger btn-sm">
+                <i class="pi pi-trash"></i>
+              </button>
+            </th> -->
+
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="(basket$ | async) === null" class="alert alert-success mx-auto w-50 mt-5">
+        <h2 class="text-center">لا يوجد دورات بعد</h2>
+      </div>
+    </div>
+    <div class="col-10 mx-auto">
+
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-5 mx-auto">
+      <div class="bannel text-center d-flex flex-column">
+        <h2>المجموع الكلي:
+
+          <span class="mx-2" *ngIf="(basketTotalPrice$ | async) as BasketTotal">{{BasketTotal}} جنيه</span>
+        </h2>
+
+
+        <div class=" d-flex justify-center" *ngIf="currentUser$ | async">
+          <a routerLink="/cart/checkout"
+           *ngIf="(currentUser$ | async).user.type === 'student'" 
+           class="btn btn-primary text-white float-right w-50 mx-auto text-center">
+           تابع عملة الشراء
+          </a>
+          </div>
+        <br>
+        
+          <br>
+
+        <div *ngIf="(currentUser$ |async) === null" class="d-flex flex-column">
+          <div class="alert alert-success">
+            <h2>
+              قم بتسجيل الدخول لمتابعة عملة الشراء
+            
+            </h2>
+          </div>
+
+          <a routerLink="/login"  class="btn btn-secondary text-white float-right w-50 mx-auto text-center">
+
+            تسجيل الدخول
+            <i class="fa fa-sign-in ml-1"></i>
+
+          </a>
+        </div>
+        <div *ngIf="currentUser$ |async" class="d-flex flex-column">
+          <div *ngIf="(currentUser$ | async).user.type !== 'student'"  class="alert alert-warning">
+            <h2>
+              غير مسموح لغير الطلاب بالشراء
+            
+            </h2>
+          </div>
+
+      
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+

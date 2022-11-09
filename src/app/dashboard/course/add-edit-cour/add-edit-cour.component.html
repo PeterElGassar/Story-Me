@@ -1,0 +1,213 @@
+<p-toast position="top-right" key="ImageErrorMs"></p-toast>
+<p-toast position="top-center" key="addInstructor"></p-toast>
+
+<form #f="ngForm">
+  <div class="row direction-instructor flex-row-reverse" >
+   
+    <div class="col-md-6">
+
+    
+      <div class="form-group">
+        <span class="p-float-label  mt-4">
+          <input
+          required
+          class=" w-100 p-inputtext-md"
+           type="text"
+           pInputText
+           [(ngModel)]="name"
+           name="this.name"
+           ngModel
+           #NameTemp="ngModel"
+           />
+          <label  for="float-input">أسم الدورة </label>
+        </span>
+        <p class="text-danger" *ngIf="!NameTemp.valid && NameTemp.touched">أدخل أسم الدورة </p>
+      </div>
+
+      
+
+      <div class="form-group">       
+        <label for="yxz">السعر قبل الخصم</label>
+        <p-inputNumber  
+        [showButtons]="true" 
+        buttonLayout="horizontal" 
+        inputId="horizontal" 
+        spinnerMode="horizontal" 
+        [step]="1"
+        decrementButtonClass="p-button-danger" 
+        incrementButtonClass="p-button-success"
+         incrementButtonIcon="pi pi-plus" 
+         decrementButtonIcon="pi pi-minus"
+          minFractionDigits="1"
+          maxFractionDigits="2"
+          [min]="0" [max]="10000"
+          [(ngModel)]="this.price_before_discount"
+          name="this.price_before_discount"
+
+          required
+          ngModel
+          #priceBeforeTemp="ngModel">
+        </p-inputNumber>
+        <p class="text-danger req-ms-number" *ngIf="!priceBeforeTemp.valid && priceBeforeTemp.touched"> ادخل السعر قبل الخصم </p>
+      </div>
+
+      <div class="form-group">
+        <label for="yxz">السعر بعد الخصم</label>
+
+        <p-inputNumber  
+        [showButtons]="true" 
+        buttonLayout="horizontal" 
+        inputId="horizontal" 
+        spinnerMode="horizontal" 
+        [step]="1"
+        decrementButtonClass="p-button-danger" 
+        incrementButtonClass="p-button-success"
+         incrementButtonIcon="pi pi-plus" 
+         decrementButtonIcon="pi pi-minus"
+          minFractionDigits="1"
+          maxFractionDigits="2"
+          [min]="0" [max]="10000"
+          [(ngModel)]="this.price_after_discount"
+          name="this.price_after_discount"
+
+          required
+          ngModel
+          #priceAfterTemp="ngModel">
+        </p-inputNumber>
+        <p class="text-danger req-ms-number" *ngIf="!priceAfterTemp.valid && priceAfterTemp.touched"> ادخل السعر بعد الخصم </p>
+      </div>
+
+
+      <div class="form-group hide-instructor">
+        <p class="text-danger" *ngIf="!instructorTemp.valid && instructorTemp.touched">أختار المدرب</p>
+
+        <label>المحاضر</label>
+        <select 
+        required 
+        class="form-control"
+        (change)="onChangeInstructor($event.target.value)"
+        name="instructors_id"
+        [(ngModel)]="instructors_id"
+        ngModel
+        #instructorTemp="ngModel">
+
+          <option value="{{inst.id}}" *ngFor="let inst of courseInstructors">
+            {{inst.first_name}}
+            {{inst.second_name}}
+            {{inst.last_name}}
+          </option>
+        </select>
+
+        <p class="text-danger" *ngIf="!instructorTemp.valid && instructorTemp.touched">أختار المدرب</p>
+
+
+      </div>
+
+      <div class="form-group">
+        <label>القسم</label>
+        <select class="form-control"
+         name="nameSection" 
+         (change)="onChangeCategory($event.target.value)"
+
+          [(ngModel)]="this.sections_courses_id"
+          required
+          ngModel
+          #specTemp="ngModel"
+          >
+          <option value="{{cat.id}}" *ngFor="let cat of courseCategories">
+            {{cat.name}}
+          </option>
+        </select>
+        <p class="text-danger mr-2" *ngIf="!specTemp.valid && specTemp.touched"> أختر القسم</p>
+
+      </div>
+
+      <div class="form-group">
+        <label for="yxz">نسبة مكسب المحاضر </label>
+
+        <p-inputNumber  
+        [showButtons]="true" 
+        buttonLayout="horizontal" 
+        inputId="horizontal" 
+        spinnerMode="horizontal" 
+        [step]="1"
+        decrementButtonClass="p-button-danger" 
+        incrementButtonClass="p-button-success"
+         incrementButtonIcon="pi pi-plus" 
+         decrementButtonIcon="pi pi-minus"
+          minFractionDigits="1"
+          maxFractionDigits="2"
+          [min]="0" [max]="10000"
+          [(ngModel)]="this.rate_instructor"
+          name="this.rate_instructor"
+          ngModel
+          >
+        </p-inputNumber>
+      </div>
+
+      <div class="col-12">
+      </div>
+
+   
+    </div>
+    <div class="col-2"></div>
+
+    <div class="col-md-4">
+      <div class="form-group d-flex flex-column">
+        <img class="img-fluid rounded" width="100%" [src]="img_path">
+        <br>
+       <!--  <input class="mt-3" (change)="uploadPhoto($event.target)" type="file" name="" id="">-->
+        <input accept="image/*" type="file" id="imageFile" (change)="uploadPhoto($event.target)" />
+        <label for="imageFile" class="btn-2">upload</label>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <span class="p-float-label ">
+        <!-- <textarea pInputTextarea name="this.description" [(ngModel)]="this.description"></textarea> -->
+        <label class="" for="float-input">تفاصيل الكورس</label>
+        <p-editor  
+        [(ngModel)]="this.description"
+         [style]="{'height':'220px'}"
+         ngModel
+         name="this.description"
+         #descriptionTemp="ngModel"
+         required>
+  
+  
+        </p-editor>
+      </span>
+      <p class="text-danger" *ngIf="!descriptionTemp.valid && descriptionTemp.touched">  أدخل  نبذة عن المدرب</p>
+  
+    </div>
+
+    <div class="col-12">
+      <div class="input-file-container w-50 mx-auto mt-5 d-flex">  
+        <input type="file"
+         (change)="uploadPdf($event.target)"
+          id="fileCV"
+          accept=".pdf, .doc, .docx"
+          maxFileSize="100000"/>
+        <label  for="fileCV" class="btn-3">
+          <!-- <span *ngIf="this.selectedFileCv !== null | async">{{this.selectedFileCv.name}}</span>
+          <span *ngIf="this.selectedFileCv === null | async">Upload CV</span> -->
+          <span >Upload PDF</span>
+        </label>
+      </div>
+    </div>
+    <div class="col-md-12 mt-3">
+     
+
+      <button [disabled]="!f.valid" (click)="addCourse()" *ngIf="Course.id == 0" class="btn btn-primary">
+        إضافة كورس جديد
+      </button>
+
+      <button [disabled]="!f.valid" (click)="updateCourse()" *ngIf="Course.id != 0" class="btn btn-primary">
+        تعديل بيانات الكورس
+      </button>
+    </div>
+
+  </div>
+
+
+</form>

@@ -1,0 +1,53 @@
+    <!--  Course Content -->
+    <p-accordion>
+      <h4 class="text-center py-3 course-content-header">
+        {{'COURSE_CONTENT' | translate}}
+      </h4>
+      <!-- Close Lectures -->
+      <div *ngIf="!isTakenCourse">
+        <p-accordionTab *ngFor="let currc of CurrSection; let i = index" [header]="currc.title">
+          <ul class="" *ngIf="i === 0" class="courser-curriculum widget-list list-unstyled">
+            <!-- open video -->
+            <li class="lucture-li p-2 open-lec" *ngFor="let currcNames of currc.name;let x = index">
+              <p (click)="onLessonClick(currc.links[x].link)">
+                <i class="fas fa-caret-right mr-2"></i>
+                {{currcNames.name}}
+              </p>
+            </li>
+          </ul>
+          <ul *ngIf="i !== 0" class="courser-curriculum widget-list list-unstyled">
+            <!-- open video -->
+            <!-- colse video -->
+            <li class="close-lec lucture-li p-2" *ngFor="let currcNames of currc.name;let y = index">
+              <p (click)="onLessonClick(currc.links[y].link)">
+                <i class="fas fa-lock mr-2"></i>
+                {{currcNames.name}}
+              </p>
+            </li>
+          </ul>
+        </p-accordionTab>
+      </div>
+
+      <!-- Open ALL Courses -->
+      <!-- Open ALL Courses -->
+      <!-- Open ALL Courses -->
+      <div *ngIf="isTakenCourse">
+        <p-accordionTab *ngFor="let currc of CurrSection; let i = index" [header]="currc.title">
+          <ul class="courser-curriculum widget-list list-unstyled">
+            <!-- open video -->
+            <li class="lucture-li p-2 open-lec" *ngFor="let currcNames of currc.name;let x = index">
+              <p (click)="onLessonClick(currc.links[x].link)">
+                <i class="fas fa-caret-right mr-2"></i>
+                {{currcNames.name}}
+              </p>
+            </li>
+          </ul>
+
+        </p-accordionTab>
+      </div>
+
+    </p-accordion>
+    <!--  //Course Content -->
+
+    <!-- href="{{currc.links[x].link}}" -->
+    <!-- href="{{currc.links[y].link}}" -->

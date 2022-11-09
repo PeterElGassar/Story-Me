@@ -1,0 +1,73 @@
+.owl-prev {
+  position: absolute;
+  top: 45%;
+  left: -23px;
+  right: -1.5em;
+  margin-top: -1.65em;
+  border: 1px solid #e0e8f3 !important;
+  background: rgba(255, 255, 255, .5) !important;
+  width: 35px;
+  height: 35px;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 15px rgb(67 67 67 / 15%);
+}
+
+.owl-next {
+  position: absolute;
+  top: 45%;
+  right: -23px;
+  /* left: -1.5em; */
+  margin-top: -1.65em;
+  border: 1px solid #e0e8f3 !important;
+  background: rgba(255, 255, 255, .5) !important;
+  width: 35px;
+  height: 35px;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 15px rgb(67 67 67 / 15%);
+}
+
+/* .owl-next:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  clear: both;
+  border-top: 7px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 9px solid #D21212;
+  left: 42%;
+  top: 29%;
+  cursor: pointer !important;
+}
+
+.owl-prev:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  clear: both;
+  border-top: 7px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 9px solid #D21212;
+  right: 42%;
+  top: 29%;
+  cursor: pointer !important;
+} */
+
+/* .owl-carousel .owl-item{
+    height: 100%;
+
+}
+.owl-carousel .owl-item img{
+    height: 100%;
+} */
+
+.owl-nav>div i{
+    padding: 7px 0px;
+}
+
+.artical-section .owl-next,.artical-section .owl-prev{
+    display: none !important;
+}

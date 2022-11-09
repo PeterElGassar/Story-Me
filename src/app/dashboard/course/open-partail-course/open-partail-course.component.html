@@ -1,0 +1,207 @@
+
+
+<div class="row" *ngIf="!ActiveEditMood">
+
+  <!-- <div class="col-12 my-1">
+    <p-dropdown
+     [options]="approvedInstructors" [(ngModel)]="selectedStudent"
+     optionLabel="name" [filter]="true"
+     filterBy="name" [showClear]="true"
+     placeholder="أختر الطالب">
+
+      <ng-template pTemplate="selectedItem">
+        <div class="country-item country-item-value" *ngIf="selectedStudent">
+
+          <div>{{selectedStudent.name}}</div>
+        </div>
+      </ng-template>
+      <ng-template let-country pTemplate="item">
+
+        <div class="country-item">
+          <div>{{country.name}}</div>
+        </div>
+
+      </ng-template>
+    </p-dropdown>
+  </div> -->
+
+<div class="col-12 my-1">
+  <div class="form-group">       
+    <label for="yxz">المبلع المدفوع من الطالب</label>
+    <p-inputNumber  
+    [showButtons]="true" 
+    buttonLayout="horizontal" 
+    inputId="horizontal" 
+    spinnerMode="horizontal" 
+    [step]="1"
+    decrementButtonClass="p-button-danger" 
+    incrementButtonClass="p-button-success"
+     incrementButtonIcon="pi pi-plus" 
+     decrementButtonIcon="pi pi-minus"
+      minFractionDigits="1"
+      maxFractionDigits="2"
+      [min]="0" [max]="10000"
+      [(ngModel)]="this.opendLecture.paid_up"
+      name="this.opendLecture.paid_up"
+
+      required
+      ngModel
+      #priceBeforeTemp="ngModel">
+    </p-inputNumber>
+    <p class="text-danger req-ms-number" *ngIf="!priceBeforeTemp.valid && priceBeforeTemp.touched">المبلع المدفوع من الطالب</p>
+  </div>
+
+</div>
+
+<div class="col-12" *ngIf="!ActiveEditMood">
+    <!--  Course Content -->
+    <p-accordion>
+      <h4 class="text-center py-3 course-content-header">منهج الكورس</h4>
+
+      <p-accordionTab *ngFor="let currc of CurrSection" [header]="currc.title ">
+        <ul class="opend courser-curriculum widget-list list-unstyled">
+          <li class="lucture-li p-2" *ngFor="let currcNames of currc.name">        
+                <h4 class="text-dark">{{currcNames.name}}</h4>
+                  <p-inputSwitch [(ngModel)]="currcNames.is_opend"></p-inputSwitch>
+                  <!-- <strong>{{opendLec.links_id}} --- {{currcNames.id}}</strong> -->
+                  <input data-name="{{currc.name}}" data-id="{{currc.id}}" type="hidden">
+          </li>
+
+   
+
+        </ul>
+      </p-accordionTab>
+
+    </p-accordion>
+    <!--  //Course Content -->
+
+    <!--  Course Content===============OPEND============ -->
+    <p-accordion>
+      <h4 class="text-center py-3 course-content-header">الفيدوهات المفتوحة للطالب</h4>
+
+      <p-accordionTab *ngFor="let currc of CurrSection" [header]="currc.title ">
+        <ul class="courser-curriculum widget-list list-unstyled">
+
+          <li class="w-100 lucture-li p-2" *ngFor="let currcNames of currc.name">
+            
+            <div class=" w-100" *ngFor="let opendLec of opendLecture.linkes_open;let i = index">
+              <!-- opend lecture -->
+              <div class="is-opend d-flex justify-content-between align-items-center" *ngIf="opendLec.links_id === currcNames.id">
+                <h4 class="text-dark">{{currcNames.name}}</h4>
+                  <p-inputSwitch disabled [(ngModel)]="!currcNames.is_opend"></p-inputSwitch>
+                  <!-- <strong>{{opendLec.links_id}} --- {{currcNames.id}}</strong> -->
+                  <input data-name="{{currc.name}}" data-id="{{currc.id}}" type="hidden">
+              </div>
+              <!-- opend lecture -->
+
+            </div>
+
+          </li>
+
+   
+
+        </ul>
+      </p-accordionTab>
+
+    </p-accordion>
+    <!--  //Course Content===============OPEND============ -->
+</div>
+
+<div class="col-12">
+    <div class="col-12">
+      <button (click)="editPartialLecture()" class="btn btn-success w-100 mt-5">
+        حفظ التغيرات
+      </button>
+    </div>
+</div>
+
+</div>
+
+
+<div class="row" *ngIf="ActiveEditMood">
+
+  <div class="col-12 my-1">
+    <p-dropdown
+     [options]="approvedInstructors" [(ngModel)]="selectedStudent"
+     optionLabel="name" [filter]="true"
+     filterBy="name" [showClear]="true"
+     placeholder="أختر الطالب">
+
+      <ng-template pTemplate="selectedItem">
+        <div class="country-item country-item-value" *ngIf="selectedStudent">
+
+          <div>{{selectedStudent.name}}</div>
+        </div>
+      </ng-template>
+      <ng-template let-country pTemplate="item">
+
+        <div class="country-item">
+          <div>{{country.name}}</div>
+        </div>
+
+      </ng-template>
+    </p-dropdown>
+  </div>
+
+<div class="col-12 my-1">
+  <div class="form-group">       
+    <label for="yxz">المبلع المدفوع من الطالب</label>
+    <p-inputNumber  
+    [showButtons]="true" 
+    buttonLayout="horizontal" 
+    inputId="horizontal" 
+    spinnerMode="horizontal" 
+    [step]="1"
+    decrementButtonClass="p-button-danger" 
+    incrementButtonClass="p-button-success"
+     incrementButtonIcon="pi pi-plus" 
+     decrementButtonIcon="pi pi-minus"
+      minFractionDigits="1"
+      maxFractionDigits="2"
+      [min]="0" [max]="10000"
+      [(ngModel)]="this.paid_up"
+      name="this.paid_up"
+
+      required
+      ngModel
+      #priceBeforeTemp="ngModel">
+    </p-inputNumber>
+    <p class="text-danger req-ms-number" 
+    *ngIf="!priceBeforeTemp.valid && priceBeforeTemp.touched">المبلع المدفوع من الطالب</p>
+  </div>
+
+</div>
+
+<div class="col-12" *ngIf="ActiveEditMood">
+    <!--  Course Content -->
+    <p-accordion>
+      <h4 class="text-center py-3 course-content-header">منهج الكورس</h4>
+
+      <p-accordionTab *ngFor="let currc of CurrSection" [header]="currc.title ">
+        <ul class="opend courser-curriculum widget-list list-unstyled">
+          <li class="lucture-li p-2" *ngFor="let currcNames of currc.name">        
+                <h4 class="text-dark">{{currcNames.name}}</h4>
+                  <p-inputSwitch [(ngModel)]="currcNames.is_opend"></p-inputSwitch>
+                  <!-- <strong>{{opendLec.links_id}} --- {{currcNames.id}}</strong> -->
+                  <input data-name="{{currc.name}}" data-id="{{currc.id}}" type="hidden">
+          </li>
+
+   
+
+        </ul>
+      </p-accordionTab>
+
+    </p-accordion>
+    <!--  //Course Content -->
+
+</div>
+
+<div class="col-12">
+    <div class="col-12">
+      <button (click)="addPartialLecture()" class="btn btn-success w-100 mt-5">
+        حفظ التغيرات
+      </button>
+    </div>
+</div>
+
+</div>

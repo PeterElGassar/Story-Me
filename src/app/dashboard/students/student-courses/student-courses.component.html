@@ -1,0 +1,100 @@
+ 
+ <p-toast position="top-right" key="ImageErrorMs"></p-toast>
+ <p-toast position="top-right" key="addInstructor"></p-toast>
+
+ <!-- PrimeNg Table ===========Aprroved Instructors =========-->
+ <p-table id="table-for-print-1" #approvedInstructorsx [value]="studentCourses" [globalFilterFields]="['name','description']" [paginator]="true" [rows]="10"
+ [rowsPerPageOptions]="[10,25,50]" [totalRecords]="this.recourdNumber" [pageLinks]="8">
+ <ng-template pTemplate="caption">
+   <div class="p-d-flex d-flex justify-content-between flex-row-reverse align-items-center">
+
+
+     <div class="search-warpper">
+       <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+         (click)="clear(approvedInstructorsx)"></button>
+       <span class="p-input-icon-left p-ml-auto">
+         <i class="pi pi-search"></i>
+         <input class="search-textbox" pInputText type="text"
+           (input)="approvedInstructorsx.filterGlobal($event.target.value, 'contains')" placeholder="بحث الاقسام" />
+       </span>
+     </div>
+
+     <h2 class="d-flex flex-row-reverse pt-4">
+        <span class="mx-1"> :الطالب</span>
+
+         {{this.studentName}}
+
+     </h2>
+     <button class="btn print-certificate"
+     class="btn btn-info text-light"            
+     printSectionId="table-for-print-1"
+     [useExistingCss]="true"  
+     ngxPrint>
+     <i class="pi pi-print"></i>
+     طباعة تقرير 
+   </button>
+   </div>
+ </ng-template>
+
+ <ng-template pTemplate="header">
+   <tr>
+    <th >تفعيل محاولات الطالب<p-sortIcon field="course.name"></p-sortIcon>
+    </th>
+
+     <th pSortableColumn="result">النتيجة <p-sortIcon field="result"></p-sortIcon>
+     </th>
+     <th pSortableColumn="created_at">تاريخ إلامتحان<p-sortIcon field="created_at"></p-sortIcon>
+     </th>
+     <th pSortableColumn="number_of_questions">عدد الاسئلة<p-sortIcon field="number_of_questions"></p-sortIcon>
+     </th>
+     <th pSortableColumn="correct_questions">عدد الإجابات الصحيحة<p-sortIcon field="correct_questions"></p-sortIcon>
+     </th>
+     <th pSortableColumn="attempts">المحاولات المتبقية <p-sortIcon field="attempts"></p-sortIcon>
+     </th>
+     <th pSortableColumn="course.name">أسم الدورة<p-sortIcon field="course.name"></p-sortIcon>
+     </th>
+     <!-- <th pSortableColumn="course.name">تفعيل محاولات الطالب<p-sortIcon field="course.name"></p-sortIcon>
+     </th> -->
+
+   </tr>
+ </ng-template>
+ <ng-template pTemplate="body" let-student>
+   <tr>
+    <td>
+      <button (click)="ResetAttempts(student.id,student.course.id )" title="تفعيل محاولات الامتحانات"
+        class="btn btn-info btn-sm"><i class="fas fa-check "></i></button>
+    </td>
+
+     <td>
+       {{student.result}}
+     </td>
+
+     <td>
+       {{student.created_at | date}}
+     </td>
+
+     <td>
+       <strong>{{student.number_of_questions}}</strong>
+       <span class="mx-1"> سؤال</span>
+     </td>
+
+     <td>
+       <strong>{{student.correct_questions}}</strong>
+       <span class="mx-1"> إجابة صحيحة</span>
+     </td>
+
+     <td>
+       <strong>{{student.attempts}}</strong>
+       <span class="mx-1"> محاولة</span>
+     </td>
+
+     <td>
+       <strong>{{student.course.name}}</strong>
+     </td>
+   
+
+   </tr>
+ </ng-template>
+
+</p-table>
+<!-- End-PrimeNg Table ===========Aprroved Instructors =========-->

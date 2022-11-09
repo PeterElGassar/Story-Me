@@ -1,0 +1,40 @@
+
+table{
+    margin-top: 50px;
+}
+.tbl-tr{
+    background: #d21212;
+
+}
+
+.tbl-tr > th{
+padding: 15px;
+color: #fff;
+}
+.tbl-body >tr>td{
+    padding-top: 24px;
+}
+.tbl-body > tr> th{
+    padding-top: 4%;
+}
+
+.bannel{
+    border  : 0.5px solid #E0E8F3;
+    background-color: #f7f7f7;
+    padding: 10px 15px;
+    min-height: 20vh;
+    height: 40vh;
+    margin-bottom: 4rem;
+}
+.bannel > h2{
+   color: #d21212;
+}
+.bannel h2 span{
+   color: #2e384d;
+}
+.bannel button{
+   font-size: 1.1rem;
+}
+.bannel a{
+   font-size: 1rem;
+}

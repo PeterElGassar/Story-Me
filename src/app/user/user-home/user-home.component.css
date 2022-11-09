@@ -1,0 +1,25 @@
+.price-color{
+    font-size: 1.125rem;
+    font-weight: 500;
+}
+
+
+.pagination-row{
+    margin-top: 4rem;
+}
+
+.ngx-pagination .current{
+    background: #d21212 !important;
+}
+.best-saller{
+    min-height: 90vh;
+    height: auto;
+}
+
+.item-card2-icons a:hover {
+    color: #d21212 !important;
+}
+
+.in-withlist{
+	color: #d21212;
+}

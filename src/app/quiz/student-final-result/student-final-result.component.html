@@ -1,0 +1,74 @@
+<!-- **************************************
+***********START FINAL RESULT PAGE********
+**************************************-->
+<section class="final-result-container">
+  <div class="final-result-wrapper">
+    <div class="final-result">
+      <a routerLink="/course-details/{{this.courseId}}"> <button id="final-logout-btn">Back To Corese</button></a>
+      <h2 id="final-score-text">
+        <span *ngIf="currentUser$ | async">
+          {{(currentUser$ | async).name}}
+        </span> Your Final Score --
+        <span>{{score}}</span>/<span>{{questionLength}}</span>
+      </h2>
+      
+      <div class="row">
+        <div *ngIf="this.certificat.result !== 'successful'"
+          class="alert alert-danger attempts-message col-8 mx-auto text-center pt-3">
+          <h2 *ngIf="this.certificat.attempts !== 0">
+            حاول مرة اخرة لديك عدد
+            <span>{{this.certificat.attempts}}</span>
+            محاولات
+          </h2>
+          <h2 *ngIf="this.certificat.attempts === 0">
+            لقد استنفذت كل محاولاتك
+          </h2>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div *ngIf="this.certificat.result === 'successful'" class="row">
+    <div *ngIf="currentUser$ | async">
+      <!--  *ngIf="(currentUser$ | async).user.type === 'student'"-->
+      <!--  {{(currentUser$ | async).name}} -->
+
+    </div>
+    <div class="col-12">
+
+      <div class="wrapper-certificate text-center">
+        <div class="my-5 text-1">
+            <h1 class="text-capitalize">Certificate</h1>
+            <h2 class="text-capitalize">OF appreciate</h2>
+        </div>
+        <div class="text-2">
+          <h1 class="text-danger text-uppercase">psychology institute</h1>
+          <h5>is proudly presented to </h5>
+
+          <h3 class="text-capitalize">{{(currentUser$ | async).name}}</h3>
+        </div>
+        <div class="text-3">
+          <h1 class="text-danger">for the successful completion of the training</h1>
+                <h3 class="name-course">{{this.CourseName}}</h3>
+        </div>
+        <div class="row ">
+          <div class="col-4"><p>trainer</p></div>
+          <div class="col-4 logo">
+            <img src="/assets/images/logos/Certificate_Logo.png" width="150">
+          </div>
+          <div class="col-4">
+              <p>General Manager</p>
+              <h3 class="gm-signature">Walid Abdalrahman</h3>
+            
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+<!-- *************************************
+***********END FINAL RESULT PAGE*********
+**************************************-->

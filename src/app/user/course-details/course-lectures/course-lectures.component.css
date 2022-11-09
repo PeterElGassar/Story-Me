@@ -1,0 +1,25 @@
+ul li p{
+    display: flex !important;
+      justify-content: space-between !important;
+      flex-direction: row-reverse !important;
+  }
+
+  .disabled-btn {
+    pointer-events: none !important;
+}
+
+li.open-lec:hover{
+    background: #eee;
+    border-radius: 5px;
+    color: #d21212;
+    pointer-events: painted;
+    cursor: pointer;
+}
+li.close-lec{
+    pointer-events: none !important;
+}
+.course-content-header{
+    font-weight: 500;
+    font-size: 1.3rem;
+    color: #d21212;
+}

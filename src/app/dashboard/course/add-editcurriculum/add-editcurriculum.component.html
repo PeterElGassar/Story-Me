@@ -1,0 +1,140 @@
+<p-toast position="top-right" key="ImageErrorMs"></p-toast>
+<p-toast position="top-center" key="addInstructor"></p-toast>
+
+
+<div class="row" *ngIf="!ActiveEditMood">
+
+<div class="col-12">
+  <div class="alert alert-warning">
+
+    <h4 class="text-center">اول قسم في الدورة دائما يكون مفتوح مجانا للتعرف علي محتوي الدورة</h4>
+  </div>
+</div>
+
+  <div class="col-12 my-1">
+    <label for="CourseSectionName">عنوان القسم</label>
+    <input name="CourseSectionName" [(ngModel)]="CourseSectionName" type="text" class="form-control">
+  </div>
+
+  <div class="col-12 my-1">
+    <label for="employeeSecondName">أسماء الدروس بالترييب</label>
+    <br>
+
+    <p-chips [(ngModel)]="LuctrueNames" name="LuctrueNames">
+      <ng-template let-item pTemplate="item">
+        {{item}} - (active) <i class="pi pi-user p-ml-2"></i>
+      </ng-template>
+    </p-chips>
+  </div>
+
+  <div class="col-12 my-1">
+    <label for="employeeSecondName">لينكات الدروس بالترييب</label>
+    <br>
+
+    <p-chips class="w-100" [(ngModel)]="LuctrueUrls" name="LuctrueUrls">
+      <ng-template class="w-100" let-item pTemplate="item">
+        {{item}} -
+        <!-- (<span class="mx-2">{{coutNumber}}</span>) -->
+      </ng-template>
+    </p-chips>
+
+  </div>
+
+
+
+  <!-- <app-add-curriculum></app-add-curriculum> -->
+
+
+
+  <div class="col-12">
+    <div class="form-group lucture-btn">
+      <button (click)="AddCurriculum()" pButton pRipple type="button"
+       label="إضافة  للدورة" icon="pi pi-check"
+        class="p-button-success">
+      </button>
+    </div>
+  </div>
+
+
+  
+</div>
+
+<div class="row" *ngIf="ActiveEditMood">
+
+  <div class="col-12 my-1">
+
+    <label for="CourseSectionName">عنوان القسم</label>
+    <div class="p-inputgroup">
+      <button type="button" pButton pRipple icon="pi pi-check" styleClass="p-button-success"></button>
+      <input name="CourseSectionName" [(ngModel)]="CourseSectionName" type="text" pInputText>
+    </div>
+
+    <div class="form-group lucture-btn">
+      <button [disabled]="tempUrl.errors?.required || tempName.errors?.required"
+       (click)="saveNewSectionName()" pButton pRipple type="button"
+        label="تعديل إسم القسم" icon="pi pi-check"
+        class="p-button-success">
+      </button>
+    </div>
+  </div>
+
+  <div class="col-12 my-1">
+    <label for="employeeSecondName">أسم الدرس</label>
+    <br>
+
+    <input #tempName="ngModel"
+      ngModel class="form-control"
+       type="text"
+        [(ngModel)]="LuctrueName"
+         name="LuctrueName">
+  </div>
+
+  <div class="col-12 my-1">
+    <label for="employeeSecondName">لينك الدرس</label>
+    <br>
+    <input #tempUrl="ngModel" (change)="log(tempUrl)" ngModel class="form-control" type="text" 
+    [(ngModel)]="LuctrueUrl" name="LuctrueUrls">
+  </div>
+
+
+  <div class="col-12">
+    <div class="form-group lucture-btn">
+      <button [disabled]="tempUrl.errors?.required || tempName.errors?.required"
+       (click)="SaveLecuture(tempUrl.value,tempName.value)" pButton pRipple type="button"
+        label="تعديل الدرس" icon="pi pi-check"
+        class="p-button-success">
+      </button>
+    </div>
+  </div>
+
+  <div class="col-12" *ngIf="ActiveEditMood">
+    <!--  Course Content -->
+    <p-accordion>
+      <h4 class="text-center py-3 course-content-header">منهج الكورس</h4>
+
+      <p-accordionTab (click)="getSectionName(currc)" *ngFor="let currc of CurrSection" [header]="currc.title ">
+        <ul class="courser-curriculum widget-list list-unstyled">
+
+          <li class="lucture-li p-2" *ngFor="let currcNames of currc.name">
+            <a href="#!">{{currcNames.name}}</a>
+            <div>
+              <button (click)="EditLecture(currcNames.id ,currc.id)" type="button" class="btn btn-success btn-sm m-1"><i
+                  class="fa fa-edit"></i></button>
+
+                  <p-confirmPopup styleClass="custom-style" ></p-confirmPopup>
+
+              <button (click)="DeleteLecture(currcNames.id ,currc.id,$event)" type="button" class="btn btn-danger btn-sm m-1"><i
+                  class="fa fa-trash"></i>
+                </button>
+
+            </div>
+          </li>
+
+        </ul>
+      </p-accordionTab>
+
+    </p-accordion>
+    <!--  //Course Content -->
+  </div>
+
+</div>

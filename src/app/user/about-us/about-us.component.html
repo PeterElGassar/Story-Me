@@ -1,0 +1,123 @@
+<section class="sptb">
+  <div class="container">
+    <div class="text-justify">
+      <h2 class="mb-4 font-weight-semibold">{{'OUR_STORY' |translate}}</h2>
+
+      <p class="leading-normal text-muted">
+        {{'OUR_STORY_DEC' |translate}}
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="sptb bg-white">
+  <div class="container">
+    <div class="section-title center-block text-center">
+      <h2>كيف يعمل موقعنا؟</h2>
+      <span class="sectiontitle-design"><span class="icons"></span></span>
+      <p></p>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="">
+          <div class="mb-lg-0 mb-4">
+            <div class="service-card text-center">
+                <img class="icon-bg box-shadow icon-service text-purple about"
+                 src="/assets/images/steps/step-1.png" alt="img">
+              <div class="servic-data mt-3">
+                <h4 class="font-weight-semibold mb-2">1- {{'STPE_1' |translate}}</h4>
+                <p class="text-muted mb-0">
+                  {{'STPE_1_DEC' |translate}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="">
+          <div class="mb-lg-0 mb-4">
+            <div class="service-card text-center">
+                <img class="icon-bg box-shadow icon-service text-purple about"
+                 src="/assets/images/steps/2.jpg" alt="img">
+              <div class="servic-data mt-3">
+                <h4 class="font-weight-semibold mb-2">2-{{'STPE_2' |translate}}</h4>
+                <p class="text-muted mb-0">
+                  {{'STPE_2_DEC' |translate}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="">
+          <div class="mb-sm-0 mb-4">
+            <div class="service-card text-center">
+                <img class="icon-bg box-shadow icon-service text-purple about"
+                src="/assets/images/steps/3.jpg" alt="img">
+              <div class="servic-data mt-3">
+                <h4 class="font-weight-semibold mb-2">3-{{'STPE_3' |translate}}</h4>
+                <p class="text-muted mb-0">
+                  {{'STPE_3_DEC' |translate}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!--section-->
+<section class="sptb bg-white">
+  <div class="container ">
+    <div class="section-title center-block text-center">
+      <h2>{{'INSTRUCTOR' |translate}}</h2>
+      <span class="sectiontitle-design"><span class="icons"></span></span>
+      <p></p>
+    </div>
+    <div class="row about-us-instructors">
+   
+      <div *ngFor="let inst of instructorslist | paginate: { itemsPerPage: 8, currentPage: page }"
+       class="col-xl-4 col-md-12">
+
+        <div class="card mb-xl-0">
+          <div class="card-body">
+            <div class="team-section text-center">
+              <div class="team-img">
+                <img src="{{inst.img_path}}" width="130" class="img-thumbnail rounded-circle" alt="img">
+              </div>
+              <h3 class="font-weight-bold dark-grey-text mt-4">
+                  {{inst.first_name}}
+                  {{inst.second_name}}
+                  {{inst.last_name}}
+
+              </h3>
+              <p 
+               innerHTML="{{(inst.description.length>20)? (inst.description | slice:0:50)+'..':(inst.description)}}" class="font-weight-normal dark-grey-text artical-detaild-p">
+                <i class="fa fa-quote-left pl-2"></i>
+                
+              </p>
+
+            </div>
+          </div>
+        </div>
+        <br>
+      </div>
+     
+    </div>
+
+    <div class="row justify-content-center pagination-row">
+        <div class="col-7 d-flex justify-content-center">
+          <pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>
+        </div>
+      </div>
+  </div>
+</section>
+<!--/section-->

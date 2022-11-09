@@ -1,0 +1,152 @@
+ul {
+    list-style-type: none;
+}
+
+.user-avatar {
+    max-width: 50px;
+    border-radius: 30px;
+}
+
+.logo {
+    max-width: 190px;
+    height: 80px;
+}
+
+.mobile-header {
+    display: none;
+}
+
+/* Navigation List On xlg and lg */
+
+.navigation-list {
+    display: none;
+}
+
+.navigation-list li {
+    padding-right: 12px;
+    padding-left: 12px;
+    margin: auto;
+    max-width: 100%;
+    cursor: pointer;
+}
+
+.navigation-list i {
+    margin-left: 4px;
+}
+
+/* Navigation List On sm and md */
+.navigation-list-mobile {
+    display: none;
+}
+
+.setting-menu-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.setting-menu-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;  
+    right: 0px;
+}
+.mobile-nav i {
+    margin-left: 3px;
+}
+
+.setting-menu-dropdown:hover .setting-menu-content {
+    display: block;
+}
+
+.setting-menu-content a {
+    color: black;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+}
+
+.mobile-nav a {
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid rgba(255,255,255,.5);
+}
+
+a {
+    cursor: pointer;
+}
+
+.mat-menu-button {
+    background: none;
+    color: white;
+    border-bottom: 1px solid #73777b;
+    width: 100%;
+    padding-right: 2re;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+
+}
+
+.mat-menu-item {
+    font-family: 'hanimation';
+}
+
+.material-icons {
+    font-size: 20px;
+}
+
+.nav-link {
+    color:#f9f9f9 !important;
+}
+
+
+.nav-link:hover {
+    color:#FCDB04 !important;
+}
+.bg-dark {
+    background-color: #818284!important;
+}
+
+.active-nav-link{
+    color:#FCDB04 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Media Queries */
+@media(max-width: 768px) {
+    .mobile-header {
+        display: block;
+    }
+
+    .header {
+        display: none;
+    }
+}
+
+@media(min-width: 993px) {
+    .navigation-list {
+        display: block;
+    }
+}
+
+@media(max-width: 992px) {
+    .navigation-list-mobile {
+        display: block;
+    }
+}

@@ -1,0 +1,207 @@
+<!-- <link href="/assets/css/Main-details.css" rel="stylesheet"  />
+<link href="/assets/css/Main-Style.css" rel="stylesheet"  />
+<link href="/assets/css/Main-Style-Ar.css" rel="stylesheet"  />
+<link href="/assets/css/Responsive.css" rel="stylesheet"  /> -->
+
+<link href="/src/assets/css/Main-details.css" rel="stylesheet" />
+<link href="/src/assets/css/Main-Style.css" rel="stylesheet" />
+<link href="/src/assets/css/Main-Style-Ar.css" rel="stylesheet" />
+<link href="/src/assets/css/Responsive.css" rel="stylesheet" />
+<link href="/src/assets/css/videogular.css" rel="stylesheet" />
+
+
+<p-toast position="top-right" key="AddToCartMS"></p-toast>
+<p-toast position="top-right" key="AddToCartMessageWarning"></p-toast>
+
+<breadcrumb [breadcrumb]="breadCrumb"></breadcrumb>
+
+<!-- start of courses-details -->
+<section class="section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <h2 class="text-secondary font-weight-bold mb-4 course-title">
+          {{diploma?.name}}
+        </h2>
+
+        <div class="mb-5">
+          <!-- <a class="d-block has-overlay has-video-popup tansform-none rounded-0">
+            <img class="img-fluid" src="../../assets/images/video-thumb-2.jpg" alt="">
+            <img class="play-btn" src="../../assets/images/video-btn.png" alt="">
+          </a> -->
+
+          <div class="video-player-wrapper">
+          
+            <vg-player  (onPlayerReady)="videoPlayerInit($event)">
+              <vg-overlay-play></vg-overlay-play>
+              <vg-buffering></vg-buffering>
+          
+              <!-- <vg-scrub-bar>
+                <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+              </vg-scrub-bar> -->
+          
+              <vg-controls>
+                <vg-play-pause></vg-play-pause>
+                <vg-playback-button></vg-playback-button>
+          
+                <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+          
+                <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+          
+                <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+                <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+          
+                <vg-track-selector></vg-track-selector>
+                <vg-mute></vg-mute>
+                <vg-volume></vg-volume>
+          
+                <vg-fullscreen></vg-fullscreen>
+              </vg-controls>
+          
+              <video [vgMedia]="media" #media id="singleVideo" preload="auto" crossorigin>
+                <source *ngIf="this.videoSrc" [src]="this.videoSrc" type="video/mp4">
+             
+              </video>
+            </vg-player>
+          
+          </div> 
+        </div>
+
+        <!-- Description -->
+        <p-panel header="وصف الكورس" class="mt-4" [toggleable]="true">
+          <p innerHTML="{{diploma?.description}}"></p>
+        </p-panel>
+         <!-- //Description -->
+        <br>
+        <br>
+        <br>
+
+        <!--  Course Content -->
+        <!-- <diploma-luctrues 
+        [diplomaCourse]="allDiplomaCourses"
+        (lessonlinkForVideo)="currentVideolink($event)"
+        ></diploma-luctrues> -->
+
+
+        <div class="row single-course"  *ngFor="let course of allDiplomaCourses" diplomaCourse>
+    
+            <div class="title-course mt-3 mb-2 ">
+                <h2 class="text-center d-block">{{course.name}}</h2>
+            </div>
+            <!--  DIPLOMA Content -->
+             <p-accordion>
+                 <p-accordionTab *ngFor="let currc of course.Sections; let i = index" [header]="currc.title">
+                   <ul class=""  *ngIf="i === 0" class="courser-curriculum widget-list list-unstyled">
+                      <!-- open video -->
+                     <li class="lucture-li p-2 open-lec" *ngFor="let currcNames of currc.name;let x = index">
+                       <p  (click)="startPlaylistVdo(currc.links[x].link)" >
+                         <i class="fas fa-caret-right mr-2"></i>
+                         {{currcNames.name}}
+                         </p>
+                     </li>
+                   </ul>
+                   <ul *ngIf="i != 0" class="courser-curriculum widget-list list-unstyled">
+                      <!-- open video -->
+                      <!-- colse video -->
+                      <li class="close-lec lucture-li p-2" *ngFor="let currcNames of currc.name;let y = index">
+                       <p  >
+                         <i class="fas fa-lock mr-2"></i>
+                           {{currcNames.name}}
+                         </p>
+                     </li>
+                   </ul>
+                 </p-accordionTab>
+               </p-accordion>
+               <!--  //DIPLOMA Content -->
+        </div>
+        
+
+
+
+
+
+        <!--  //Course Content -->
+
+          <!-- <div class="row mt-5 text-center">
+          <a class="btn btn-info mx-auto" 
+            routerLink="/quizzes/student-quiz/{{diploma?ID}}" >
+            Go to Quiz
+          </a>
+          </div> -->
+
+      </div>
+
+      <div class="col-lg-4 mt-5 mt-lg-0">
+        <div class="widget">
+          <div class="d-flex align-items-center mb-20 justify-content-center flex-column">
+
+            <h2 class="text-blue font-weight-600 ml-4">
+              <span class="mx-1">{{diploma?.price_after_discount}}</span>
+              <span>جنيه</span>
+            </h2>
+
+
+            <h5 class="text-blue font-weight-600 ml-4">
+              <del class="mx-1">{{diploma?.price_before_discount}}</del>
+              <span>جنيه</span>
+            </h5>
+          </div>
+          <!-- <div class="d-flex align-items-center mb-20 justify-content-center">
+
+            <div class="wrapper-rating text-primary ">
+
+              <span class="font-weight-600 rating-number">{{ratingValue+'.0'}}</span>
+             <p-rating  *ngIf="currentUser$ | async"
+              (onRate)="onRateCourse()" class="course-details-rating"
+              [(ngModel)]="ratingValue" [cancel]="false">
+            
+            </p-rating>
+
+             <p-rating *ngIf="(currentUser$ |async) === null"
+             readonly="true"
+              (onRate)="onRateCourse()" class="course-details-rating"
+              [(ngModel)]="ratingValue" [cancel]="false">
+            
+            </p-rating>
+            </div>
+          </div> -->
+
+          <a  class="btn btn-sm btn-primary w-100 text-center mt-5">اشترك الان</a>
+          <!-- <a href="#!" class="btn btn-sm btn-secondary ml-2">Add to Cart</a> -->
+        </div>
+
+        <div *ngFor="let inst of diploma?.Instructors" class="row my-5 ">
+          <div class="col-12">
+
+            <div  class="media  align-items-center mt-40">
+              <img class="rounded-circle ml-2" src="{{inst.img_path}}" alt="">
+              <div class="ml-3">
+                <h5 class="text-blue font-weight-600 mb-1">
+                  {{inst.first_name}}
+                  {{inst.second_name}}
+                  {{inst.last_name}}
+                </h5>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-12">
+            <h6 class="pr-2 mt-4">
+              <!-- {{inst.CourseInstructors.description}} -->
+            </h6>
+          </div>
+        </div>
+        <div class="row mt-3">
+            <p> تاريخ الاصدار الدبلومة: <span>{{diploma?.created_at | date}}</span></p>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</section>
+
+
+<!-- end of courses-details -->

@@ -1,0 +1,37 @@
+@import '../../../assets/education_master/css/materialize.css';
+/* @import '../../../assets/education_master/css/bootstrap.css'; */
+@import '../../../assets/education_master/css/style.css';
+@import '../../../assets/education_master/css/style-mob.css';
+
+
+
+.p-tabview-panels{
+    position:absolute !important;
+}
+
+
+.instructor-img-col{
+    min-height:250vh;
+}
+
+.stu-db{
+    margin-bottom: 40px;
+}
+.instructor-courses-tbl thead tr th ,.instructor-courses-tbl tbody tr td{
+text-align: right;
+}
+.p-tabview .p-tabview-panels{
+    width: 100%;
+}
+
+.direction-instructor{
+    flex-direction: row-reverse !important;
+}
+
+.course-instructor{
+    display: none !important;
+}
+
+.hide-instructor{
+    display: none !important;
+}

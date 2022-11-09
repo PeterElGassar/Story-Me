@@ -1,0 +1,275 @@
+
+<link href="/src/assets/css/Main-details.css" rel="stylesheet" />
+<link href="/src/assets/css/Main-Style.css" rel="stylesheet" />
+<link href="/src/assets/css/Main-Style-Ar.css" rel="stylesheet" />
+<link href="/src/assets/css/Responsive.css" rel="stylesheet" />
+
+<link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet">
+<script src="https://unpkg.com/video.js/dist/video.min.js"></script>
+
+<link href="//vjs.zencdn.net/7.10.2/video-js.min.css" rel="stylesheet">
+<script src="//vjs.zencdn.net/7.10.2/video.min.js"></script>
+
+<p-toast position="top-right" key="AddToCartMS"></p-toast>
+<p-toast position="top-right" key="AddToCartMessageWarning"></p-toast>
+<!-- start of courses-details -->
+<section class="section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <h2 class="text-secondary font-weight-bold mb-4 course-title">
+          {{this.Course?.name}}
+        </h2>
+
+        <div class="mb-5">
+          <!-- <a class="d-block has-overlay has-video-popup tansform-none rounded-0">
+            <img class="img-fluid" src="../../assets/images/video-thumb-2.jpg" alt="">
+            <img class="play-btn" src="../../assets/images/video-btn.png" alt="">
+          </a> -->
+
+          <div class="video-player-wrapper">
+          <!-- <div class="video-remover">pic</div> -->
+            <!-- <vg-player>
+              <vg-overlay-play></vg-overlay-play>
+              <vg-buffering></vg-buffering>
+          
+              <vg-scrub-bar>
+                <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+              </vg-scrub-bar>
+          
+              <vg-controls>
+                <vg-play-pause></vg-play-pause>
+                <vg-playback-button></vg-playback-button>
+          
+                <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+          
+                <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+          
+                <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+                <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+          
+                <vg-mute></vg-mute>
+                <vg-volume></vg-volume>
+          
+                <vg-fullscreen></vg-fullscreen>
+              </vg-controls>
+
+
+
+
+              <video
+               [vgMedia]="media" 
+               #media id="singleVideo" preload="auto"
+               poster="{{this.Course?.img_path}}"
+              crossorigin>
+              
+                <source poster="{{this.Course?.img_path}}" *ngIf="this.videoSrc" [src]="this.videoSrc" type="video/*">
+             
+              </video>
+            </vg-player> -->
+<!--             
+            https://drive.google.com/file/d/1Pu5ngW7T_dDWnY2XiyTHPb333GRKWTLr/preview
+            https://drive.google.com/file/d/1fFa5iwgk_qUywzy_6OstPErINIBClOfM/preview
+            https://drive.google.com/file/d/1a5c0qT8wr9aPZzkxLK_GWKqhu0a0o4Mr/preview
+            https://player.vimeo.com/video/562114431 -->
+            <iframe *ngIf="this.videoSrc" [src]="this.videoSrc" width="100%" height="480" allow="autoplay">
+
+
+              
+            </iframe>
+
+          </div> 
+        </div>
+
+        <!-- Description -->
+        <p-panel header="{{'COURSE_DETAILS' | translate}}" class="mt-4" [toggleable]="true">
+          <p innerHTML="{{Course?.description}}"></p>
+        </p-panel>
+         <!-- //Description -->
+        <br>
+        <br>
+        <br>
+        <!--  Course Content -->
+        
+        <course-lectures 
+        [CurrSection]="CourseCurriculam"
+        (lessonlinkForVideo)="currentVideolink($event)"
+        [isTakenCourse]="this.isTakenCourse"
+        ></course-lectures>
+
+        <!-- for partial purchase users-->
+        <course-lectures-partial *ngIf="Is_partialUser !== undefined"
+        [CurrSection]="CourseCurriculam"
+        (lessonlinkForVideo)="currentVideolink($event)"
+        [isTakenCourse]="this.isTakenCourse"
+        [USERId]="this.userId"
+        [COURSEId]="this.CourseID"
+        ></course-lectures-partial>
+       <!-- for partial purchase users-->
+
+         <div *ngIf="this.isTakenCourse">
+           <div class="row mt-5 text-center" *ngIf="this.typeOfLogin === 'student'">
+             <div class="col-12" *ngIf="this.firstTimeForExam">
+               <a class="go-to-quiz btn btn-info mx-auto" routerLink="/quizzes/student-quiz/{{this.CourseID}}">
+                 
+                 {{'TEST_YOURSELF' | translate}}
+               </a>
+             </div>
+             <div class="w-100">
+               <!-- {{!this.firstTimeForExam}} -->
+               <!-- <h1 class="text-dark">
+                 {{this.certificateInfo?.certificat.result}}
+                 {{this.certificateInfo?.certificat.attempts}}
+               </h1> -->
+               <a class="go-to-quiz btn btn-info mx-auto"
+                 *ngIf="this.certificateInfo?.certificat.result === 'fail' && this.certificateInfo?.certificat.attempts !== '0'"
+                 routerLink="/quizzes/student-quiz/{{this.CourseID}}">
+                 {{'TEST_YOURSELF' | translate}}
+               </a>
+               <div
+                 *ngIf="(this.certificateInfo?.certificat.result === 'fail') && (this.certificateInfo?.certificat.attempts === '0')"
+                 class="alert alert-danger mx-auto">
+                 <h4 class="text-center">
+                   
+                  {{'FILED_ALL_ATTEMPTS' | translate}}
+
+                 </h4>
+               </div>
+             </div>
+             <div class="col-12" *ngIf="this.certificateInfo?.certificat.result === 'successful'">
+               <a class="btn btn-info mx-auto certificate-btn" routerLink="/show-certificate/{{this.CourseID}}/{{this.userId}}">
+                
+                 {{'SHOW_YOUR_CERTIFICATE' | translate}}
+                 <i class="fas fa-certificate mx-2"></i>
+               </a>
+             </div>
+           </div>
+          
+         </div>
+
+      </div>
+
+      <div class="col-lg-4 mt-5 mt-lg-0">
+        <div class="widget">
+          <div class="d-flex align-items-center mb-20 justify-content-center flex-column">
+
+            <h2 class="text-blue font-weight-600 ml-4">
+              <span class="mx-1">{{this.Course?.price_after_discount}}</span>
+              <span class="mx-1">{{'EG_POUND' | translate}}</span>
+            </h2>
+
+
+            <h5 class="text-blue font-weight-600 ml-4">
+              <del class="mx-1">{{this.Course?.price_before_discount}}</del>
+              <span class="mx-1">{{'EG_POUND' | translate}}</span>
+            </h5>
+          </div>
+          <div class="d-flex align-items-center mb-20 justify-content-center">
+
+            <div class="wrapper-rating text-primary ">
+
+              <span class="font-weight-600 rating-number">{{this.ratingValue+'.0'}}</span>
+            <!-- if user loggin and take this course -->
+             <!-- <p-rating  *ngIf="currentUser$ | async "
+              (onRate)="onRateCourse()" class="course-details-rating"
+              [(ngModel)]="this.ratingValue" [cancel]="false"
+              readonly="!this.isTakenCourse">            
+            </p-rating>
+            <br> -->
+
+            <p-rating *ngIf="currentUser$ | async " 
+            [(ngModel)]="this.ratingValue" [cancel]="false"            
+            (onRate)="onRateCourse()" class="course-details-rating">  
+          </p-rating>
+            <!-- if user loggin and take this course -->
+
+            <!-- if user dose not loggin -->
+             <p-rating *ngIf="(currentUser$ |async) === null"
+             readonly="true"
+              (onRate)="onRateCourse()" class="course-details-rating"
+              [(ngModel)]="this.ratingValue" [cancel]="false">            
+            </p-rating>
+
+
+           
+            <!-- if user dose not loggin -->
+            </div>
+          </div>
+
+          <a *ngIf="!this.isTakenCourse" (click)="addItemToBasket()" 
+          class="btn btn-sm btn-primary w-100 text-center">{{'SUBSCRIBE_TITLE_BTN_NOW' | translate}}</a>
+
+        <!-- Copone form -->
+        <div class="input-group my-3" *ngIf="!this.isTakenCourse">
+
+          <button (click)="applayCopone($event)" 
+          class="btn btn-outline-secondary copone-btn" type="button"
+           id="button-addon1">تفعيل الكوبون</button>
+
+          <input [(ngModel)]="this.coponeValue" type="text" class="form-control"  
+          aria-label="Example text with button addon" aria-describedby="button-addon1">
+        </div>
+        <!-- Copone form -->
+
+        <div *ngIf="this.isTakenCourse" class="alert alert-success">
+          <h3 class="text-center d-flex justify-content-center align-items-center">
+            {{'BUYING_SUCCESS' | translate}}
+            <i class="pi pi-check mx-2"></i>
+          </h3>
+        </div>
+          <!-- <a href="#!" class="btn btn-sm btn-secondary ml-2">Add to Cart</a> -->
+        </div>
+      
+        <div class="row mb-5">
+          <div class="col-12">
+
+            <div class="media  align-items-center mt-40">
+              <img class="rounded-circle ml-2" src="{{this.Course?.CourseInstructors[0].img_path}}" alt="">
+              <div class="ml-3">
+                <h5 class="text-blue font-weight-600 mb-1">
+                  {{this.Course?.CourseInstructors[0].first_name}}
+                  {{this.Course?.CourseInstructors[0].second_name}}
+                  {{this.Course?.CourseInstructors[0].last_name}}
+                </h5>
+                <!-- <p> {{'DATE_OF_COURSE' | translate}}: <span>{{Course?.created_at | date }}</span></p> -->
+              </div>
+
+            </div>
+          </div>
+          <div class="col-12">
+            <h6 class="pr-2 mt-4" innerHTML=" {{this.Course?.CourseInstructors[0].description}}">
+              <!-- {{this.Course?.CourseInstructors[0].description}} -->
+            </h6>
+          </div>
+        </div>
+
+        <div class="widget" *ngIf="this.isTakenCourse">
+          <div class="row mt-5 download-btn-row justify-content-center">
+            <h3 class="text-center my-3">{{'DOENLOAD_BTN_TITLE' | translate}}</h3>
+
+            <div class="col-8 mx-auto download-btn-row">
+             <div class="flip">
+               <a href="{{this.Course?.pdf_path}}"  download>
+                 <div class="front">{{'DOENLOAD_BTN' | translate}}</div>
+                 <div class="back">
+                   <i class="fas fa-download"></i>
+                 </div>
+               </a>
+             </div>
+            </div>
+          </div>
+
+       </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</section>
+
+
+<latest-courses [isSlider]="true" [coursesList]="relatedCourses" [sliderTitle]=TitleOfSlider></latest-courses>
+
+<!-- end of courses-details -->

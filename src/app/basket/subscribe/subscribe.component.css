@@ -1,0 +1,12 @@
+.payment-iframe{
+    width: 60%;
+    height: 190vh;
+    margin: 30px auto;
+    overflow-y: hidden;
+    position: relative;
+    left: 0%;
+    transform: translateX(-35%);
+}
+iframe.payment-iframe  > body{
+    overflow-y: hidden !important;
+}

@@ -1,0 +1,15 @@
+.pagination-row{
+    margin-top: 4rem;
+}
+
+.ngx-pagination .current{
+    background: #d21212 !important;
+}
+.best-saller{
+    min-height: 90vh;
+    height: auto;
+}
+
+.bg-white{
+    width: 60%;
+}

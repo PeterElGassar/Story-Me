@@ -1,0 +1,7 @@
+.p-splitbutton{
+    flex-direction: row-reverse;
+}
+
+.clickable{
+    cursor: pointer ;
+}

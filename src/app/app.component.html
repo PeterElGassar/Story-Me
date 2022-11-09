@@ -1,0 +1,17 @@
+<!-- <app-header></app-header> -->
+<ngx-spinner >
+
+</ngx-spinner>
+
+<router-outlet></router-outlet>
+
+<p-dialog header="معهد الدراسات النفسية" [(visible)]="displayPopup" [style]="{width: '50vw'}" [baseZIndex]="10000">
+    <p>
+لقد مر علي إشتراكك سنة.. ولمتابعة كل الدورات علي هذا الحساب يجب عليك تجديد الاشتراك السنوي لهذا الحساب وقيمته <strong>300</strong> جنيه
+    
+
+</p>
+    <ng-template pTemplate="footer">
+        <p-button routerLink="/cart/subscribe-student" icon="pi pi-check" (click)="displayPopup=false" label="الذهاب إلي صفحة تجديد الاشتراك" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>

@@ -1,0 +1,86 @@
+
+<p-toast position="top-right" key="ImageErrorMs"></p-toast>
+<p-toast position="top-center" key="addInstructor"></p-toast>
+
+<form #f="ngForm">
+  <div class="row">
+
+<div class="col-2"></div>
+
+    <div class="col-md-12">
+      <div class="form-group">
+        <span class="p-float-label  mt-4">
+          <input required class=" w-100 p-inputtext-md" type="text" pInputText [(ngModel)]="name" name="this.name"
+            ngModel #NameTemp="ngModel" />
+          <label for="float-input">أسم الكوبون </label>
+        </span>
+        <p class="text-danger" *ngIf="!NameTemp.valid && NameTemp.touched">أدخل أسم الكوبون </p>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="form-group">
+        <span class="p-float-label  mt-4">
+          <input required class=" w-100 p-inputtext-md" type="text" pInputText [(ngModel)]="value" name="this.value"
+            ngModel #coponeTemp="ngModel" />
+          <label for="float-input">قيمة الخصم المؤية</label>
+        </span>
+        <p class="text-danger" *ngIf="!coponeTemp.valid && coponeTemp.touched">أدخل  قيمة الخصم المؤية </p>
+      </div>
+    </div>
+
+    <!-- START DATE -->
+    <div class="col-md-12">
+      <div class="form-group">
+        <span class="mt-4">
+            <label for="float-input">بداية تاريخ الكوبون</label>
+
+          <input required class=" w-100 form-control" type="date"  
+          [(ngModel)]="start_date" name="this.start_date"
+            ngModel #EndDateTemp="ngModel" />
+            <p class="text-danger" *ngIf="!EndDateTemp.valid && EndDateTemp.touched">أدخل  بداية تاريخ الكوبون </p>
+
+        </span>
+      </div>
+    </div>
+    <!-- START DATE -->
+
+    <!-- END DATE -->
+    <div class="col-md-12">
+      <div class="form-group">
+        <span class="  mt-4">
+            <label for="float-input">نهاية تاريخ الكوبون</label>
+          <input required class=" w-100 form-control" type="date" 
+          [(ngModel)]="expire_date" name="this.expire_date"
+            ngModel #expire_dateTemp="ngModel" />
+
+        
+
+
+
+        </span>
+        <p class="text-danger" *ngIf="!expire_dateTemp.valid && expire_dateTemp.touched">أدخل  نهاية تاريخ الكوبون </p>
+      </div>
+    </div>
+    <!-- END DATE -->
+
+
+    <div class="col-12 mt-3 text-center">
+      <button
+       [disabled]="!f.valid"
+       (click)="addEmployee()"
+        *ngIf="courseCategory.id == 0"
+         class="btn btn-primary w-50 mx-auto">
+        إضافة كوبون
+      </button>
+
+      <button [disabled]="!f.valid" (click)="updateEmployee()" *ngIf="courseCategory.id != 0" 
+      class="btn btn-primary w-50 mx-auto">
+        تعديل كوبون
+      </button>
+
+    </div>
+  </div>
+
+
+</form>

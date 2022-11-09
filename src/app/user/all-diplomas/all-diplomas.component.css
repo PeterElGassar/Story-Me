@@ -1,0 +1,16 @@
+.price-color{
+    font-size: 1.125rem;
+    font-weight: 500;
+}
+
+.alert-message{
+margin:9rem 0;
+}
+
+.best-saller{
+    min-height: 90vh;
+    height: 155vh;
+}
+.search-wrapper{
+  width: 60%;
+}

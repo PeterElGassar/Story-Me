@@ -1,0 +1,19 @@
+h1,h2,h3,h4,h5,h6{
+    font-family: 'hanimation';
+}
+/* Card */
+
+.card-common {
+    box-shadow: 1px 3px 5px #999;
+    transition: all .4s;
+}
+
+.card-common:hover {
+    box-shadow: 2px 4px 5px #999;
+    transform: translateY(-5px);
+}
+
+.card-footer span{
+font-size: 1rem;
+}
+/* End-Card */

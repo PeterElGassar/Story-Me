@@ -1,0 +1,497 @@
+<p-toast position="top-center" key="removeInstructor"></p-toast>
+
+<div class="row bg-dark mt-3">
+    <div class="col-md-12 d-flex flex-row">
+      <!-- New Employee Modal Button  -->
+      <div class="pt-3">
+        <button type="button" (click)="addNewClick()" class="btn btn-primary" data-toggle="modal"
+          data-target="#NewEmployeeModal">
+          <i class="fas fa-user-plus mx-2"></i>
+          اضافة محاضر جديد
+        </button>
+      </div>
+  
+      <p class="h5 text-light py-3 ml-auto">إدارة المحاضرين</p>
+    </div>
+</div>
+  
+
+  <p-tabView>
+
+    <p-tabPanel header="المحاضرين المفعلين" [selected]="true">
+      <!-- PrimeNg Table ===========Aprroved Instructors =========-->
+      <p-table id="table-for-print-1" #approvedInstructorsx [value]="approvedInstructors" [globalFilterFields]="['name','description']" [paginator]="true" [rows]="10"
+        [rowsPerPageOptions]="[10,25,50]" [totalRecords]="this.recourdNumber" [pageLinks]="8">
+        <ng-template pTemplate="caption">
+          <div class="p-d-flex d-flex justify-content-between flex-row-reverse">
+            <!-- <div class="add-new-btn">
+                  <a href="" data-toggle="modal" data-target="#emp-modal" title="أضافة موظف جديد"
+                  class="edit-emp-btn btn btn-info btn-sm mx-2">إضافة موظف جديد <i class="fas fa-user-edit mx-2"></i></a>
+                </div> -->
+      
+            <div class="search-warpper">
+              <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+                (click)="clear(approvedInstructorsx)"></button>
+              <span class="p-input-icon-left p-ml-auto">
+                <i class="pi pi-search"></i>
+                <input class="search-textbox" pInputText type="text"
+                  (input)="approvedInstructorsx.filterGlobal($event.target.value, 'contains')" placeholder="بحث الاقسام" />
+              </span>
+            </div>
+            <button class="btn print-certificate"
+            class="btn btn-info text-light"            
+            printSectionId="table-for-print-1"
+            [useExistingCss]="true"  
+            ngxPrint>
+            <i class="pi pi-print"></i>
+            طباعة تقرير 
+          </button>
+          </div>
+        </ng-template>
+      
+        <ng-template pTemplate="header">
+          <tr>
+            <th> ألاجراءات </th>  
+
+            <th pSortableColumn="yearsOfExperience">سنين الخبرة<p-sortIcon field="yearsOfExperience"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="phoneNumber">الموبيل <p-sortIcon field="phoneNumber"></p-sortIcon>
+            </th>
+            <th pSortableColumn="phoneNumber">حالة الحساب <p-sortIcon field="phoneNumber"></p-sortIcon>
+            </th>
+            <!-- <th pSortableColumn="specialization">التخصص <p-sortIcon field="specialization"></p-sortIcon>
+            </th> -->
+
+            <th pSortableColumn="name">الاسم <p-sortIcon field="name"></p-sortIcon>
+            </th>
+      
+            <th >
+                صورة المحاضر 
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-inst>
+          <tr>
+            <td>
+              <!-- <a type="button" data-toggle="modal" data-target="#authModal" href="" title="تفاصيل أكثر"
+                class="btn btn-info btn-sm"><i class="fas fa-user-cog"></i></a> -->
+      
+              <!-- <a href="" data-toggle="modal" data-target="#passwordModal" title="تغير كلمة المرور"
+                class="btn btn-warning text-white btn-sm"><i class="fas fa-unlock-alt"></i></a> -->
+      
+              <a href="" data-toggle="modal" (click)="editClick(inst)" data-target="#NewEmployeeModal"
+                title="تعديل بيانات المدرب" class="edit-emp-btn btn btn-primary btn-sm "><i class="fas fa-user-edit"></i></a>
+                <p-confirmPopup styleClass="custom-style" ></p-confirmPopup>
+
+              <a  title="حذف المدرب" (click)="deleteClick(inst.id)" class="btn btn-danger btn-sm"><i class="fas fa-trash "></i></a>
+      
+            </td>
+
+      
+            <td>{{inst.experience}}</td>
+            <td>{{inst.phone}}</td>
+            <td>
+              <p-toggleButton [(ngModel)]="inst.is_aproved"
+              (click)="toggleApproved(inst)"
+              onLabel="حساب مفعل" 
+              offLabel="حساب مغلق" 
+              onIcon="pi pi-check" offIcon="pi pi-times" [style]="{'width': '10em'}">
+              
+              </p-toggleButton>
+
+            </td>
+            <td>
+              {{inst.first_name}}
+              {{inst.second_name}}
+              {{inst.last_name}}
+              <span *ngIf="inst?.first_name !== null">{{inst?.first_name}}</span>
+              <span *ngIf="inst?.second_name !== null">{{inst?.second_name}}</span>
+              <span *ngIf="inst?.last_name !== null">{{inst.last_name}}</span>
+            </td>
+            <td>
+              <img src="{{inst.img_path}}" width="120">
+            </td>
+      
+            <!-- <td>
+                <a type="button" data-toggle="modal" data-target="#detailsModal" href="" class="">
+                  {{inst.name}}
+                </a>
+              </td> -->
+      
+          </tr>
+        </ng-template>
+      
+      </p-table>
+      <!-- End-PrimeNg Table ===========Aprroved Instructors =========-->
+    </p-tabPanel>
+
+    <p-tabPanel header="المحاضرين الغير المفعلين">
+      <!-- PrimeNg Table ===========Not Aprroved Instructors =========-->
+              <p-table id="table-for-print-2" #empsTbl [value]="notApprovedInstructors" [globalFilterFields]="['name','description']" [paginator]="true" [rows]="10"
+              [rowsPerPageOptions]="[10,25,50]" [totalRecords]="this.recourdNumber" [pageLinks]="8">
+              <ng-template pTemplate="caption">
+                <div class="p-d-flex d-flex justify-content-between flex-row-reverse">
+                  <!-- <div class="add-new-btn">
+                        <a href="" data-toggle="modal" data-target="#emp-modal" title="أضافة موظف جديد"
+                        class="edit-emp-btn btn btn-info btn-sm mx-2">إضافة موظف جديد <i class="fas fa-user-edit mx-2"></i></a>
+                      </div> -->
+
+                  <div class="search-warpper">
+                    <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+                      (click)="clear(empsTbl)"></button>
+                    <span class="p-input-icon-left p-ml-auto">
+                      <i class="pi pi-search"></i>
+                      <input class="search-textbox" pInputText type="text"
+                        (input)="empsTbl.filterGlobal($event.target.value, 'contains')" placeholder="بحث الاقسام" />
+                    </span>
+                  </div>
+                    <button class="btn print-certificate"
+                    class="btn btn-info text-light"            
+                    printSectionId="table-for-print-2"
+                    [useExistingCss]="true"  
+                    ngxPrint>
+                    <i class="pi pi-print"></i>
+                    طباعة تقرير 
+                  </button>
+                </div>
+              </ng-template>
+
+              <ng-template pTemplate="header">
+                <tr>
+                  <th> ألاجراءات </th>  
+
+                  <th pSortableColumn="yearsOfExperience">سنين الخبرة<p-sortIcon field="yearsOfExperience"></p-sortIcon>
+                  </th>
+
+                  <th pSortableColumn="phoneNumber">الموبيل <p-sortIcon field="phoneNumber"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="is_aproved">حالة الحساب<p-sortIcon field="i"></p-sortIcon>
+                  </th>
+                  <!-- <th pSortableColumn="specialization">التخصص <p-sortIcon field="specialization"></p-sortIcon>
+                  </th> -->
+
+                  <th pSortableColumn="name">الاسم <p-sortIcon field="name"></p-sortIcon>
+                  </th>
+
+                  <th >
+                      صورة المحاضر 
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-inst>
+                <tr>
+                  <td>
+                    <!-- <a type="button" data-toggle="modal" data-target="#authModal" href="" title="تفاصيل أكثر"
+                      class="btn btn-info btn-sm"><i class="fas fa-user-cog"></i></a> -->
+
+                    <!-- <a href="" data-toggle="modal" data-target="#passwordModal" title="تغير كلمة المرور"
+                      class="btn btn-warning text-white btn-sm"><i class="fas fa-unlock-alt"></i></a> -->
+
+                    <a href="" data-toggle="modal" (click)="editClick(inst)" data-target="#NewEmployeeModal"
+                      title="تعديل بيانات المدرب" class="edit-emp-btn btn btn-primary btn-sm "><i class="fas fa-user-edit"></i></a>
+                      <p-confirmPopup styleClass="custom-style" ></p-confirmPopup>
+
+                    <a  title="حذف المدرب" (click)="deleteClick(inst.id)" class="btn btn-danger btn-sm"><i class="fas fa-trash "></i></a>
+
+                  </td>
+
+                  <td>{{inst.experience}}</td>
+                  <td>{{inst.phone}}</td>
+                  <td >
+                      <p-toggleButton [(ngModel)]="inst.is_aproved"
+                      (click)="toggleApproved(inst)"
+                      onLabel="حساب مفعل"
+                       offLabel="حساب مغلق" 
+                      onIcon="pi pi-check" offIcon="pi pi-times" [style]="{'width': '10em'}">
+                      
+                      </p-toggleButton>
+        
+                    
+                  </td>
+
+
+                  <td>
+                    <!-- {{inst.first_name}}
+                    {{inst.second_name}}
+                    {{inst.last_name}} -->
+
+
+                    <span *ngIf="inst?.first_name !== null">{{inst?.first_name}}</span>
+                    <span *ngIf="inst?.second_name !== null">{{inst?.second_name}}</span>
+                    <span *ngIf="inst?.last_name !== null">{{inst?.last_name}}</span>
+                  </td>
+                  <td>
+                    <img src="{{inst.img_path}}" width="120">
+                  </td>
+
+                  <!-- <td>
+                      <a type="button" data-toggle="modal" data-target="#detailsModal" href="" class="">
+                        {{inst.name}}
+                      </a>
+                    </td> -->
+
+                </tr>
+              </ng-template>
+
+              </p-table>
+      <!-- End-PrimeNg Table ===========Not Aprroved Instructors =========-->
+    </p-tabPanel>
+
+    <p-tabPanel header="أكثر المحاضرين مبيعا">
+      <!-- PrimeNg Table ===========Not Aprroved Instructors =========-->
+              <p-table  id="table-for-print-3" #empsTbl_2 [value]="bestSellerInstructor" [globalFilterFields]="['name','description']" [paginator]="true" [rows]="10"
+              [rowsPerPageOptions]="[10,25,50]" [totalRecords]="this.recourdNumber" [pageLinks]="8">
+              <ng-template pTemplate="caption">
+                <div class="p-d-flex d-flex justify-content-between flex-row-reverse">
+                  <!-- <div class="add-new-btn">
+                        <a href="" data-toggle="modal" data-target="#emp-modal" title="أضافة موظف جديد"
+                        class="edit-emp-btn btn btn-info btn-sm mx-2">إضافة موظف جديد <i class="fas fa-user-edit mx-2"></i></a>
+                      </div> -->
+
+                  <div class="search-warpper">
+                    <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+                      (click)="clear(empsTbl_2)"></button>
+                    <span class="p-input-icon-left p-ml-auto">
+                      <i class="pi pi-search"></i>
+                      <input class="search-textbox" pInputText type="text"
+                        (input)="empsTbl_2.filterGlobal($event.target.value, 'contains')" placeholder="بحث الاقسام" />
+                    </span>
+                  </div>
+
+                  <button class="btn print-certificate"
+                  class="btn btn-info text-light"            
+                  printSectionId="table-for-print-3"
+                  [useExistingCss]="true"  
+                  ngxPrint>
+                  <i class="pi pi-print"></i>
+                  طباعة تقرير 
+                </button>
+
+                </div>
+              </ng-template>
+
+              <ng-template pTemplate="header">
+                <tr>
+                  <th style="width:15%" > ألاجراءات </th>  
+                  <th  style="width:10%"> عدد مرات البيع </th>  
+
+                  <th  style="width:10%" pSortableColumn="yearsOfExperience">سنين الخبرة<p-sortIcon field="yearsOfExperience"></p-sortIcon>
+                  </th>
+
+                  <th  style="width:15%" pSortableColumn="phoneNumber">الموبيل <p-sortIcon field="phoneNumber"></p-sortIcon>
+                  </th>
+                  <th  style="width:20%" pSortableColumn="is_aproved">حالة الحساب<p-sortIcon field="i"></p-sortIcon>
+                  </th>
+                  <!-- <th pSortableColumn="specialization">التخصص <p-sortIcon field="specialization"></p-sortIcon>
+                  </th> -->
+
+                  <th  style="width:15%" pSortableColumn="name">الاسم <p-sortIcon field="name"></p-sortIcon>
+                  </th>
+
+                  <th  style="width:15%" >
+                      صورة المحاضر 
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-inst>
+                <tr>
+                  <td>
+                    <!-- <a type="button" data-toggle="modal" data-target="#authModal" href="" title="تفاصيل أكثر"
+                      class="btn btn-info btn-sm"><i class="fas fa-user-cog"></i></a> -->
+
+                    <!-- <a href="" data-toggle="modal" data-target="#passwordModal" title="تغير كلمة المرور"
+                      class="btn btn-warning text-white btn-sm"><i class="fas fa-unlock-alt"></i></a> -->
+
+                    <a href="" data-toggle="modal" (click)="editClick(inst.instructor)" data-target="#NewEmployeeModal"
+                      title="تعديل بيانات المدرب" class="edit-emp-btn btn btn-primary btn-sm "><i class="fas fa-user-edit"></i></a>
+                      <p-confirmPopup styleClass="custom-style" ></p-confirmPopup>
+
+                    <a  title="حذف المدرب" (click)="deleteClick(inst.instructor.id)" class="btn btn-danger btn-sm"><i class="fas fa-trash "></i></a>
+
+                  </td>
+
+
+                  <td>{{inst.count}}</td>
+                  <td><span class="mx-2">سنة</span> {{inst.instructor.experience}} </td>
+                  <td>{{inst.instructor.phone}}</td>
+                  <td >
+                      <p-toggleButton [(ngModel)]="inst.instructor.is_aproved"
+                      (click)="toggleApproved(inst)"
+                      onLabel="حساب مفعل"
+                       offLabel="حساب مغلق" 
+                      onIcon="pi pi-check" offIcon="pi pi-times" [style]="{'width': '10em'}">
+                      
+                      </p-toggleButton>
+        
+                    
+                  </td>
+
+
+                  <td>
+                    <!-- {{inst.instructor.first_name}}
+                    {{inst.instructor.second_name}}
+                    {{inst.instructor.last_name}} -->
+
+                    <span *ngIf="inst.instructor?.first_name !== null">{{inst.instructor?.first_name}}</span>
+                    <span *ngIf="inst.instructor?.second_name !== null">{{inst.instructor?.second_name}}</span>
+                    <span *ngIf="inst.instructor?.last_name !== null">{{inst.instructor?.last_name}}</span>
+                  </td>
+                  <td>
+                    <img src="{{inst.instructor.img_path}}" width="120">
+                  </td>
+
+                  <!-- <td>
+                      <a type="button" data-toggle="modal" data-target="#detailsModal" href="" class="">
+                        {{inst.name}}
+                      </a>
+                    </td> -->
+
+                </tr>
+              </ng-template>
+
+              </p-table>
+      <!-- End-PrimeNg Table ===========Not Aprroved Instructors =========-->
+    </p-tabPanel>
+
+    <p-tabPanel header="أقل المحاضرين مبيعا">
+      <!-- PrimeNg Table ===========Not Aprroved Instructors =========-->
+              <p-table id="table-for-print-4" #empsTbl_3 [value]="lessSellerInstructor" [globalFilterFields]="['name','description']" [paginator]="true" [rows]="10"
+              [rowsPerPageOptions]="[10,25,50]" [totalRecords]="this.recourdNumber" [pageLinks]="8">
+              <ng-template pTemplate="caption">
+                <div class="p-d-flex d-flex justify-content-between flex-row-reverse">
+                  <!-- <div class="add-new-btn">
+                        <a href="" data-toggle="modal" data-target="#emp-modal" title="أضافة موظف جديد"
+                        class="edit-emp-btn btn btn-info btn-sm mx-2">إضافة موظف جديد <i class="fas fa-user-edit mx-2"></i></a>
+                      </div> -->
+
+                  <div class="search-warpper">
+                    <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+                      (click)="clear(empsTbl_3)"></button>
+                    <span class="p-input-icon-left p-ml-auto">
+                      <i class="pi pi-search"></i>
+                      <input class="search-textbox" pInputText type="text"
+                        (input)="empsTbl_3.filterGlobal($event.target.value, 'contains')" placeholder="بحث الاقسام" />
+                    </span>
+                  </div>
+                  <button class="btn print-certificate"
+                  class="btn btn-info text-light"            
+                  printSectionId="table-for-print-4"
+                  [useExistingCss]="true"  
+                  ngxPrint>
+                  <i class="pi pi-print"></i>
+                  طباعة تقرير 
+                </button>
+                </div>
+              </ng-template>
+
+              <ng-template pTemplate="header">
+                <tr>
+                  <th style="width:15%" > ألاجراءات </th>  
+                  <th  style="width:10%"> عدد مرات البيع </th>  
+
+                  <th  style="width:10%" pSortableColumn="yearsOfExperience">سنين الخبرة<p-sortIcon field="yearsOfExperience"></p-sortIcon>
+                  </th>
+
+                  <th  style="width:15%" pSortableColumn="phoneNumber">الموبيل <p-sortIcon field="phoneNumber"></p-sortIcon>
+                  </th>
+                  <th  style="width:20%" pSortableColumn="is_aproved">حالة الحساب<p-sortIcon field="i"></p-sortIcon>
+                  </th>
+                  <!-- <th pSortableColumn="specialization">التخصص <p-sortIcon field="specialization"></p-sortIcon>
+                  </th> -->
+
+                  <th  style="width:15%" pSortableColumn="name">الاسم <p-sortIcon field="name"></p-sortIcon>
+                  </th>
+
+                  <th  style="width:15%" >
+                      صورة المحاضر 
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-inst>
+                <tr>
+                  <td>
+                    <!-- <a type="button" data-toggle="modal" data-target="#authModal" href="" title="تفاصيل أكثر"
+                      class="btn btn-info btn-sm"><i class="fas fa-user-cog"></i></a> -->
+
+                    <!-- <a href="" data-toggle="modal" data-target="#passwordModal" title="تغير كلمة المرور"
+                      class="btn btn-warning text-white btn-sm"><i class="fas fa-unlock-alt"></i></a> -->
+
+                    <a href="" data-toggle="modal" (click)="editClick(inst.instructor)" data-target="#NewEmployeeModal"
+                      title="تعديل بيانات المدرب" class="edit-emp-btn btn btn-primary btn-sm "><i class="fas fa-user-edit"></i></a>
+                      <p-confirmPopup styleClass="custom-style" ></p-confirmPopup>
+
+                    <a  title="حذف المدرب" (click)="deleteClick(inst.instructor.id)" class="btn btn-danger btn-sm"><i class="fas fa-trash "></i></a>
+
+                  </td>
+
+
+                  <td>{{inst.count}}</td>
+                  <td><span class="mx-2">سنة</span> {{inst.instructor.experience}} </td>
+                  <td>{{inst.instructor.phone}}</td>
+                  <td >
+                      <p-toggleButton [(ngModel)]="inst.instructor.is_aproved"
+                      (click)="toggleApproved(inst)"
+                      onLabel="حساب مفعل"
+                       offLabel="حساب مغلق" 
+                      onIcon="pi pi-check" offIcon="pi pi-times" [style]="{'width': '10em'}">
+                      
+                      </p-toggleButton>
+        
+                    
+                  </td>
+
+
+                  <td>
+                    <span *ngIf="inst.instructor.first_name !== null">{{inst.instructor.first_name}}</span>
+                    <span *ngIf="inst.instructor.second_name !== null">{{inst.instructor.second_name}}</span>
+                    <span *ngIf="inst.instructor.last_name !== null">{{inst.instructor.last_name}}</span>
+
+                  </td>
+                  <td>
+                    <img src="{{inst.instructor.img_path}}" width="120">
+                  </td>
+
+                  <!-- <td>
+                      <a type="button" data-toggle="modal" data-target="#detailsModal" href="" class="">
+                        {{inst.name}}
+                      </a>
+                    </td> -->
+
+                </tr>
+              </ng-template>
+
+              </p-table>
+      <!-- End-PrimeNg Table ===========Not Aprroved Instructors =========-->
+    </p-tabPanel>
+
+  </p-tabView>
+
+  
+  
+  <!-- New Employee Modal -->
+  <div class="modal fade" id="NewEmployeeModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="NewEmployeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title text-light" id="NewEmployeeModalLabel">{{modalTitle}}</h4>
+          <button (click)="closeInstructorModal()" type="button" class="close text-light" data-dismiss="modal"
+            aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+  
+          <!-- render form here -->
+          <add-edit-instructor [instructor]="instructor" *ngIf="ActivateAddEditEmpComp">
+          </add-edit-instructor>
+  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeInstructorModal()" data-dismiss="modal">اغلاق</button>
+          <!-- <button type="button" class="btn btn-primary">إضافة قسم جديد</button> -->
+        </div>
+      </div>
+    </div>
+  </div>

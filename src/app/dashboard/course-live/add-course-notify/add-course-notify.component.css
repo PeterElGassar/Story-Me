@@ -1,0 +1,25 @@
+* {
+    font-family: 'hanimation';
+    text-align: right !important;
+}
+
+
+h2{
+    font-family: 'hanimation';
+}
+
+.lucture-li{
+    display: flex;
+    justify-content: space-between;
+    background: #eee;
+    align-items: center;
+    border-radius: 5px;
+}
+.lucture-li h4{
+ margin-bottom: 0;
+}
+
+.student-Notificated{
+    border: #cecece solid 2px;
+    border-radius: 5px;
+    padding: 1.5rem;}

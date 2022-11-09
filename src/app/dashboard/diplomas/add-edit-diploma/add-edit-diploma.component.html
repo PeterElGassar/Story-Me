@@ -1,0 +1,185 @@
+
+<p-toast position="top-right" key="ImageErrorMs"></p-toast>
+<p-toast position="top-center" key="addInstructor"></p-toast>
+
+<form #f="ngForm">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">       
+
+        <img class="img-fluid rounded" width="200" [src]="img_path">
+        <br>
+        <input accept="image/*" type="file" id="imageFile" (change)="uploadPhoto($event.target)" />
+        <label for="imageFile" class="btn-2">upload</label>
+
+      </div>
+    </div>
+    <div class="col-1"></div>
+    <div class="col-md-7">
+
+      <div class="form-group">
+        <span class="p-float-label  mt-4">
+          <input
+          required
+          class=" w-100 p-inputtext-md"
+           type="text"
+           pInputText
+           [(ngModel)]="name"
+           name="this.name"
+           ngModel
+           #NameTemp="ngModel"
+           />
+          <label  for="float-input">أسم الدبلومة </label>
+        </span>
+        <p class="text-danger" *ngIf="!NameTemp.valid && NameTemp.touched">أدخل أسم الدبلومة </p>
+      </div>
+
+
+      <div class="form-group">       
+        <label for="yxz">السعر قبل الخصم</label>
+        <p-inputNumber  
+        [showButtons]="true" 
+        buttonLayout="horizontal" 
+        inputId="horizontal" 
+        spinnerMode="horizontal" 
+        [step]="1"
+        decrementButtonClass="p-button-danger" 
+        incrementButtonClass="p-button-success"
+         incrementButtonIcon="pi pi-plus" 
+         decrementButtonIcon="pi pi-minus"
+          minFractionDigits="1"
+          maxFractionDigits="2"
+          [min]="0" [max]="10000"
+          [(ngModel)]="this.price_before_discount"
+          name="this.price_before_discount"
+          [minFractionDigits]="1"
+          (onInput)="onInputBeforPrice($event)"
+          required
+          ngModel
+          #priceBeforeTemp="ngModel">
+        </p-inputNumber>
+        <p class="text-danger req-ms-number" *ngIf="!priceBeforeTemp.valid && priceBeforeTemp.touched"> ادخل السعر قبل الخصم </p>
+
+      </div>
+
+      <div class="form-group">
+        <label for="yxz">السعر بعد الخصم</label>
+        <p-inputNumber  
+        [showButtons]="true" 
+        buttonLayout="horizontal" 
+        inputId="horizontal" 
+        spinnerMode="horizontal" 
+        [step]="1"
+        decrementButtonClass="p-button-danger" 
+        incrementButtonClass="p-button-success"
+         incrementButtonIcon="pi pi-plus" 
+         decrementButtonIcon="pi pi-minus"
+          minFractionDigits="1"
+          maxFractionDigits="2"
+          [min]="0" [max]="10000"
+          [(ngModel)]="this.price_after_discount"
+          name="this.price_after_discount"
+          [minFractionDigits]="1"
+          (onInput)="onInputAfterPrice($event)"
+          required
+          ngModel
+          #priceAfterTemp="ngModel">
+        </p-inputNumber>
+        <p class="text-danger req-ms-number" *ngIf="!priceAfterTemp.valid && priceAfterTemp.touched"> ادخل السعر بعد الخصم </p>
+      </div>
+
+      <div class="form-group">
+        <label for="yxz">نسبة مكسب المحاضر </label>
+
+        <p-inputNumber  
+        [showButtons]="true" 
+        buttonLayout="horizontal" 
+        inputId="horizontal" 
+        spinnerMode="horizontal" 
+        [step]="1"
+        decrementButtonClass="p-button-danger" 
+        incrementButtonClass="p-button-success"
+         incrementButtonIcon="pi pi-plus" 
+         decrementButtonIcon="pi pi-minus"
+          minFractionDigits="1"
+          maxFractionDigits="2"
+          [min]="0" [max]="10000"
+          [(ngModel)]="this.rate_instructor"
+          name="this.rate_instructor"
+          ngModel
+          >
+        </p-inputNumber>
+      </div>
+      
+    </div>
+    <div class="col-12 mt-2">
+      <span class="p-float-label ">
+        <!-- <textarea pInputTextarea name="this.description" [(ngModel)]="this.description"></textarea> -->
+        <label class="" for="float-input">تفاصيل الكورس</label>
+        <p-editor  
+        [(ngModel)]="this.description"
+         [style]="{'height':'220px'}"
+         ngModel
+         name="this.description"
+         #descriptionTemp="ngModel"
+         required>  
+        </p-editor>
+      </span>
+      <p class="text-danger" *ngIf="!descriptionTemp.valid && descriptionTemp.touched">  أدخل  نبذة عن المدرب</p>
+  
+    </div>
+    <div class="col-12 mt-2">
+      <!-- Courses -->
+      <div class="form-group ">
+        <p-multiSelect
+         class="w-100 d-flex justify-content-center"
+         defaultLabel="اختر الدورات"
+         [options]="Courses"
+         name="selectedCourses"
+         [(ngModel)]="selectedCourses"
+         optionLabel="name"
+         ngModel
+         #coursesTemp="ngModel"
+         [maxSelectedLabels]="5"
+         required
+          >
+        </p-multiSelect>
+        <p class="text-danger mr-3" *ngIf="!coursesTemp.valid && coursesTemp.touched">أختار دورة واحدة علي الاقل</p>
+
+      </div>
+      <!-- ///Courses/// -->
+
+      <!-- Instructors -->
+      <div class="form-group">
+        <p-multiSelect class="w-100 d-flex justify-content-center" defaultLabel="اختر المدربين"
+          [options]="arrForTest" name="selectedArrayInstructors" [(ngModel)]="selectedArrayInstructors"
+          optionLabel="fullName"
+          [maxSelectedLabels]="5"
+          ngModel
+          #instructorTemp="ngModel"
+          [maxSelectedLabels]="5"
+          required>
+        </p-multiSelect>
+        <p class="text-danger mr-3" *ngIf="!instructorTemp.valid && instructorTemp.touched">أختار مدرب واحدة علي الاقل</p>
+
+      </div>
+      <!-- ///Instructors/// -->
+
+
+    </div>
+
+    <div class="col-md-12">
+
+
+      <button [disabled]="!f.valid" (click)="addCourse()" *ngIf="diploma.id == 0" class="btn btn-primary">
+        إضافة دبلومة جديد
+      </button>
+
+      <button [disabled]="!f.valid" (click)="updateCourse()" *ngIf="diploma.id != 0" class="btn btn-primary">
+        تعديل بيانات دبلومة
+      </button>
+    </div>
+  </div>
+
+
+</form>

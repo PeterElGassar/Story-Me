@@ -1,0 +1,23 @@
+<ng-container *ngIf="this.artical">
+  <breadcrumb [breadcrumb]="breadCrumb"></breadcrumb>
+
+  <div class="container">
+
+    <div class="row mt-5">
+      <div class="col-8 col-lg-8 ml-auto">
+
+<h2 class="artical-title">{{this.artical.address}}</h2>
+</div>
+      <div class="col-8 col-lg-8 ml-auto">
+          <img class="img-fluid rounded artical-img"  src="{{this.artical.img_path}}" alt="صورة المقال">
+      </div>
+    </div>
+    <div class="row artical-content">
+      <div class="col-10">
+          <div innerHTML={{this.artical.description}} class="test-content">
+            
+          </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

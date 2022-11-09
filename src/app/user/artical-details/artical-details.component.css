@@ -1,0 +1,10 @@
+.artical-img{
+    max-height: 350px;
+    min-width: 100%;
+}
+.artical-content{
+  margin: 2rem 0 5rem 0;
+}
+.artical-title{
+  color: #D21212;
+}

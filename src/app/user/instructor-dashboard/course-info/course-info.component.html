@@ -1,0 +1,95 @@
+<div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6 mx-auto text-center">
+        <img class="img-fluid rounded" width="240" 
+        src="{{courseInfo.img_path}}" alt="">
+      </div>
+      <div class="col-12 col-md-12 ">
+
+        <div class="row mt-5">
+            <div class="col-6">
+                <table class="table">
+
+          <tbody class="teble-details">
+            <tr>
+              <td><strong class="mx-2">أسم الدورة:</strong> <span>{{courseInfo.name}}</span></td>
+
+            </tr>
+            <tr>
+              <td><strong class="mx-2">حالة الدورة:</strong><span>
+                  
+                <p-tag *ngIf="courseInfo.is_aproved === 1" styleClass="p-mr-2" severity="success" value="مفعل"></p-tag>
+                <p-tag *ngIf="courseInfo.is_aproved !== 1" styleClass="p-mr-2" severity="danger" value="لم يتم تفعيله"></p-tag>
+  
+              </span></td>
+
+            </tr>
+            <tr>
+              <td><strong class="mx-2">قسم الدورة:</strong><span>{{courseInfo.nameSection}}</span></td>
+            </tr>
+            <tr>
+              <td class="d-flex align-items-center">
+                  <span><strong class="mx-2">تقيم الدورة:</strong></span>
+                  <span>
+
+
+                <p-rating [ngModel]="courseInfo.rating_course" disabled="true" [cancel]="false"  stars="5"></p-rating>
+
+              </span>
+            
+            </td>
+
+            </tr>
+
+            <!-- <tr>
+              <td>    
+                <strong class="mx-2">
+                    <strong class="mx-2">مبلغ الربح من هذه الدورة</strong></strong>
+                <span>{{courseInfo.profit_instructor}} جنيه</span> 
+            </td>
+            
+            </tr> -->
+          
+          
+          </tbody>
+        </table>
+            </div>
+            <div class="col-6">
+                <table class="table">
+
+          <tbody class="teble-details">
+            <tr>
+                <td><strong class="mx-2">سعر الدورة بعد الخصم:</strong> <span>{{courseInfo.price_after_discount }} جنيه</span></td>
+  
+            </tr>
+            <tr>
+                <td><strong class="mx-2">سعر الدورة قبل الخصم:</strong> <span>{{courseInfo.price_before_discount }} جنيه</span></td>
+            </tr>
+            <tr>
+              <td><strong class="mx-2">تاريخ إضافة الدورة:</strong> <span>{{courseInfo.date| date}}</span> </td>
+            </tr>
+          
+            <tr class="mt-5">
+              <div class="col-8 mx-auto download-btn-row mt-3">
+                <div class="flip  mt-5">
+                  <a class="mt-5" href="{{courseInfo?.pdf_path}}" download>
+                    <div class="front"> ملخص الدورة</div>
+                    <div class="back">
+                      <i class="fas fa-download"></i>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </tr>
+          
+          </tbody>
+        </table>
+            </div>
+        </div>
+        
+
+
+      </div>
+
+    </div>
+  </div>

@@ -1,0 +1,160 @@
+
+<!-- cv_file: "Ps_instructor-60b8b63f46ab1.pdf"
+cv_path: "http://psychiatry.ajathy.com/public/uploads/Ps_instructors/c.v/Ps_instructor-60b8b63f46ab1.pdf"
+description: "alaa alaa alaa"
+email: "alaa@ali.comd"
+experience: "20.00"
+first_name: "alaa"
+id: 18
+img: "Ps_instructor-60b8b63f4763c.PNG"
+img_path: "http://psychiatry.ajathy.com/public/uploads/Ps_instructors/img/Ps_instructor-60b8b63f4763c.PNG"
+is_aproved: "0"
+last_name: "elsaeed"
+phone: "0102365987562145"
+second_name: "tarek"
+specialtiesCount: 0
+user_id: "67" -->
+
+
+
+<!--SECTION START-->
+<section>
+  
+  <div class="pro-menu">
+    <div class="container">
+      <div class="col-md-9 mr-auto">
+
+        <p-tabView>
+          <p-tabPanel header="{{'INSTRUCTOR' | translate}}" [selected]="true">
+
+            <div class="udb-sec udb-prof">
+              <h4 class="py-3"><img src="images/icon/db1.png" alt="" />
+                
+              {{'INSTRUCTOR_DESCRIPTION' | translate}}
+              </h4>
+              <p class="py-4">
+               {{singleInstructor?.description}}
+
+              </p>
+            </div>
+
+            <div class="udb-sec udb-cour">
+              <h4><img src="images/icon/db2.png" alt="" /> 
+              {{'COURSES_OF_INSTRUCTOR' | translate}}
+              </h4>
+
+              <div class="sdb-cours">
+                <div class="row">       
+                  <div class="col-12 col-md-6 col-lg-5" *ngFor="let cour of InstructorCoursesList| paginate: { itemsPerPage: 4, currentPage: this.page }">
+                    <latest-courses [removeInstructorName]="false" [course]='cour' [isSlider]="false">
+
+                    </latest-courses>
+                  </div>
+                </div>
+
+                <div class="row justify-content-center pagination-row">
+                  <div class="col-7 d-flex justify-content-center">
+                    <pagination-controls class="pagination" (pageChange)=" this.page = $event" ></pagination-controls>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </p-tabPanel>
+
+
+
+        </p-tabView>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="stu-db">
+    <div class="container pg-inn">
+      <div class="col-md-3 instructor-img-col">
+        <div class="pro-user">
+          <img src="{{singleInstructor?.img_path}}" alt="user">
+
+        </div>
+        <div class="pro-user-bio">
+          <ul>
+            <li>
+              <h5>
+                {{singleInstructor?.first_name}}
+                {{singleInstructor?.second_name}}
+                {{singleInstructor?.last_name}}
+
+              </h5>
+            </li>
+            <!-- <li>Student Id: ST17241</li> -->
+            <li>{{'EXPERIENCE' | translate}}: <span class="lead-3">{{singleInstructor?.experience | number}}</span></li>
+            <!-- <li><a href="#!"><i class="fa fa-facebook"></i> Facebook: my sample</a></li>
+            <li><a href="#!"><i class="fa fa-google-plus"></i> Google: my sample</a></li>
+            <li><a href="#!"><i class="fa fa-twitter"></i> Twitter: my sample</a></li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-9">
+
+      </div>
+    </div>
+  </div>
+</section>
+<!--SECTION END-->
+
+
+
+<!-- New Course Modal -->
+<!-- <div class="modal fade" id="CourseModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="NewEmployeeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-light" id="NewEmployeeModalLabel">تعديل بايانات الدورة</h4>
+        <button (click)="closeCourseModal()" type="button" class="close text-light" data-dismiss="modal"
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <edit-course [Course]="course" *ngIf="ActivateAddEditEmpComp">
+        </edit-course>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeCourseModal()" data-dismiss="modal">اغلاق</button>
+
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- New Curriculum Modal -->
+<!-- <div class="modal fade" id="CurriculumModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="NewEmployeeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-light" id="NewEmployeeModalLabel">تعديل بايانات المنهج</h4>
+        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+          <span (click)="closeCourseModal()" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!-- render form here -->
+        <!-- <add-editcurriculum [ActiveEditMood]="true" [CourseID]="IdToPath" [CurrSection]="CourseCurriculam" *ngIf="ActivateAddEditEmpComp">
+        </add-editcurriculum> --> -->
+<!-- <edit-currciulum-form [CourseID]="IdToPath"  [curric]="CourseCurriculam" *ngIf="ActivateAddEditEmpComp"></edit-currciulum-form> -->
+      <!-- </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeCourseModal()" data-dismiss="modal">اغلاق</button>
+
+      </div>
+    </div>
+  </div>
+</div> -->

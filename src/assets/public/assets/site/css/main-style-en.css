@@ -1,0 +1,25 @@
+.item-card2 .item-card2-text h4{
+text-align: left;
+}
+.item-card2-desc p{
+text-align: left;
+}
+
+.horizontalMenu>.horizontalMenu-list>li>ul.sub-menu>li>a {
+
+	text-align: left;
+	
+}
+
+.en-card .card-body a,
+.en-card .card-body p,
+.en-card .item-card-badge {
+
+	text-align: left;
+	
+}
+@media only screen and(max-width:992px){
+.horizontalMenu-list{
+	display: block !important;
+}
+}

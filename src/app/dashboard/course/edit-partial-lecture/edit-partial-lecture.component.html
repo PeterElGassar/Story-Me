@@ -1,0 +1,99 @@
+<p-toast position="top-right" key="ImageErrorMs"></p-toast>
+<p-toast position="top-center" key="addInstructor"></p-toast>
+
+
+<div class="row" *ngIf="ActiveEditMood">
+<h1>peter</h1>
+  <div class="col-12 my-1">
+    <p-dropdown
+     [options]="approvedInstructors" [(ngModel)]="selectedStudent"
+     optionLabel="name" [filter]="true"
+     filterBy="name" [showClear]="true"
+     placeholder="أختر الطالب">
+
+      <ng-template pTemplate="selectedItem">
+        <div class="country-item country-item-value" *ngIf="selectedStudent">
+
+          <div>{{selectedStudent.name}}</div>
+        </div>
+      </ng-template>
+      <ng-template let-country pTemplate="item">
+
+        <div class="country-item">
+          <div>{{country.name}}</div>
+        </div>
+
+      </ng-template>
+    </p-dropdown>
+
+    <!-- <form>
+      <ng-select [(ngModel)]="selectedCountry" name="selectedCountry">
+        <ng-option *ngFor="let province of selectedCountry" [value]="province.id">{{province.name}}</ng-option>
+      </ng-select>
+    </form> -->
+
+  </div>
+
+<div class="col-12 my-1">
+  <div class="form-group">       
+    <label for="yxz">المبلع المدفوع من الطالب</label>
+    <p-inputNumber  
+    [showButtons]="true" 
+    buttonLayout="horizontal" 
+    inputId="horizontal" 
+    spinnerMode="horizontal" 
+    [step]="1"
+    decrementButtonClass="p-button-danger" 
+    incrementButtonClass="p-button-success"
+     incrementButtonIcon="pi pi-plus" 
+     decrementButtonIcon="pi pi-minus"
+      minFractionDigits="1"
+      maxFractionDigits="2"
+      [min]="0" [max]="10000"
+      [(ngModel)]="this.paid_up"
+      name="this.paid_up"
+
+      required
+      ngModel
+      #priceBeforeTemp="ngModel">
+    </p-inputNumber>
+    <p class="text-danger req-ms-number" *ngIf="!priceBeforeTemp.valid && priceBeforeTemp.touched">المبلع المدفوع من الطالب</p>
+  </div>
+
+</div>
+
+  <div class="col-12" *ngIf="ActiveEditMood">
+    <!--  Course Content -->
+    <p-accordion>
+      <h4 class="text-center py-3 course-content-header">منهج الكورس</h4>
+
+      <p-accordionTab (click)="getSectionName(currc)" *ngFor="let currc of CurrSection" [header]="currc.title ">
+        <ul class="courser-curriculum widget-list list-unstyled">
+
+          <li class="lucture-li p-2" *ngFor="let currcNames of currc.name">
+            <a href="#!">{{currcNames.name}}</a>
+            <div>
+ 
+              <a href="#!">test: {{currcNames.is_opend}}</a>
+
+              <p-inputSwitch [(ngModel)]="currcNames.is_opend"></p-inputSwitch>
+              <input data-name="{{currc.name}}" data-id="{{currc.id}}" type="hidden">
+            </div>
+          </li>
+
+        </ul>
+      </p-accordionTab>
+
+    </p-accordion>
+    <!--  //Course Content -->
+  </div>
+
+  <div class="col-12">
+    <div class="col-12">
+      <button (click)="EditLecture()" class="btn btn-success w-100 mt-5">
+        حفظ التغيرات
+      </button>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,135 @@
+ <!-- PrimeNg Table ===========Aprroved Instructors =========-->
+ <p-table id="table-for-print-1" #approvedInstructorsx [value]="studentCourses" [globalFilterFields]="['name','description']" [paginator]="true" [rows]="10"
+ [rowsPerPageOptions]="[10,25,50]" [totalRecords]="this.recourdNumber" [pageLinks]="8">
+ <ng-template pTemplate="caption">
+   <div class="p-d-flex d-flex justify-content-between flex-row-reverse align-items-center">
+
+     <div class="search-warpper">
+       <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+         (click)="clear(approvedInstructorsx)"></button>
+       <span class="p-input-icon-left p-ml-auto">
+         <i class="pi pi-search"></i>
+         <input class="search-textbox" pInputText type="text"
+           (input)="approvedInstructorsx.filterGlobal($event.target.value, 'contains')" placeholder="بحث الاقسام" />
+       </span>
+     </div>
+
+     <h2 class="d-flex flex-row-reverse pt-4">
+        <span class="mx-1"> :طلاب ألاجل لدورة</span>
+
+         {{this.course.name}}
+
+     </h2>
+     <button class="btn print-certificate"
+     class="btn btn-info text-light"            
+     printSectionId="table-for-print-1"
+     [useExistingCss]="true"  
+     ngxPrint>
+     <i class="pi pi-print"></i>
+     طباعة تقرير 
+   </button>
+   </div>
+ </ng-template>
+
+ <ng-template pTemplate="header">
+   <tr>
+
+     <th pSortableColumn="created_at">تعديل الحلقات المفتوحة<p-sortIcon field="created_at"></p-sortIcon>
+     </th>
+     <th pSortableColumn="created_at">جنس الطالب<p-sortIcon field="created_at"></p-sortIcon>
+     </th>
+
+     <th pSortableColumn="created_at">المبلغ المدفوع <p-sortIcon field="created_at"></p-sortIcon>
+     </th>
+
+     <th pSortableColumn="number_of_questions">المبلغ المتبقي<p-sortIcon field="number_of_questions"></p-sortIcon>
+     </th>
+
+     <th pSortableColumn="correct_questions">أسم الطالب<p-sortIcon field="correct_questions"></p-sortIcon>
+     </th>
+    
+   </tr>
+ </ng-template>
+ <ng-template pTemplate="body" let-course>
+   <tr>
+     <!-- <td>
+       {{course.created_at | date}}
+     </td> -->
+     <td>
+      <button pTooltip="فتح جزء من المنهج" tooltipPosition="top" tooltipEvent="hover" type="button"
+       data-toggle="modal" 
+      
+       (click)="Edit(course)" data-target="#ParialCourseModal"
+         class="btn btn-info btn-sm">
+        <i class="fas fa-desktop p-3"></i>
+      </button>
+
+      </td>
+     <td>
+        <strong>{{course.gender}}</strong>
+      </td>
+     <td>
+       <strong>{{course.paid_up}}</strong>
+       <span class="mx-1"> جنيه</span>
+     </td>
+
+     <td>
+       <strong>{{course.residual}}</strong>
+       <span class="mx-1"> جنيه</span>
+     </td>
+
+     <td>
+       <h3 class="text-dark">
+         <strong>{{course.name }}</strong>
+        
+        </h3>
+
+     </td>
+
+   </tr>
+ </ng-template>
+
+</p-table>
+<!-- End-PrimeNg Table ===========Aprroved Instructors =========-->
+
+
+
+<!-- ======================Add Partial Course=================== -->
+<div class="modal fade " id="ParialCourseModal"
+ data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="NewEmployeeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-light" id="NewEmployeeModalLabel">فتح الدورة للطالب  بالدفع الآجل</h4>
+        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+          <span (click)="closeCourseModal()" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body admin-model-body ">
+
+        <!-- render form here -->
+        <!-- <edit-partial-lecture
+
+        [CourseID]="IdToPath" 
+        [CurrSection]="CourseCurriculam"
+        *ngIf="ActivateAddEditCurruclum">
+
+        </edit-partial-lecture> -->
+        <!-- render form here -->
+        <open-partail-course
+        [ActiveEditMood]="!ActiveEditMood" 
+        [CourseID]="IdToPath" 
+        [opendLecture]="this.opendLecture" 
+        [CurrSection]="CourseCurriculam"
+          *ngIf="ActivateAddEditCurruclum">
+        </open-partail-course>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeCourseModal()" data-dismiss="modal">اغلاق</button>
+
+      </div>
+    </div>
+  </div>
+</div>

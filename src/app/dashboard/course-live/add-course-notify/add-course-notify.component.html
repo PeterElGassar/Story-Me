@@ -1,0 +1,163 @@
+<p-toast position="top-right" key="ImageErrorMs"></p-toast>
+<p-toast position="top-center" key="addInstructor"></p-toast>
+
+<div class="row" *ngIf="!ActiveEditMood">
+  <h2>انشاء</h2>
+  <!-- <div class="col-12 my-1">
+      <p-dropdown
+       [options]="approvedInstructors" [(ngModel)]="selectedStudent"
+       optionLabel="name" [filter]="true"
+       filterBy="name" [showClear]="true"
+       placeholder="أختر الطالب">
+  
+        <ng-template pTemplate="selectedItem">
+          <div class="country-item country-item-value" *ngIf="selectedStudent">
+  
+            <div>{{selectedStudent.name}}</div>
+          </div>
+        </ng-template>
+        <ng-template let-country pTemplate="item">
+  
+          <div class="country-item">
+            <div>{{country.name}}</div>
+          </div>
+  
+        </ng-template>
+      </p-dropdown>
+    </div> -->
+
+  <div class="col-12 my-1">
+    <div class="form-group">
+      inpru
+    </div>
+
+  </div>
+
+  <div class="col-12" *ngIf="!ActiveEditMood">
+
+  </div>
+
+  <div class="col-12">
+    <div class="col-12">
+      <button (click)="addCourse()" class="btn btn-success w-100 mt-5">
+        إرسال الاشعارات
+      </button>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="row" *ngIf="ActiveEditMood">
+
+  <form #f="ngForm" class="w-100">
+    <div class="col-12 my-2">
+      <!-- partialPaymentStudent -->
+      <div class="form-group " *ngIf="newPartial_Student">
+        <p-multiSelect class="w-100 d-flex justify-content-center" defaultLabel="طلاب دفع الاجل"
+          [options]="newPartial_Student" name="selectedPartialStudent" [(ngModel)]="selectedPartialStudent"
+          optionLabel="name" ngModel #studentCashTemp="ngModel" [maxSelectedLabels]="5" >
+        </p-multiSelect>
+        <p class="text-danger mr-3" *ngIf="!studentCashTemp.valid && studentCashTemp.touched">أختار طالب واحدة علي الاقل
+        </p>
+      </div>
+      <!-- ///partialPaymentStudent/// -->
+    </div>
+    <div class="col-12 my-2">
+      <!-- cashStudent -->
+      <div class="form-group " *ngIf="cashStudent">
+        <p-multiSelect class="w-100 d-flex justify-content-center" defaultLabel="طلاب الدفع الكاش" [options]="cashStudent"
+          name="selectedCashStudent" [(ngModel)]="selectedCashStudent" optionLabel="name" ngModel
+          #studentPartialTemp="ngModel" [maxSelectedLabels]="5"  >
+        </p-multiSelect>
+        <p class="text-danger mr-3" *ngIf="!studentPartialTemp.valid && studentPartialTemp.touched">أختار طالب واحدة علي الاقل</p>
+      </div>
+      <!-- ///cashStudent/// -->
+    </div>
+
+
+    <div class="col-12 my-2">
+      <input type="text" class="p-inputtext-lg" name="notificationText" [(ngModel)]="notificationText"
+       placeholder="رسالة التنبيه" pInputText
+       ngModel #message="ngModel" required
+       />
+       <p class="text-danger mr-3" *ngIf="!message.valid && message.touched">أدخل الرسالة</p>
+    </div>
+
+     <div class="col-12 my-2">
+      <input type="text" class="p-inputtext-lg" name="liveLink" [(ngModel)]="liveLink"
+       placeholder="لينك المحاضرة الايف" pInputText
+       ngModel #live="ngModel" required
+       />
+       <p class="text-danger mr-3" *ngIf="!live.valid && live.touched">أدخل لينك اللايف</p>
+    </div> 
+
+
+    <div class="col-12 my-2">
+      <input type="datetime-local" class="p-inputtext-lg"
+       name="dateOfNotification" [(ngModel)]="dateOfNotification" placeholder="تاريخ" pInputText
+       ngModel #date="ngModel" required/>
+
+       <p class="text-danger mr-3" *ngIf="!date.valid && date.touched">أدخل التاريخ</p>
+    </div>
+    <div class="col-12">
+      <div class="col-12">
+        <button (click)="addCourse()" [disabled]="!f.valid" class="btn btn-success w-100 mt-5">
+          إرسال أشعار
+        </button>
+      </div>
+    </div>
+  </form>
+
+
+<!-- *****************accordion***************** -->
+<!-- *****************accordion***************** -->
+  <div class="col-12 mt-3 ">
+
+    <div class="student-Notificated">
+      <h2 class="text-dark w-100 text-center my-2">طلاب الدفع الاجل</h2>
+      <div class="col-12">
+        <!--  طلاب الاجل -->
+        <p-accordion>
+          <p-accordionTab [header]="this.partialStudentTitle">
+            <ul class="opend courser-curriculum widget-list list-unstyled">
+              <li class="lucture-li p-2 mb-3" *ngFor="let student of   allSendedNotificationStudentPartial">
+                      <h4 class="text-dark">{{student.name}}</h4>
+                      <p-inputSwitch [(ngModel)]="student.is_watch"></p-inputSwitch>
+                      <input data-name="{{student.name}}" data-id="{{student.user_id}}" type="hidden">
+                </li>
+            </ul>
+          </p-accordionTab>
+        </p-accordion>
+        <!--  // طلاب الاجل -->
+      </div>
+      <h2 class="text-dark w-100 text-center my-2">طلاب الدفع الكاش</h2>
+      <div class="col-12">
+        <!--  طلاب الكاش -->
+        <p-accordion>
+          <p-accordionTab [header]="chashStudentTitle">
+            <ul class="opend courser-curriculum widget-list list-unstyled">
+              <li class="lucture-li p-2 mb-3" *ngFor="let student of allSendedNotificationStudentCash">
+                    <h4 class="text-dark">{{student.name}}</h4>
+                    <p-inputSwitch [(ngModel)]="student.is_watch"></p-inputSwitch>
+                    <input data-name="{{student.name}}" data-id="{{student.user_id}}" type="hidden">
+              </li>
+            </ul>
+          </p-accordionTab>
+        </p-accordion>
+        <!--  // طلاب الكاش -->
+      </div>
+
+      <div class="col-12">
+        <button (click)="watchUsersNotification()" class="btn btn-info w-100 mt-5">
+          شاهد الايف
+        </button>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+</div>

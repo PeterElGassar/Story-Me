@@ -1,0 +1,40 @@
+
+
+              <!--  Course Content===============OPEND============ -->
+    <p-accordion>
+      <h4 class="text-center py-3 course-content-header">الفيدوهات المفتوحة للطالب</h4>
+
+      <p-accordionTab *ngFor="let currc of CurrSection" [header]="currc.title ">
+        <ul class="courser-curriculum widget-list list-unstyled">
+
+          <li class="w-100 lucture-li p-2 lucture-li p-2 open-lec" *ngFor="let currcNames of currc.name; let y = index">         
+            <div class=" w-100" *ngFor="let opendLec of opendLecture?.linkes_open; let i = index">
+              <!-- opend lecture -->
+              <div class="is-opend d-flex justify-content-between align-items-center" *ngIf="opendLec.links_id === currcNames.id">
+                <p class="w-100" (click)="onLessonClick(currc.links[y].link)">
+                  <i class="fas fa-caret-right mr-2"></i>
+                  {{currcNames.name}}
+                </p>
+
+              </div>
+
+                          <!-- ********** -->
+                      <!-- <li class="lucture-li p-2 open-lec" *ngFor="let currcNames of currc.name;let x = index">
+                        <p (click)="onLessonClick(currc.links[x].link)">
+                          <i class="fas fa-caret-right mr-2"></i>
+                          {{currcNames.name}}
+                        </p>
+                      </li> -->
+                          <!-- ********** -->
+
+              <!-- opend lecture -->
+            </div>
+          </li>
+
+   
+
+        </ul>
+      </p-accordionTab>
+
+    </p-accordion>
+    <!--  //Course Content===============OPEND============ -->

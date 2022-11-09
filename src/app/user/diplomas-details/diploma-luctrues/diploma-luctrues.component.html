@@ -1,0 +1,52 @@
+<div class="row single-course"  *ngFor="let course of diplomaCourse" diplomaCourse>
+    
+    <div class="title-course mt-3 mb-2 ">
+        <h2 class="text-center d-block">{{course.name}}</h2>
+    </div>
+    <div  *ngIf="isTakenDiploma">
+      <!--  DIPLOMA Content -->
+       <p-accordion>
+           <p-accordionTab *ngFor="let currc of course.Sections; let i = index" [header]="currc.title">
+             <ul  class="courser-curriculum widget-list list-unstyled">
+                <!-- open video -->
+               <li class="lucture-li p-2 open-lec" *ngFor="let currcNames of currc.name;let x = index">
+                 <p (click)="onLessonClick(currc.links[x].link)">
+                   <sapn><i class="fas fa-video-camera mr-2"></i></sapn>
+                   <span>{{currcNames.name}}</span>
+                   </p>
+               </li>
+             </ul>
+          
+           </p-accordionTab>
+         </p-accordion>
+         <!--  //DIPLOMA Content -->
+    </div>
+
+    <div  *ngIf="!isTakenDiploma">
+      <!--  DIPLOMA Content -->
+       <p-accordion>
+           <p-accordionTab *ngFor="let currc of course.Sections; let i = index" [header]="currc.title">
+             <ul class=""  *ngIf="i === 0" class="courser-curriculum widget-list list-unstyled">
+                <!-- open video -->
+               <li class="lucture-li p-2 open-lec" *ngFor="let currcNames of currc.name;let x = index">
+                 <p (click)="onLessonClick(currc.links[x].link)">
+                   <sapn><i class="fas fa-video-camera mr-2"></i></sapn>
+                   <span>{{currcNames.name}}</span>
+                   </p>
+               </li>
+             </ul>
+             <ul *ngIf="i != 0" class="courser-curriculum widget-list list-unstyled">
+                <!-- open video -->
+                <!-- colse video -->
+                <li class="close-lec lucture-li p-2" *ngFor="let currcNames of currc.name;let y = index">
+                 <p (click)="onLessonClick(currc.links[y].link)" >
+                   <i class="fas fa-lock mr-2"></i>
+                     {{currcNames.name}}
+                   </p>
+               </li>
+             </ul>
+           </p-accordionTab>
+         </p-accordion>
+         <!--  //DIPLOMA Content -->
+    </div>
+</div>

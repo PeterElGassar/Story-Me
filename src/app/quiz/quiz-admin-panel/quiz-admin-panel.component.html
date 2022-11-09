@@ -1,0 +1,79 @@
+
+<!-- *************************************
+***********START ADMIN SECTION***********
+**************************************-->
+<section class="admin-panel-container" >
+
+    <p-toast position="top-center" key="SuccessMs"></p-toast>
+    <p-toast position="top-center" key="ErrorMs"></p-toast>
+    <p-toast position="top-right" key="deleteSuccessMs"></p-toast>
+
+    <div class="admin-panel-wrapper">
+        <div class="header">
+            <h2>Add Questions</h2>
+            <a routerLink="/dashboard/courses"> <button id="admin-logout-btn">Back To Courses</button></a>
+        </div>
+
+        <div class="forms-wrapper">
+            <button id="question-update-btn" 
+            [ngStyle]="{'visibility': UpdateMood == true ? 'visible' : 'hidden' }" 
+            (click)="UpdateQuestionValues()"
+            >
+                Update
+
+            </button>
+            <!-- <button id="question-delete-btn" *ngIf="UpdateMood" >Delete</button> -->
+
+            <textarea name="chooseTextBox" [(ngModel)]="questionText"   id="new-question-text" cols="" rows="" placeholder="New Question">
+
+            </textarea>
+           
+           
+            <div class="admin-options-container">
+
+                <div class="admin-option-wrapper" *ngFor="let choose of Chooses;let i = index">
+
+                    <input name="chooseRadio_{{i}}" 
+                    
+                      type="radio"  class="admin-option-0 admin-option-answer"  
+                    [checked]="0" 
+                    [value]="choose.choose" [(ngModel)]="correctAnswer">
+
+                    <input name="chooseTextBox" [(ngModel)]="choose.choose" type="text" class="admin-option admin-option-0" value="">
+                </div>
+
+                <!-- {{this.correctAnswer}} -->
+
+
+
+                
+            </div>
+
+            <button  id="question-insert-btn" (click)="addNewQuestion()"
+            
+            [ngStyle]="{'visibility': UpdateMood == true ? 'hidden' : 'visible' }">
+                
+                Insert
+            
+            </button>
+        </div>
+
+        <button id="questions-clear-btn">Clear List</button>
+    </div>
+
+    <div class="inserted-questions-wrapper">
+        <p *ngFor="let Qst of AllQuestions; let i = index">
+
+            <span>{{i+1}}. {{Qst.question}}</span>
+            <button id="question-1" (click)="editQuestion(Qst)">Edit</button>
+            <p-confirmPopup styleClass="custom-style" ></p-confirmPopup>
+
+            <button id="question-1" (click)="DeleteQuestion(Qst.id , $event)">Delete</button>
+        
+        </p>
+    </div>
+
+</section>
+<!-- *************************************
+***********END ADMIN SECTION***********
+**************************************-->

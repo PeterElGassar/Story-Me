@@ -1,0 +1,116 @@
+    <!--Breadcrumb-->
+    <!-- <div class="bg-white border-bottom">
+        <div class="container">
+            <div class="page-header">
+                <h4 class="page-title">الدورات التدريبية</h4>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/index.html">الرئيسية</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">الدورات التدريبية</li>
+                </ol>
+            </div>
+        </div>
+    </div> -->
+    <breadcrumb  [breadcrumb]="breadCrumb"></breadcrumb>
+
+    <!--/Breadcrumb-->  
+
+
+
+    <div class="row mt-5">
+      <div class="col-10 col-md-7 col-lg-5 mx-auto d-flex justify-content-center py-4">
+        <div class="search-background bg-transparent w-100 d-flex">
+          <div class="form-group  mb-0 bg-white ">
+            <input 
+            [(ngModel)]="searchTerm"
+            type="text"
+             class="form-control input-lg br-tr-md-0 br-br-md-0" 
+              placeholder="{{'NAME_OF_COURSE'|translate}}.....">
+            <!-- <input type="text" pInputText size="50" placeholder="Global Filter" (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto"> -->
+          </div>
+          <div class="w-50 mb-0">
+            <button (click)="onSearch()" class="btn btn-lg btn-block btn-primary br-tl-md-0 br-bl-md-0">بحــــــث</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--All courses-->
+    <section class="sptb courses-section">
+      <div class="container">
+        <div class="section-title center-block text-center">
+          <h2>{{'ALL_COURSES' | translate}}</h2>
+          <span class="sectiontitle-design"><span class="icons"></span></span>
+        </div>
+        <!--Coursed lists-->
+        <div class="mb-lg-0">
+          <div class="">
+            <div class="item2-gl ">
+              <div class="row best-saller">
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3"
+                  *ngFor="let item of filteredAllCourses | paginate: { itemsPerPage: 8, currentPage: page }">
+
+                  <latest-courses [removeInstructorName]="true" [course]="item" [ngSwitch]="false">
+
+                  </latest-courses>
+                </div>
+              </div>
+              <div class="row justify-content-center pagination-row">
+                <div class="col-7 d-flex justify-content-center">
+                  <pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>
+                </div>
+              </div>
+            </div>
+            <div class="center-block text-center">
+
+            </div>
+          </div>
+        </div>
+        <!--/Coursed lists-->
+      </div>
+    </section>
+    <!--All courses-->
+
+
+
+    <!--خصومات علي جميع هذه الدورات-->
+    <latest-courses [isSlider]="true" [coursesList]="letastCourses" [sliderTitle]="TitleOfSlider">
+
+    </latest-courses>
+    <!--خصومات علي جميع هذه الدورات-->
+
+
+    <!--best seller courses-->
+    <section class="sptb courses-section">
+      <div class="container">
+        <div class="section-title center-block text-center">
+          <h2>{{'BEST_SELLING_COURSES' | translate}}</h2>
+          <span class="sectiontitle-design"><span class="icons"></span></span>
+        </div>
+        <!--Coursed lists-->
+        <div class="mb-lg-0">
+          <div class="">
+            <div class="item2-gl ">
+              <div class="row best-saller">
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3"
+                  *ngFor="let item of allCourses | paginate: { itemsPerPage: 8, currentPage: page }">
+
+                  <latest-courses [removeInstructorName]="true" [course]="item" [ngSwitch]="false">
+
+                  </latest-courses>
+                </div>
+              </div>
+              <div class="row justify-content-center pagination-row">
+                <div class="col-7 d-flex justify-content-center">
+                  <pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>
+                </div>
+              </div>
+            </div>
+            <div class="center-block text-center">
+
+            </div>
+          </div>
+        </div>
+        <!--/Coursed lists-->
+      </div>
+    </section>
+    <!--best seller courses-->

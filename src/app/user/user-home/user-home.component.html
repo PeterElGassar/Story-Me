@@ -1,0 +1,277 @@
+<!-- Color Skin css -->
+<!-- <link id="theme" rel="stylesheet" type="text/css" media="all" href="/assets/public/assets/site/color-skins/color6.css" /> -->
+<p-toast position="top-right" key="AddToCartMS"></p-toast>
+<p-toast position="top-right" key="AddToCartMessageWarning"></p-toast>
+
+
+<!--latest courses-->
+<section class="sptb leatst-courses leatst-courses-section">
+  <div class="container">
+    <div class="section-title center-block text-center">
+      <h2> {{'LATEST_COURSES' | translate}}</h2>
+      <span class="sectiontitle-design"><span class="icons"></span></span>
+      <p></p>
+    </div>
+    <div class="row best-saller">
+      <div class="col-12 col-md-6 col-lg-4 col-xl-3"
+       *ngFor="let item of courses | paginate: { itemsPerPage: 8, currentPage: this.latestCoursesPage }">
+     
+        <latest-courses [removeInstructorName]="true" [course]="item" [ngSwitch]="false"></latest-courses>
+      </div>   
+    </div>
+
+    <div class="row justify-content-center pagination-row">
+      <div class="col-7 d-flex justify-content-center">
+        <pagination-controls class="pagination" (pageChange)=" this.latestCoursesPage = $event" ></pagination-controls>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+<!--/latest courses-->
+
+<!--Counter-->
+<section >
+  <div class="about-1 cover-image sptb bg-background-color"
+    data-image-src="/public/assets/site/assets/images/banners/banner5.jpg">
+    <div class="content-text mb-0 text-white info">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-lg-3 col-md-6">
+            <div class="counter-status md-mb-0">
+              <div class="counter-icon">
+                <i class="typcn typcn-group-outline"></i>
+              </div>
+              <h5 class="info-numbers">{{'NUMBER_OF_SUBSCRIPER' | translate}}</h5>
+              <h2 class="counter mb-0">34524</h2>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="counter-status status">
+              <div class="counter-icon text-success">
+                <i class="typcn typcn-news"></i>
+              </div>
+              <h5 class="info-numbers">{{'NUMBER_OF_COURSES' | translate}}</h5>
+              <h2 class="counter mb-0">142</h2>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="counter-status status-1 md-mb-0">
+              <div class="counter-icon text-warning">
+                <i class="typcn typcn-mortar-board"></i>
+              </div>
+              <h5 class="info-numbers">{{'NUMBER_OF_INSTRUCTORS' | translate}}</h5>
+              <h2 class="counter mb-0">38</h2>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="counter-status status md-mb-0">
+              <div class="counter-icon text-primary">
+                <i class="typcn typcn-globe-outline"></i>
+              </div>
+              <h5 class="info-numbers">{{'NUMBER_OF_DIPLOMAS' | translate}}</h5>
+              <h2 class="counter mb-0">30</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/Counter-->
+
+
+<!--best saller courses-->
+<section class="sptb leatst-courses">
+  <div class="container">
+    <div class="section-title center-block text-center">
+      <h2> {{'BEST_SELLING_COURSES' | translate}}</h2>
+      <span class="sectiontitle-design"><span class="icons"></span></span>
+      <p></p>
+    </div>
+    <div class="row best-saller">
+      <div class="col-12 col-md-6 col-lg-4 col-xl-3"
+       *ngFor="let item of bestSellerCourses | paginate: { itemsPerPage: 8, currentPage: this.BestSellerPage }">
+     
+        <latest-courses [removeInstructorName]="true" [course]="item" [ngSwitch]="false">
+
+        </latest-courses>
+      </div>   
+    </div>
+    <div class="row justify-content-center pagination-row">
+      <div class="col-7 d-flex justify-content-center">
+        <pagination-controls class="pagination" (pageChange)=" this.BestSellerPage = $event" ></pagination-controls>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/best saller courses-->
+
+<!-- ****** -->
+<!--best saller courses-->
+    <latest-diplomas [isSlider]="true" [diplomaList]="diplomas" ></latest-diplomas>
+<!--/best saller courses-->
+
+
+<!--/diplomas-->
+
+<!--/diplomas-->
+
+<!--Section-->
+<!-- <articals></articals> -->
+
+<section class="sptb bg-white artical-section">
+    <div class="container">
+      <div class="section-title center-block text-center">
+        <h2>{{'ARTICALS' |translate}}</h2>
+        <span class="sectiontitle-design"><span class="icons"></span></span>
+        <p></p>
+      </div>
+  
+        <owl-carousel-o [options]="customOptionsArticals">
+  
+          <ng-container *ngFor="let art of articals">
+            <ng-template carouselSlide [id]="art.id">
+              <!-- <img [src]="diplo.img_path" > -->
+              <div class="card mb-5">
+                <div class="item7-card-img">
+                    <a routerLink="/artical-detials/{{art.id}}"></a>
+                    <img src="{{art.img_path}}" alt="img" class="cover-image"
+                        style="height: 250px">
+                </div>
+                <div class="card-body p-4">
+                    <div class="item7-card-desc d-flex mb-2">
+                        <!-- <a href="post/22.html"><i class="fa fa-calendar-o ml-2"></i>2020-09-03</a> -->
+                    </div>
+                    <a routerLink="/artical-detials/{{art.id}}" class="text-dark">
+                        <h3 class="font-weight-semibold">
+
+                            {{(art.address>20)? (art.address | slice:0:50)+'..':(art.address)}}
+                        </h3>
+                    </a>
+
+                    <p innerHTML="{{(art.description.length>40)? (art.description | slice:0:50)+'..':(art.description)}}">
+                        
+
+                    </p>
+
+                </div>
+            </div>
+  
+  
+            </ng-template>
+          </ng-container>
+  
+        </owl-carousel-o>
+    </div>
+  
+  </section>
+<!--/Section-->
+
+
+<!-- customer services form -->
+<section>
+  <div class="cover-image sptb bg-background" data-image-src="./src/assets/assets/images/banners/banner1.jpg"
+    style="background: url(_/assets/assets/images/banners/banner1.html) center center;">
+    <div class="header-text1 mb-0">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-7 col-lg-7 col-md-12">
+            <div class="text-white mt-xl-7 mb-5">
+              <h1 class="mb-3 display-3">
+                {{'USER_HOME__TITLE' |translate}}
+              </h1>
+              <p class="fs-18 mb-6"> 
+                {{'USER_HOME__DESC' |translate}}
+              </p>
+              <a routerLink="/register" class="btn btn-primary btn-lg mr-2">
+                
+                {{'JOIN_NOW' |translate}}
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-5 col-lg-5 col-md-12">
+            <div class="card mb-5 shadow-none">
+              <div class="card-body">
+                <form id="registerForm">
+                  <h3 class="mb-4">{{'USER_HOME_FORM_TITLE' |translate}}</h3>
+                  <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="fe fe-user fs-16 lh-0 op-6"></i>
+                      </div>
+                    </div>
+                    <input name="name" id="name" type="text" class="form-control" placeholder="...{{'NAME' |translate}}">
+                  </div>
+                  <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="fe fe-mail fs-16 lh-0 op-6"></i>
+                      </div>
+                    </div>
+                    <input name="phone" id="phone" type="text" class="form-control" placeholder="{{'PHONE' |translate}}">
+                  </div>
+                  <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="fe fe-book fs-16 lh-0 op-6"></i>
+                      </div>
+                    </div>
+                    <select name="item_id" id="item_id" type="text" class="form-control">
+                      <!-- <option value="">اختر الدورة</option>
+                                                <option value="13">اساسيات علم النفس الايجابي</option>
+                                                <option value="14">الـ LifeCoach والحياة</option>
+                                                <option value="15">نظره عميقه فى تربية الاطفال</option>
+                                                <option value="16">الثقه بالنفس اهم مهاره حياتيه</option>
+                                                <option value="17">التخطيط وتحديد الاهداف</option>
+                                                <option value="18">العلاقات الاسرية</option>
+                                                <option value="19">مقتطفات في الصحة النفسية</option>
+                                                <option value="20">فن الكاريزما والحضور</option>
+                                                <option value="21">فن الكلام والتأثير</option>
+                                                <option value="22">انماط المتدربين</option>
+                                                <option value="23">طريق النجاح</option>
+                                                <option value="24">القائد الناجح</option> -->
+                      <option value="">--Select Course--</option>
+                      <option *ngFor="let item of courses" value="item.id">{{item.name}}</option>
+
+
+                    </select>
+                  </div>
+                  <button type="button" class="btn btn-primary btn-lg btn-block btn_register">{{'JOIN_NOW' |translate}}</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /header-text -->
+  </div>
+</section>
+<!-- /customer services form -->
+
+<!-- social Media  -->
+<section class="sptb">
+  <div class="container">
+    <div class="section-title center-block text-center">
+      <h2>
+        {{'USER_HOME_SCOIALMEDIA_TITLE' |translate}}
+      </h2>
+      <span class="sectiontitle-design"><span class="icons"></span></span>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center text-wrap">
+          <div class="btn-list">
+            <a href="#" class="btn facebook-btn btn-lg mb-sm-0"><i class="fa fa-facebook fa-1x mr-2"></i> {{'FACEBOOK' |translate}}</a>
+            <a href="#" class="btn btn-secondary btn-lg mb-sm-0"><i class="fa fa-twitter fa-1x mr-2"></i> {{'TWITTER' |translate}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /Social Media-->
+
+    <!-- Back to top -->
+    <a href="#top" id="back-to-top"><i class="fa fa-long-arrow-up"></i></a>

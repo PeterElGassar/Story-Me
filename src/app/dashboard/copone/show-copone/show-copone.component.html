@@ -1,0 +1,109 @@
+<div class="row bg-dark mt-3">
+  <div class="col-md-12 d-flex flex-row">
+    <!-- New Employee Modal Button  -->
+    <div class="pt-3">
+      <button type="button" (click)="addNewClick()" class="btn btn-primary" data-toggle="modal"
+        data-target="#NewEmployeeModal">
+        <i class="fas fa-user-plus mx-2"></i>
+        اضافة قسم جديد
+      </button>
+    </div>
+
+    <p class="h5 text-light py-3 ml-auto">إدارة الاقسام</p>
+  </div>
+</div>
+
+<!-- PrimeNg Table -->
+<p-table #empsTbl [value]="courseCategories" [globalFilterFields]="['name','code']" [paginator]="true"
+  [rows]="10" [rowsPerPageOptions]="[10,25,50]" [totalRecords]="this.recourdNumber" [pageLinks]="8">
+
+  <ng-template pTemplate="caption">
+    <div class="p-d-flex">
+      <!-- <div class="add-new-btn">
+            <a href="" data-toggle="modal" data-target="#emp-modal" title="أضافة موظف جديد"
+            class="edit-emp-btn btn btn-info btn-sm mx-2">إضافة موظف جديد <i class="fas fa-user-edit mx-2"></i></a>
+          </div> -->
+
+      <div class="search-warpper">
+        <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+          (click)="clear(empsTbl)"></button>
+        <span class="p-input-icon-left p-ml-auto">
+          <i class="pi pi-search"></i>
+          <input class="search-textbox" pInputText type="text"
+            (input)="empsTbl.filterGlobal($event.target.value, 'contains')" placeholder="بحث الاقسام" />
+        </span>
+      </div>
+
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th> ألاجراءات </th>
+
+      <th pSortableColumn="start_date"> تاريخ البداية <p-sortIcon field="start_date"></p-sortIcon></th>
+      <th pSortableColumn="expire_date">تاريخ إلانتهاء <p-sortIcon field="expire_date"></p-sortIcon></th>
+
+      <th pSortableColumn="value">قيمة الخصم<p-sortIcon field="value"></p-sortIcon>
+      </th>
+      <th pSortableColumn="name">أسم كوبون الخصم<p-sortIcon field="name"></p-sortIcon>
+      </th>
+      <th pSortableColumn="code">كود الخصم<p-sortIcon field="code"></p-sortIcon>
+      </th>
+
+
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-cat>
+    <tr>
+      <td>
+        <button data-toggle="modal" (click)="editClick(cat)" data-target="#NewEmployeeModal" title="تعديل بيانات الموظف"
+          class="edit-emp-btn btn btn-primary btn-sm "><i class="fas fa-user-edit"></i></button>
+        <p-confirmPopup styleClass="custom-style"></p-confirmPopup>
+
+        <button type="button" title="حذف القسم" (click)="deleteClick(cat)" class="btn btn-danger btn-sm"><i
+            class="fas fa-trash "></i></button>
+
+      </td>
+
+      <td>{{cat.start_date | date}}</td>
+      <td>{{cat.expire_date | date}}</td>
+      <td> <strong class="mx-2 ">%</strong>{{cat.value}}</td>
+      <td>{{cat.name}}</td>
+      <td> {{cat.code}}</td>
+    
+    </tr>
+  </ng-template>
+
+</p-table>
+<!-- End-PrimeNg Table -->
+
+<!-- New Employee Modal -->
+<div class="modal fade" id="NewEmployeeModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="NewEmployeeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-light" id="NewEmployeeModalLabel">{{modalTitle}}</h4>
+        <button (click)="closeEmpModal()" type="button" class="close text-light" data-dismiss="modal"
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!-- render form here -->
+        <app-add-edit-copone [courseCategory]="courseCategory" *ngIf="ActivateAddEditEmpComp">
+        </app-add-edit-copone>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeEmpModal()" data-dismiss="modal">اغلاق</button>
+
+        <!-- <button type="button" class="btn btn-primary" > التغيرات حفظ</button> -->
+        <!-- <button type="button" class="btn btn-primary" >إضافة قسم جديد</button> -->
+
+      </div>
+    </div>
+  </div>
+</div>

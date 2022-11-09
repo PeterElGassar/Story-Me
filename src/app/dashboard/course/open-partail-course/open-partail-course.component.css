@@ -1,0 +1,35 @@
+.p-dropdown{
+    width: 100% !important;
+}
+
+
+.opend .lucture-li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 1s;
+    border-radius: 5px;
+  }
+  .lucture-li:hover{
+      background:  #e3f2fd;
+  }
+  
+  
+  .p-inputgroup{
+    flex-direction: row-reverse;
+  }
+  .course-content-header{
+    font-size:1.1rem;
+    font-family:'hanimation';
+  }
+  .lucture-btn{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  h4{
+    font-family: 'hanimation';
+    font-size: 1.1rem;
+    font-weight: 500;
+  }

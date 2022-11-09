@@ -1,0 +1,259 @@
+<!-- <link href="/assets/css/Main-details.css" rel="stylesheet"  />
+<link href="/assets/css/Main-Style.css" rel="stylesheet"  />
+<link href="/assets/css/Main-Style-Ar.css" rel="stylesheet"  />
+<link href="/assets/css/Responsive.css" rel="stylesheet"  /> -->
+
+<link href="/src/assets/css/Main-details.css" rel="stylesheet" />
+<link href="/src/assets/css/Main-Style.css" rel="stylesheet" />
+<link href="/src/assets/css/Main-Style-Ar.css" rel="stylesheet" />
+<link href="/src/assets/css/Responsive.css" rel="stylesheet" />
+<link href="/src/assets/css/videogular.css" rel="stylesheet" />
+
+
+<p-toast position="top-right" key="AddToCartMS"></p-toast>
+<p-toast position="top-right" key="AddToCartMessageWarning"></p-toast>
+
+<breadcrumb [breadcrumb]="breadCrumb"></breadcrumb>
+
+<!-- start of courses-details -->
+<section class="section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <h2 class="text-secondary font-weight-bold mb-4 course-title">
+          {{diploma?.name}}
+        </h2>
+
+        <div class="mb-5">
+          <!-- <a class="d-block has-overlay has-video-popup tansform-none rounded-0">
+            <img class="img-fluid" src="../../assets/images/video-thumb-2.jpg" alt="">
+            <img class="play-btn" src="../../assets/images/video-btn.png" alt="">
+          </a> -->
+
+          <div class="video-player-wrapper">
+          
+            <!-- <vg-player>
+              <vg-overlay-play></vg-overlay-play>
+              <vg-buffering></vg-buffering>
+          
+              <vg-scrub-bar>
+                <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+              </vg-scrub-bar>
+          
+              <vg-controls>
+                <vg-play-pause></vg-play-pause>
+                <vg-playback-button></vg-playback-button>
+          
+                <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+          
+                <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+          
+                <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+                <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+          
+                <vg-mute></vg-mute>
+                <vg-volume></vg-volume>
+          
+                <vg-fullscreen></vg-fullscreen>
+              </vg-controls>
+          
+              <video [vgMedia]="media" #media id="singleVideo" preload="auto" crossorigin>
+                <source *ngIf="this.videoSrc" [src]="this.videoSrc" type="video/mp4">
+             
+              </video>
+            </vg-player> -->
+            <iframe *ngIf="this.videoSrc" 
+            [src]="this.videoSrc" width="100%" 
+            height="480" allow="autoplay"></iframe>
+
+          </div> 
+        </div>
+
+        <!-- Description -->
+        <p-panel header="{{'COURSE_DETAILS' |translate}}" class="mt-4" [toggleable]="true">
+          <p innerHTML="{{diploma?.description}}"></p>
+        </p-panel>
+         <!-- //Description -->
+        <br>
+        <br>
+        <br>
+
+        <!--  Course Content -->
+        <diploma-luctrues 
+        [diplomaCourse]="allDiplomaCourses"
+        (lessonlinkForVideo)="currentVideolink($event)"
+        [isTakenDiploma]="this.isTakenDiploma"
+        ></diploma-luctrues>
+
+        <div *ngIf="this.isTakenDiploma === true && this.isPassDiploma === false" >
+          <div class="row mt-5 text-center justify-content-center flex-column" *ngIf="this.typeOfLogin === 'student'">
+            <div *ngFor="let singleCourseInfo of this.caseOfAllCoursesQuizzez">
+
+              <!-- <h1 class="text-dark">
+                {{this.singleCourseInfo?.certificateInfo?.certificat.result | json}}
+                {{this.singleCourseInfo?.certificateInfo?.certificat.attempts | json}}
+              </h1> -->
+
+<!-- اول مرة -->
+            <div class="col-12" *ngIf="this.singleCourseInfo.firstTimeForExam">
+              <a class="go-to-quiz btn btn-info mx-auto "
+               routerLink="/quizzes/student-quiz/{{this.singleCourseInfo?.courseInfo.id}}">
+                <span class="mx-2">{{'TEST_YOURSELF' |translate}}</span> 
+                <i class="mx-2 " style="font-size: 1.3rem;" class="fas fa-brain"></i> 
+                <!-- <span> {{this.singleCourseInfo?.courseInfo.name | json}}</span>  -->
+              </a>
+            </div>
+<!-- اول مرة -->
+
+<!-- ثاني مرة -->
+            <div class="w-100">
+              <!-- {{!this.firstTimeForExam}} -->
+              <!-- <h1 class="text-dark">
+                {{this.singleCourseInfo?.certificateInfo?.result}}
+                {{this.singleCourseInfo?.certificateInfo?.attempts}}
+              </h1> -->
+              <a class="go-to-quiz btn btn-info mx-auto"
+                *ngIf="this.singleCourseInfo?.certificateInfo?.certificat.result === 'fail' &&
+                 this.singleCourseInfo?.certificateInfo?.certificat.attempts !== '0'"
+                routerLink="/quizzes/student-quiz/{{this.singleCourseInfo?.courseInfo.id}}">
+                {{'TEST_YOURSELF' |translate}}
+              </a>
+              <div
+                *ngIf="(this.singleCourseInfo?.certificateInfo?.certificat.result === 'fail')
+                 && (this.singleCourseInfo?.certificateInfo?.certificat.attempts === '0')"
+                class="alert alert-danger mx-auto">
+                <h4 class="text-center">
+                   {{'FILED_ALL_ATTEMPTS' |translate}}
+
+                </h4>
+              </div>
+            </div>
+<!-- ثاني مرة -->
+<!--  الشهادة-->
+            <div class="col-12" *ngIf="this.singleCourseInfo?.certificateInfo?.certificat.result === 'successful'">
+              <a class="btn btn-info mx-auto" routerLink="/show-certificate/{{this.singleCourseInfo?.courseInfo.id}}">
+                {{'SHOW_YOUR_CERTIFICATE' |translate}}
+                <span> {{this.singleCourseInfo?.courseInfo.name | json}}</span> 
+
+              </a>
+            </div>
+<!--  الشهادة-->
+</div>
+
+          </div>
+        </div>
+
+
+          <div class="row mx-auto mt-5"  *ngIf="isPassDiploma">
+            <a class="btn btn-info mx-auto" 
+            routerLink="/show-diploma-certificate/{{diploma?.id}}">
+              {{'SHOW_YOUR_DIPLOMA_CERTIFICATE' |translate}}
+            </a>
+          </div>
+
+        <!--  //Course Content -->
+
+          <!-- <div class="row mt-5 text-center">
+          <a class="btn btn-info mx-auto" 
+            routerLink="/quizzes/student-quiz/{{diploma?ID}}" >
+            Go to Quiz
+          </a>
+          </div> -->
+
+      </div>
+
+      <div class="col-lg-4 mt-5 mt-lg-0">
+        <div class="widget">
+          <div class="d-flex align-items-center mb-20 justify-content-center flex-column">
+
+            <h2 class="text-blue font-weight-600 ml-4">
+              <span class="mx-1">{{diploma?.price_after_discount}}</span>
+              <span class="mx-1">{{'EG_POUND' |translate}}</span>
+            </h2>
+
+
+            <h5 class="text-blue font-weight-600 ml-4">
+              <del class="mx-1">{{diploma?.price_before_discount}}</del>
+              <span class="mx-1">{{'EG_POUND' |translate}}</span>
+            </h5>
+          </div>
+          <!-- <div class="d-flex align-items-center mb-20 justify-content-center">
+
+            <div class="wrapper-rating text-primary ">
+
+              <span class="font-weight-600 rating-number">{{ratingValue+'.0'}}</span>
+             <p-rating  *ngIf="currentUser$ | async"
+              (onRate)="onRateCourse()" class="course-details-rating"
+              [(ngModel)]="ratingValue" [cancel]="false">
+            
+            </p-rating>
+
+             <p-rating *ngIf="(currentUser$ |async) === null"
+             readonly="true"
+              (onRate)="onRateCourse()" class="course-details-rating"
+              [(ngModel)]="ratingValue" [cancel]="false">
+            
+            </p-rating>
+            </div>
+          </div> -->
+
+          <a *ngIf="!this.isTakenDiploma" (click)="addItemToBasket()" class="btn btn-sm btn-primary w-100 text-center mt-5">{{'SUBSCRIBE_NOW' |translate}}</a>
+          <!-- <a href="#!" class="btn btn-sm btn-secondary ml-2">Add to Cart</a> -->
+
+            <!-- Copone form -->
+        <div class="input-group my-3">
+
+          <button (click)="applayCopone($event)" 
+          class="btn btn-outline-secondary copone-btn" type="button"
+           id="button-addon1">تفعيل الكوبون</button>
+
+          <input [(ngModel)]="this.coponeValue" type="text" class="form-control"  
+          aria-label="Example text with button addon" aria-describedby="button-addon1">
+        </div>
+         <!-- Copone form -->
+
+          <div *ngIf="this.isTakenDiploma" class="alert alert-success">
+            <h3 class="text-center d-flex justify-content-center align-items-center">
+              {{'BUYING_SUCCESS' |translate}}
+              <i class="pi pi-check mx-2"></i>
+            </h3>
+          </div>
+        </div>
+
+        <div *ngFor="let inst of diploma?.Instructors" class="row my-5 ">
+          <div class="col-12">
+
+            <div  class="media  align-items-center mt-40">
+              <img class="rounded-circle ml-2" src="{{inst.img_path}}" alt="">
+              <div class="ml-3">
+                <h5 class="text-blue font-weight-600 mb-1">
+                  {{inst.first_name}}
+                  {{inst.second_name}}
+                  {{inst.last_name}}
+                </h5>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-12">
+            <h6 class="pr-2 mt-4">
+              <!-- {{inst.CourseInstructors.description}} -->
+            </h6>
+          </div>
+        </div>
+        <div class="row mt-3">
+            <p>{{'DATE_OF_DIPLOMA' |translate}}: <span>{{diploma?.created_at | date}}</span></p>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</section>
+
+<latest-diplomas [isSlider]="true" [diplomaList]="relatedDiplomas" [sliderTitle]=TitleOfSlider></latest-diplomas>
+
+
+<!-- end of courses-details -->

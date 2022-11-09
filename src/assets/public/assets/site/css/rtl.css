@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'NeoSansArabic';
+    src: url("../fonts/NeoSansArabic-Medium.eot");
+    src: url("../fonts/NeoSansArabic-Mediumd41d.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/NeoSansArabic-Medium.woff") format("woff"),
+    url("../fonts/NeoSansArabic-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal; }
+@font-face {
+    font-family: 'NeoSansArabic';
+    src: url("../fonts/NeoSansArabic-Bold.html");
+    src: url("../fonts/NeoSansArabic-Boldd41d.html?#iefix") format("embedded-opentype"),
+    url("../fonts/NeoSansArabic-Bold.woff") format("woff"),
+    url("../fonts/NeoSansArabic-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal; }
+@font-face {
+    font-family: 'NeoSansArabic';
+    src: url("../fonts/NeoSansArabic.eot");
+    src: url("../fonts/NeoSansArabicd41d.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/NeoSansArabic.woff") format("woff"),
+    url("../fonts/NeoSansArabic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal; }
+body,a,h1,h2,h3,h4,h5,h6,input,button,select,.media-body,.text, tspan, textarea,text,.btn,input,textarea,li,p,label,
+.ps-widget--worktime p strong,.tp-caption,.widget-title,th,td{
+    font-family: 'NeoSansArabic' !important;
+    letter-spacing: 0 !important;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-family: 'NeoSansArabic' !important;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  font-family: 'NeoSansArabic' !important;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  font-family: 'NeoSansArabic' !important;
+}
+:-moz-placeholder { /* Firefox 18- */
+  font-family: 'NeoSansArabic' !important;
+}
+
+body, form{
+	direction: rtl;
+	text-align: right;
+}
+.owl-carousel {
+	direction: ltr;
+}
+.post.post-list .content-entry-wrap {
+    padding-left: 0;
+    padding-right: 25px;
+}
+.entry-meta-content > div {
+    margin-right: 0px;
+    margin-left: 20px;
+}
+.entry-meta-content .entry-meta-author .entry-author-thumb {
+    margin-right: 0px;
+    margin-left: 10px;
+}
+.widget .post.side-post .content-entry-wrap {
+    padding-left: 0px;
+    padding-right: 15px;
+}
+.breadcrumb .breadcrumb-item:first-child:before {
+    padding: 0 0 0 10px;
+}
+#user_stats ul li {
+    float: right;
+    border-right:0;
+    border-left:1px solid #d7d7d7;
+}
+#user_stats ul li:first-child {
+    padding-left: 15px;
+    padding-right: 0;
+}
+.author-info #author-details {
+    padding-left: 0px;
+    padding-right: 30px;
+}

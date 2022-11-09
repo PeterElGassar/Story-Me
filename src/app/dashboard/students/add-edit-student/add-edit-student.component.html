@@ -1,0 +1,87 @@
+<p-toast position="top-right" key="CVErrorMs"></p-toast>
+<p-toast position="top-right" key="ImageErrorMs"></p-toast>
+<p-toast position="top-center" key="addInstructor"></p-toast>
+
+<form #f="ngForm" >
+  <div class="row">
+
+    <div class="col-md-12">
+
+
+
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">الاسم</label>
+            <input type="text" [(ngModel)]="this.name" required name="this.name" ngModel #fNameTemp="ngModel" type="text"
+              class="form-control">
+          <p class="text-danger" *ngIf="!fNameTemp.valid && fNameTemp.touched">أدخل الاسم </p>
+        </div>
+      
+
+      <div class="form-group">
+        <label  for="float-input">البريد الالكتروني</label>
+        <input type="text" [(ngModel)]="this.email" required name="this.email"
+         ngModel #EmialTemp="ngModel" type="text"
+        class="form-control">
+        <p class="text-danger" *ngIf="!EmialTemp.valid && EmialTemp.touched">أدخل البريد الالكتروني</p>
+      </div>
+
+      <div class="form-group">
+        <label  for="float-input">كلمة السر</label>
+        <input type="password" [(ngModel)]="this.password_confirmation" required name="this.password_confirmation"
+         ngModel #password_confirmationTemp="ngModel" type="text"
+        class="form-control">
+        <p class="text-danger" *ngIf="!password_confirmationTemp.valid && password_confirmationTemp.touched">أدخل  تأكيد كلمة السر</p>
+      </div>
+
+      <div class="form-group">
+        <label  for="float-input">تأكيد كلمة السر</label>
+        <input type="password" [(ngModel)]="this.password" required name="this.password"
+         ngModel #passwordTemp="ngModel" type="text"
+        class="form-control">
+        <p class="text-danger" *ngIf="!passwordTemp.valid && passwordTemp.touched">أدخل  تأكيد كلمة السر</p>
+      </div>
+
+      <div class="mail">
+                     
+        <div class="p-field-radiobutton">
+          <p-radioButton name="gender" value="female" [(ngModel)]="gender" inputId="female">
+          </p-radioButton>
+          <label class="mx-2 mt-1 gender-text" for="female">طالبة</label>
+        </div>
+        
+      </div>
+
+      <div class="mail">
+       
+        <div class="p-field-radiobutton">
+          <p-radioButton name="gender" value="male" [(ngModel)]="gender" inputId="male"></p-radioButton>
+          <label class="mx-2 mt-1 gender-text" for="male">طالب</label>
+        </div>
+        
+      </div>
+
+
+
+    </div>
+
+
+    <div class="col-md-12">
+
+
+      <button [disabled]="!f.valid" (click)="addInstructor()" *ngIf="student.id == 0" class=" mt-2 btn btn-primary">
+        إضافة الطالب جديد
+      </button>
+
+      <button [disabled]="!f.valid" (click)="updateCourse()" *ngIf="student.id != 0" class=" mt-2 btn btn-primary">
+        تعديل بيانات الطالب
+      </button>
+    </div>
+  </div>
+
+
+</form>
+
+
+
+

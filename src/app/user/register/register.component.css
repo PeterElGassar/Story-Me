@@ -1,0 +1,51 @@
+
+.p-tabview-panels{
+    position:absolute !important;
+}
+
+
+.instructor-img-col{
+    min-height:250vh;
+}
+
+.stu-db{
+    margin-bottom: 40px;
+}
+.instructor-courses-tbl thead tr th ,.instructor-courses-tbl tbody tr td{
+text-align: right;
+}
+.p-tabview .p-tabview-panels{
+    width: 100%;
+}
+
+.direction-instructor{
+    flex-direction: row-reverse !important;
+}
+
+.udb-sec h4{
+    padding-bottom: 35px; 
+}
+
+.nav-tabs .nav-link{
+    width: 100% i !important;
+}
+.nav-tabs .nav-item{
+    width: 50% i !important;
+
+}
+
+.rounded{
+border-radius: 50% !important;
+}
+
+
+
+.p-multiselect .p-multiselect-label{
+    color: #000000b3 !important;
+}
+.single-page .wrapper.wrapper2{
+    color: #000000b3 !important;
+}
+.gender-text{
+    font-size: 1rem !important;
+}

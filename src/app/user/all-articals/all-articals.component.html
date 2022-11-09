@@ -1,0 +1,126 @@
+<ng-container *ngIf="filteredArticals">
+    <!-- <div class="container">
+        <div class="row p-4">
+            <div class="alert alert-success w-100 p-4">
+                <strong>    ما الفرق بين الدبلومة والكورس ؟</strong>
+                <p class="p-3">
+                    لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت,سيت دو أيوسمود تيمبور
+    
+                    أنكايديديونتيوت لابوري ات دولار ماجنا أليكيوا . يوت انيم أد مينيم فينايم,كيواس نوستريد
+    
+                </p>
+            </div>
+        </div>
+    </div> -->
+    
+    <breadcrumb [breadcrumb]="breadCrumb"></breadcrumb>
+
+    <div class="row mt-5">
+        <div class="col-10 col-md-7 col-lg-5 mx-auto d-flex justify-content-center py-4">
+          <div class="search-background bg-transparent w-100 d-flex">
+            <div class="form-group  mb-0 bg-white ">
+              <input 
+              [(ngModel)]="searchTerm"
+              type="text"
+               class="form-control input-lg br-tr-md-0 br-br-md-0" 
+                placeholder="{{'NAME_OF_COURSE' | translate}}.....">
+              <!-- <input type="text" pInputText size="50" placeholder="Global Filter" (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto"> -->
+            </div>
+            <div class="w-50 mb-0">
+              <button (click)="onSearch()" class="btn btn-lg btn-block btn-primary br-tl-md-0 br-bl-md-0">{{'SEARCH' | translate}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!--articals-->
+    <section class="sptb">
+        <div class="container">
+            <div class="section-title center-block text-center">
+                <h2>{{'ARTICALS' | translate}}</h2>
+                <span class="sectiontitle-design"><span class="icons"></span></span>
+                <p></p>
+            </div>
+            <!--Coursed lists-->
+            <div class="mb-lg-0">
+                <div class="">
+                    <div class="item2-gl ">
+                        <div class="row best-saller">
+                            <!-- repeat -->
+                            <div class="col-lg-6 col-md-12 col-xl-4" *ngFor="let diplo of filteredArticals| paginate: { itemsPerPage: 6, currentPage: page }">
+                                <div class="card overflow-hidden">
+                                    <div class="item-card9-img">
+                                        <div class="item-card9-imgs">
+                                            <a routerLink="/artical-detials/{{diplo.id}}"></a>
+                                            <img [src]="diplo.img_path" alt="img" class="cover-image"
+                                                style="height: 250px">
+                                        </div>
+                                        <div class="item-card9-icons">
+                                            <!-- <a href="#" class="item-card9-icons1 bg-primary"> <i
+                                                    class="fa fa fa-heart-o"></i></a>
+                                            <a href="#" class="item-card9-icons1 bg-black-trasparant"> <i
+                                                    class="fa fa fa-share-alt"></i>
+                                                </a> -->
+                                        </div>
+                                        <div class="item-overly-trans">
+    
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="item-card9">
+    
+                                            <a routerLink="/artical-detials/{{diplo.id}}" class="text-dark mt-2">
+                                                <h3 class="font-weight-semibold mt-2 mb-2">
+                                                    {{ (diplo.address>20) ? (diplo.address | slice:0:50)+'..':(diplo.address)}}
+    
+                                                </h3>
+                                            </a>
+                                            <!-- <div class="item-card9-desc mb-2">
+                                                <a href="#" class="ml-4 float-right">
+                                                    <span class="text-muted"><i class="fa fa-user text-muted ml-1"></i>
+                                                    </span>
+                                                </a>
+                                            </div> -->
+                                            <p class="mb-0"
+                                            
+                                            innerHTML="{{(diplo.description.length>20)? (diplo.description | slice:0:80)+'..':(diplo.description)}}">
+    
+                                            </p>
+                                        </div>
+                                    </div>
+                                 
+                                </div>
+                            </div>
+                           <!-- repeat -->
+    
+    
+    
+    
+                        </div>
+
+                        <div class="row justify-content-center pagination-row">
+                            <div class="col-7 d-flex justify-content-center">
+                              <pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="center-block text-center">
+    
+                    </div>
+                </div>
+            </div>
+            <!--/Coursed lists-->
+        </div>
+    </section>
+    <!--articals-->
+    
+</ng-container>
+
+<ng-container *ngIf="!filteredArticals">
+
+  <div class="alert alert-warning">
+    <h3 class="text-center">
+      لايوجد مقالات مضافة
+    </h3>
+  </div>
+</ng-container>

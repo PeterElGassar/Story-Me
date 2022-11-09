@@ -1,0 +1,72 @@
+<form>
+    <div class="row direction-instructor" >
+     
+      <div class="col-md-6">
+  
+        <div class="form-group">
+          <label for="employeeFirstName">أسم الدورة</label>
+          <input name="courseCatName" [(ngModel)]="name" type="text" class="form-control" placeholder="">
+        </div>
+  
+        <div class="form-group">
+          <label for="description">وصف الدورة</label>
+          <input name="description" [(ngModel)]="description" type="text" class="form-control">
+        </div>
+  
+        <div class="form-group">
+          <label for="employeeSecondName">السعر قبل الخصم</label>
+          <input name="courseCatDescription" [(ngModel)]="price_before_discount" type="text" class="form-control">
+        </div>
+  
+        <div class="form-group">
+          <label for="employeeSecondName">السعر بعد الخصم</label>
+          <input name="courseCatDescription" [(ngModel)]="price_after_discount" type="text" class="form-control">
+        </div>
+  
+  
+        <div class="form-group">
+          <label>القسم</label>
+          <select class="form-control" name="nameSection" (change)="onChangeCategory($event.target.value)"
+            [(ngModel)]="this.sections_courses_id">
+            <option>--Selsect Category--</option>
+            <option value="{{cat.id}}" *ngFor="let cat of courseCategories">
+              {{cat.name}}
+            </option>
+          </select>
+        </div>    
+
+  
+      </div>
+      <div class="col-2"></div>
+  
+      <div class="col-md-4">
+        <div class="form-group">
+          <img class="img-fluid rounded" width="200" [src]="img_path">
+          <input class="mt-3" (change)="uploadPhoto($event.target)" type="file" name="" id="">
+        </div>
+
+        <div class="form-group mt-5">
+            <span >Upload PDF</span>
+
+            <input type="file"
+             (change)="uploadPdf($event.target)"
+              id="fileCV"
+              accept=".pdf, .doc, .docx"
+              maxFileSize="100000"/>
+            <label  for="fileCV" class="btn-3">
+            
+            </label>
+        </div>    
+
+      </div>
+    </div>
+  
+    <div class="col-12">
+
+      <!-- <button  pButton pRipple  (click)="addCourse()"  type="button" label="إضافة القسم" icon="pi pi-check" class="p-button-success"></button> -->
+      <button  pButton pRipple   (click)="updateCourse()" type="button" label="تعديل بيانات الكورس" icon="pi pi-check" class="p-button-success"></button>
+
+    </div>
+
+
+  </form>

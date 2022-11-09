@@ -1,0 +1,244 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+  integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+
+<nav class="navbar navbar-expand-md navbar-light">
+  <!-- Toggler BTN for Small Devices -->
+  <button class="navbar-toggler ml-auto bg-light" type="button" data-toggle="collapse" data-target="#myNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <!--End  Toggler BTN for Small Devices -->
+
+  <div class="collapse navbar-collapse" id="myNavbar">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- SideBar -->
+        <div class="col-xl-2 col-lg-3 col-md-4 sideBar fixed-top">
+          <!-- <a href="#" class="navbar-brand text-white d-block text-center mx-auto py-3 my-3 borderBottom text-center">معهد
+            الدراسات النفسية</a> -->
+
+
+          <div class=" borderBottom pb-3 admin-name pt-2" *ngIf="(currentUser$ |async) !== null">
+            <a class="text-white  ml-3">{{(currentUser$ | async).name}}</a>
+          </div>
+          <!-- List  -->
+          <ul class="navbar-nav flex-column mt-4">
+            <!-- <li class="nav-item ">
+                          <a class="nav-linktext-light" routerLink="/salestargets" routerLinkActive="active-nav-link" href="#">العملاء</a>
+                      </li> -->
+            <!-- <li class="nav-item ">
+                          <a class="nav-linktext-light" routerLink="/d" routerLinkActive="active-nav-link" href="#">الشركات</a>
+                      </li> -->
+            <!-- <li class="nav-item ">
+                          <a class="nav-linktext-light" routerLink="/employees-settings" routerLinkActive="active-nav-link" href="#">الموظفين</a>
+                      </li> -->
+            <!-- <li class="nav-item ">
+                          <a class="nav-linktext-light" routerLink="/inventory" routerLinkActive="active-nav-link" href="#">المخازن</a>
+                      </li> -->
+            <!-- <li class="nav-item ">
+                          <a class="nav-link" routerLink="" routerLinkActive="active-nav-link" href="#">الفروع</a>
+                      </li> -->
+
+            <!-- <li class="nav-item ">
+                          <a class="nav-linktext-light" routerLink="/departments-settings" routerLinkActive="active-nav-link" href="#">الأدارات</a>
+                      </li>
+                      <li class="nav-item ">
+                          <a class="nav-linktext-light" routerLink="/jobs" routerLinkActive="active-nav-link" href="#">الوظائف</a>
+                      </li>
+                      <li class="nav-item ">
+                          <a class="nav-linktext-light" routerLink="/supervisor-settings" routerLinkActive="active-nav-link" href="#">المشرفين</a>
+                      </li>
+                      <li class="nav-item ">
+                          <a class="nav-linktext-light" routerLink="/manage-targets" routerLinkActive="active-nav-link">الاهداف</a>
+                      </li>
+                     
+          
+                      <li class="nav-item ">
+                          <a class="nav-link text-light" routerLink="/programCategories" routerLinkActive="active-nav-link" [routerLinkActiveOptions]="{exact:true}"  href="#">الاقسام<span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item ">
+                          <a class="nav-link text-light" routerLink="/dashboard/cont1" routerLinkActive="active-nav-link" [routerLinkActiveOptions]="{exact:true}"  href="#">الصفحة الرئيسية<span class="sr-only">(current)</span></a>
+                      </li> -->
+
+
+            <li class="nav-item ">
+              <a routerLink="/dashboard" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}"
+                class="nav-link text-white p-lg-3 p-3 p-md-3  side-link sidebar-link">
+                الرئيسية
+                <i class="fas fa-home text-light ml-1 text-light fa-lg pr-2"></i>
+
+              </a>
+            </li>
+
+          
+
+            <!-- <li class="nav-item">
+              <a routerLink="/employees-settings" routerLinkActive="active-link"
+                class="nav-link text-white p-lg-3 p-3 p-md-3  side-link sidebar-link">
+                إدارة المقالات
+                <i class="fas fa-book-reader ml-1 text-light ml-1 text-light fa-lg pr-2"></i>
+              </a>
+            </li> -->
+            <li class="nav-item">
+              <a   routerLink="/dashboard/articals" routerLinkActive="active-link"
+              class="nav-link text-white p-lg-3 p-3 p-md-3  side-link sidebar-link">
+                 المقالات
+                <i class="fas fa-book-reader ml-1 text-light ml-1 text-light fa-lg pr-2 mx-2"></i>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a routerLink="/dashboard/instructors" routerLinkActive="active-link"
+              
+              class="nav-link text-white p-lg-3 p-3 p-md-3  side-link sidebar-link">
+                إدارة المحاضرين
+                <i class="fas fa-user text-light ml-1 text-light fa-lg pr-2 mx-2"></i>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a routerLink="/dashboard/students" routerLinkActive="active-link"
+              
+              class="nav-link text-white p-lg-3 p-3 p-md-3  side-link sidebar-link">
+                إدارة الطلاب
+                <i class="fas fa-users text-light ml-1 text-light fa-lg pr-2 mx-2"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/dashboard/instructors-spec" routerLinkActive="active-link"
+              
+              class="nav-link text-white p-lg-3 p-3 p-md-3  side-link sidebar-link">
+                 تخصصات المحاضرين
+                <i class="fas fa-id-badge text-light ml-1 text-light fa-lg pr-2 mx-2"></i>
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              <a routerLink="/dashboard/courses" routerLinkActive="active-link"
+                class="nav-link text-white p-lg-3 p-3 p-md-3  side-link sidebar-link">
+                الدورات
+                <i class="fas fa-chalkboard-teacher ml-1 text-light fa-lg pr-2 mx-2"></i>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a routerLink="/dashboard/course-category" routerLinkActive="active-link"
+                class="nav-link text-white p-lg-3 p-3 p-md-3  side-link sidebar-link">
+                أقسام الدورات
+                <i class="fas fa-shopping-cart text-light fa-lg pr-2 mx-2"></i>
+              </a>
+            </li>
+
+            <li class="nav-item">              
+              <a routerLink="/dashboard/diplomas" routerLinkActive="active-link"             
+              class="nav-link text-white p-lg-3 p-3 p-md-3  side-link sidebar-link">
+                إدارة الدبلومات
+                <i class="fas fa-chart-line text-light fa-lg pr-2 mx-2"></i>
+              </a>
+            </li>
+            <li class="nav-item">              
+              <a routerLink="/dashboard/coupons" routerLinkActive="active-link"             
+              class="nav-link text-white p-lg-3 p-3 p-md-3  side-link sidebar-link">
+                كوبونات الخصم
+                <i class="fas fa-tags text-light fa-lg pr-2 mx-2"></i>
+              </a>
+            </li>
+            <li class="nav-item">              
+              <a routerLink="/dashboard/open-live-courses" routerLinkActive="active-link"             
+              class="nav-link text-white p-lg-3 p-3 p-md-3  side-link sidebar-link">
+                إشعارات الطلاب
+                <i class="pi pi-bell text-light fa-lg pr-2 mx-2"></i>
+              </a>
+            </li>
+
+            <li class="nav-item">              
+              <a routerLink="/dashboard/contact-us" routerLinkActive="active-link"             
+              class="nav-link text-white p-lg-3 p-3 p-md-3  side-link sidebar-link">
+                تواصل معنا
+                <i class="fas fa-phone-square-alt text-light fa-lg pr-2 mx-2"></i>
+              </a>
+            </li>
+
+
+
+
+          <!-- <li class="dropdown">
+            <p-accordion>
+              <p-accordionTab header="إدارة صفحات الموقع">
+
+                <a routerLink="/dashboard/contact-us" routerLinkActive="active-link"
+                  class="nav-link pages-links p-lg-3 p-3 p-md-3 ">
+                  تواصل معنا
+                  <i class="fas fa-chart-line text-dark fa-lg pr-2 mx-2"></i>
+                </a>
+
+              </p-accordionTab>
+            </p-accordion>
+          </li> -->
+
+          
+
+            <!-- <li class="nav-item"><a class="nav-link text-white p-lg-3 p-3 p-md-3  side-link sidebar-link"><i
+                  class="fas fa-file text-light pr-2"></i>
+                Documentations
+              </a>
+            </li> -->
+
+
+          </ul>
+          <!-- End List  -->
+        </div>
+        <!-- End Of SideBar -->
+
+        <!-- top-nav -->
+        <div class="topNavbar col-xl-10 col-lg-9 col-md-8 mr-auto fixed-top bg-dark py-2">
+          <div class="row align-items-center">
+           
+            <div class="col-md-3 ml-auto">
+              <ul class="navbar-nav">
+               
+                <!-- Log Out Icon -->
+                <li class="nav-items ml-md-auto">
+                  <a href="#" class="nav-link text-light d-flex align-items-baseline" data-toggle="modal" data-target="#signOutPopUp">
+                    <h2 class="text-light logout-text">الخروج من لوحة التحكم</h2>
+
+                    <i class="fas fa-sign-out-alt fa-lg mx-3"></i>
+                  </a>
+                </li>
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- End of top-nav -->
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+<!-- Sign-Up Model -->
+<div class="modal fade" id="signOutPopUp">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" *ngIf="(currentUser$ |async) !== null">
+        <h4 class="modal-title text-light ">{{(currentUser$ | async).name}}</h4>
+
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want Exit?
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" data-dismiss="modal" routerLink="/">Exit</button>
+        <button class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End Sign-Up Model -->
+
+
+
+

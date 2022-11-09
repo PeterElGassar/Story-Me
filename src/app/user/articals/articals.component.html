@@ -1,0 +1,46 @@
+    <!--Section-->
+    <section class="sptb bg-white">
+        <div class="container">
+            <div class="section-title center-block text-center">
+                <h2>
+                    {{'ARTICALS' | translate}}
+                </h2>
+                <span class="sectiontitle-design"><span class="icons"></span></span>
+                <p></p>
+            </div>
+            <div id="defaultCarousel" class="owl-carousel Card-owlcarousel owl-carousel-icons">
+                <div class="item" *ngFor="let art of articals">
+                    <div class="card mb-5">
+                        <div class="item7-card-img">
+                            <a href="#"></a>
+                            <img src="{{art.img_path}}" alt="img" class="cover-image"
+                                style="height: 250px">
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="item7-card-desc d-flex mb-2">
+                                <!-- <a href="post/22.html"><i class="fa fa-calendar-o ml-2"></i>2020-09-03</a> -->
+                            </div>
+                            <a href="post/22.html" class="text-dark">
+                                <h3 class="font-weight-semibold">{{art.address}}</h3>
+                            </a>
+
+                            <p>{{art.description}}</p>
+
+                        </div>
+                    </div>
+                </div>
+               
+
+            </div>
+
+            <owl-carousel-o [options]="customOptions">
+              <ng-container *ngFor="let art of articals">
+                <ng-template carouselSlide [id]="art.id">
+                  <img [src]="art.img_path" [alt]="art.alt" [title]="art.address">
+                </ng-template>
+              </ng-container>
+            </owl-carousel-o>
+
+        </div>
+    </section>
+    <!--/Section-->

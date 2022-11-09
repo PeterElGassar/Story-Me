@@ -1,0 +1,188 @@
+
+<p-toast position="top-right" key="AddToCartMS"></p-toast>
+<p-toast position="top-right" key="AddToCartMessageWarning"></p-toast>
+
+
+<div class="item" *ngIf="!isSlider">
+  <div class="card overflow-hidden">
+    <div class="item-card9-img">
+      <div class="item-card9-imgs">
+        <a href="#"></a>
+        <img [src]="diplo.img_path" alt="img" class="cover-image" style="height: 250px">
+      </div>
+      <div class="item-card9-icons">
+        <a #whislistBtn [ngClass]="statusBtn ? 'in-withlist' : 'out-withlist'"
+          (click)="toggleWishlist($event.target , course)" class="item-card2-icons-l mx-1">
+
+
+          <i class="fa fa-heart mx-1"></i>
+        </a>
+        <a href="#" class="item-card9-icons1 bg-black-trasparant"> <i class="fa fa fa-share-alt"></i>
+        </a>
+      </div>
+      <div class="item-overly-trans">
+
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="item-card9">
+
+        <a routerLink="/diploma-detials/{{diplo.id}}" class="text-dark mt-2">
+          <h3 class="font-weight-semibold mt-2 mb-2">
+            {{ (diplo.name>20) ? (diplo.name | slice:0:50)+'..':(diplo.name)}}
+
+          </h3>
+        </a>
+        <!-- <div class="item-card9-desc mb-2">
+                    <a href="#" class="ml-4 float-right">
+                        <span class="text-muted"><i class="fa fa-user text-muted ml-1"></i>
+                        </span>
+                    </a>
+                </div> -->
+        <p class="mb-0">
+          {{(diplo.description.length>30)? (diplo.description | slice:0:50)+'..':(diplo.description)}}
+
+        </p>
+        <div class="w-100">
+          <a (click)="addDiplomaToBasket(diplo)" class="btn btn-primary text-white float-left w-100 mt-3">
+            {{'SUBSCRIBE_NOW' | translate}}
+
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="item-card9-footer d-flex justify-content-between">
+
+        <div class="">
+          <div class="rating-stars block item-card9-icons">
+            <!-- <strong class="item-card9-icons1 bg-black-trasparant p-2">6</strong> -->
+            <a href="#" class="item-card9-icons1 bg-black-trasparant">
+              <span class="text-light">
+                {{diplo.coursesCount}}
+              </span>
+            </a>
+            <span class="ml-2">{{'FOOTER_COL_TOW' | translate}}</span>
+
+          </div>
+        </div>
+        <div class="item-card9-cost">
+          <!-- <h4 class="text-dark font-weight-semibold mb-0 mt-0">580.00</h4> -->
+          <h4 class="mb-0 price-color">{{diplo.price_after_discount}} <span class="mx-1">{{'EG_POUND' | translate}}</span></h4>
+          <del class="mb-0">{{diplo.price_before_discount}} <span class="mx-1">{{'EG_POUND' | translate}}</span></del>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--/diplomas-->
+<section class="sptb bg-white">
+  <div class="container">
+    <div class="section-title center-block text-center">
+      <h2>{{'DIPLOMAS' | translate}}</h2>
+      <span class="sectiontitle-design"><span class="icons"></span></span>
+      <p></p>
+    </div>
+
+    <owl-carousel-o [options]="customOptionsDiploama">
+
+      <ng-container *ngFor="let diplo of diplomaList">
+        <ng-template carouselSlide [id]="diplo.id">
+          <div class="card overflow-hidden">
+            <div class="item-card9-img">
+              <div class="item-card9-imgs">
+                <a href="#"></a>
+                <img [src]="diplo.img_path" alt="img" class="cover-image" style="height: 250px">
+              </div>
+              <div class="item-card9-icons">
+                <!-- <a href="#" class="item-card9-icons1 bg-primary"> <i class="fa fa fa-heart-o"></i></a> -->
+                <a #whislistBtn [ngClass]="statusBtn ? 'in-withlist' : 'out-withlist'"
+                (click)="toggleWishlist($event.target , course)" class="item-card2-icons-l mx-1">
+        
+        
+                <i class="fa fa-heart mx-1"></i>
+              </a>
+
+                <a href="#" class="item-card9-icons1 bg-black-trasparant"> <i class="fa fa fa-share-alt"></i>
+                </a>
+              </div>
+              <div class="item-overly-trans">
+
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="item-card9">
+
+                <a routerLink="/diploma-detials/{{diplo.id}}" class="text-dark mt-2">
+                  <h3 class="font-weight-semibold mt-2 mb-2">
+                    {{ (diplo.name>20) ? (diplo.name | slice:0:50)+'..':(diplo.name)}}
+
+                  </h3>
+                </a>
+                <!-- <div class="item-card9-desc mb-2">
+                            <a href="#" class="ml-4 float-right">
+                                <span class="text-muted"><i class="fa fa-user text-muted ml-1"></i>
+                                </span>
+                            </a>
+                        </div> -->
+                <p class="mb-0" innerHTML="{{(diplo.description.length>30)? (diplo.description | slice:0:50)+'..':(diplo.description)}}">
+                  
+
+                </p>
+                <div class="w-100">
+                    <a (click)="addDiplomaToBasket(diplo)" class="btn btn-primary text-white float-left w-100 mt-3">
+                      {{'SUBSCRIBE_NOW' | translate}}
+        
+                    </a>
+                  </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="item-card9-footer d-flex justify-content-between">
+
+                <div class="">
+                  <div class="rating-stars block item-card9-icons">
+                    <!-- <strong class="item-card9-icons1 bg-black-trasparant p-2">6</strong> -->
+                    <a href="#" class="item-card9-icons1 bg-black-trasparant">
+                      <span class="text-light">
+                        {{diplo.coursesCount}}
+                      </span>
+                    </a>
+                    <span class="ml-2">{{'FOOTER_COL_TOW' | translate}}</span>
+
+                  </div>
+                </div>
+                <div class="item-card9-cost">
+                  <!-- <h4 class="text-dark font-weight-semibold mb-0 mt-0">580.00</h4> -->
+                  <h4 class="mb-0 price-color">{{diplo.price_after_discount}} <span class="mx-1">{{'EG_POUND' | translate}}</span></h4>
+                  <del class="mb-0">{{diplo.price_before_discount}} <span class="mx-1">{{'EG_POUND' | translate}}</span></del>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </ng-template>
+      </ng-container>
+
+    </owl-carousel-o>
+
+
+  </div>
+
+</section>
+<!--/diplomas-->

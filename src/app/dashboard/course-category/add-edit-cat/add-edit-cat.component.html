@@ -1,0 +1,61 @@
+
+<p-toast position="top-right" key="ImageErrorMs"></p-toast>
+<p-toast position="top-center" key="addInstructor"></p-toast>
+
+<form #f="ngForm">
+  <div class="row">
+    <div class="col-md-4 d-flex flex-column">
+
+      <img class="img-fluid rounded" width="200" [src]="img_path">
+
+      <input accept="image/*" type="file" id="imageFile" (change)="uploadPhoto($event.target)" />
+      <label for="imageFile" class="btn-2">upload</label>
+
+    </div>
+<div class="col-2"></div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <span class="p-float-label  mt-4">
+          <input required class=" w-100 p-inputtext-md" type="text" pInputText [(ngModel)]="name" name="this.name"
+            ngModel #NameTemp="ngModel" />
+          <label for="float-input">أسم القسم </label>
+        </span>
+        <p class="text-danger" *ngIf="!NameTemp.valid && NameTemp.touched">أدخل أسم القسم </p>
+      </div>
+    </div>
+    <div class="col-12 mt-3">
+      <span class="p-float-label ">
+        <!-- <textarea pInputTextarea name="this.description" [(ngModel)]="this.description"></textarea> -->
+        <label class="" for="float-input"> وصف القسم</label>
+        <p-editor [(ngModel)]="this.description" [style]="{'height':'220px'}" ngModel name="this.description"
+          #descriptionTemp="ngModel" required>
+        </p-editor>
+      </span>
+      <p class="text-danger" *ngIf="!descriptionTemp.valid && descriptionTemp.touched"> أدخل نبذة عن المدرب</p>
+
+    </div>
+    <div class="col-12 mt-3">
+
+      <!-- <a class="btn btn-primary" data-toggle="collapse" href="#CreateAccountCollapse" role="button"
+            aria-expanded="false" aria-controls="collapseExample">
+            انشاء حساب موظف؟
+          </a> -->
+
+
+      <button
+       [disabled]="!f.valid"
+       (click)="addEmployee()"
+        *ngIf="courseCategory.id == 0"
+         class="btn btn-primary">
+        إضافة
+      </button>
+
+      <button [disabled]="!f.valid" (click)="updateEmployee()" *ngIf="courseCategory.id != 0" class="btn btn-primary">
+        تعديل
+      </button>
+
+    </div>
+  </div>
+
+
+</form>

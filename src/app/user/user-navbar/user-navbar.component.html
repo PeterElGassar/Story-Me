@@ -1,0 +1,366 @@
+<ngx-spinner >
+
+</ngx-spinner>
+
+ <!--Section-->
+    <div class="banner-1 cover-image bg-background2 {{'NAVBAR_EN_MODE' |translate }}" style="background: url(http://dr-nafsy.com/public/assets/site/images/banners/banner1.jpg) center center;"
+        data-image-src="http://dr-nafsy.com/public/assets/site/images/banners/banner1.jpg">
+        <!--Topbar-->
+        <div class="header-main">
+            <div class="top-bar p-3">
+                <div class="container">
+                    <div class="row align-items-end align-items-sm-center ">
+                        <div class="col-xl-8 col-lg-8 col-sm-4 col-7">
+                            <div class="top-bar-right d-flex align-items-center">
+                                <div class="clearfix">
+                                    <ul class="socials d-lg-none">
+                                        <li>
+                                            <a class="social-icon text-dark"
+                                                href="https://www.facebook.com/montissorieducation"><i
+                                                    class="fa fa-facebook"></i></a>
+                                        </li>
+                                        <li>
+                                            <a class="social-icon text-dark" href="#"><i class="fa fa-twitter"></i></a>
+                                        </li>
+                                        <li>
+                                            <a class="social-icon text-dark" href="site.html"><i
+                                                    class="fa fa-linkedin"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="header-search-logo d-none d-lg-block ">
+                                        <a class="header-logo" href="index.html">
+                                            <img src="/assets/images/logos/logo.png" class="header-brand-img" alt=" logo">
+
+                                            <img src="/assets/images/logos/logo.png" class="header-brand-img header-white"
+                                                alt="logo">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="clearfix">
+                                    <ul class="contact">
+                                        <li class="ml-5 d-lg-none">
+                                            <a href="#" class="callnumber text-dark"><span><i
+                                                        class="fa fa-phone mr-1"></i>: 01096203090</span></a>
+                                        </li>
+                                        <!--                                 <li class="select-country ml-5">
+                                    <select class="form-control select2-flag-search" data-placeholder="الدولة">
+                                        <option value="UM">مصـــــــر</option>
+                                    </select>
+                                </li> -->
+                                        <li class="dropdown ml-5">
+                                          <a href="#" class="text-dark"><span>
+                                            {{'NAV_DESCRIPTION' | translate }}
+
+                                            
+                                            </span></a>
+                                        </li>
+                                        <li class="dropdown">
+                                          <a href="#" class="text-dark"><span>
+                                              
+                                            {{'PHONE' | translate }}
+                                            
+                                            01096203090 
+                                              
+                                            <i class="fa fa-phone text-muted">
+                                                </i></span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-sm-8 col-5">
+                            
+                            <div  class="top-bar-left mr-4 position-relative mt-4">
+                                <!-- ************Bell********************* -->
+
+                                <div *ngIf="currentUser$ | async" class="ml-3" >
+                                    <!-- <h2  class="text-light" >{{ notify.notification|json}}</h2> -->
+                                    <button mat-icon-button [matMenuTriggerFor]="menu"
+                                    aria-label="Example icon-button with a menu">
+                                    <mat-icon class="bell-btn position-relative" style="background: transparent;">
+                                    <p-badge class="btn-bell" [value]="userNotificationNotWatched.length" severity="danger"></p-badge>
+                                    <i class="pi pi-bell" style="font-size: 1.8rem"></i>
+                                    </mat-icon>
+                                    </button>
+
+                                    <mat-menu class="notification-wrapper" #menu="matMenu">
+                                      
+
+                                            <a *ngFor="let notify of userNotification" routerLink="/watch-live/{{notify?.id}}">
+                                                <p >
+                                                    <span>{{notify.notification}}</span>
+                                                    <br>
+                                                    <strong class="mx-1" style="font-size: 0.9rem;">{{notify.notification_date | date:'M/d/yyyy, h:mm a'}}</strong>
+                                                    <span class="mx-1">في الساعة</span>
+                                                </p>
+                                            </a>
+
+                                      
+                                  
+
+                                    </mat-menu>
+                                </div>
+                                <!-- ************Bell********************* -->
+
+                                <!-- Wishlist -->
+                                <a class="ml-3"  routerLink="/wishlist" >
+                                  <p-badge *ngIf="(whishlist$ | async) as wishlist" 
+                                  
+                                  [value]="(wishlist).basketItems?.length + (wishlist).diplomaItems?.length"
+                                    severity="danger">
+
+
+                                  </p-badge>
+
+                                  <i class="pi pi-heart" style="font-size: 1.8rem"></i>
+                                </a>
+                                <!--/ Wishlist -->
+
+
+                                <!-- Cart -->
+                                <a class="ml-1"  routerLink="/cart" >
+                                  <p-badge *ngIf="(basket$ | async) as Basket" 
+                                  
+                                  [value]="(Basket).basketItems.length + (Basket).diplomaItems.length"
+                                    severity="danger">
+
+
+                                  </p-badge>
+
+                                  <i class="pi pi-shopping-cart" style="font-size: 1.8rem"></i>
+                                </a>
+                                <!-- Cart -->
+                          
+                            </div>
+
+                            <div class="top-bar-left">
+                                <ul class="custom ">
+                                    <ng-container *ngIf="(currentUser$ |async) === null">
+                                        <li class="mx-2 pt-2 clickable">
+                                            <a routerLink="/register" class="text-dark"><i
+                                                    class="fa fa-user ml-1"></i> <span> {{'REGISTER' | translate }}</span></a>
+                                        </li>
+                                        <li class="mx-2 pt-2 clickable">
+                                            <a routerLink="/login" class="text-dark"><i
+                                                    class="fa fa-sign-in ml-1"></i> <span>{{'LOG_IN' | translate }}</span></a>
+                                        </li>
+                                    </ng-container>
+
+
+                                    <ng-container *ngIf="currentUser$ | async">
+                                        <li *ngIf="(currentUser$ | async).user?.type === 'admin'">
+                                            <p-splitButton
+
+                                            label="{{(currentUser$ | async).name}}"
+                                            icon="pi pi-user"
+                                            [model]="adminDropdownItems"
+                                            styleClass="p-button-danger">
+                                                                                
+                                        </p-splitButton>
+                                        </li>
+
+                                        <li *ngIf="(currentUser$ | async).user?.type === 'student'">
+                                         <p-splitButton
+
+                                            
+                                            label="{{(currentUser$ | async).name}}"
+                                            icon="pi pi-user"
+                                            [model]="studentDropdownItems"
+                                            styleClass="p-button-danger">
+                                                                                
+                                        </p-splitButton>
+
+                                       
+                                        </li>
+                                        <li *ngIf="(currentUser$ | async).user?.type === 'instructor'">
+                                            <p-splitButton
+
+                                            
+                                            label="{{(currentUser$ | async).name}}"
+                                            icon="pi pi-user"
+                                            [model]="instructorDropdownItems"
+                                            styleClass="p-button-danger">
+                                                                                
+                                        </p-splitButton>
+                                        </li>
+
+                                    </ng-container>
+
+
+                                </ul>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/Topbar-->
+
+
+            <!-- Mobile Header -->
+            <div class="sticky">
+                <div class="horizontal-header clearfix ">
+                    <div class="container">
+                        <a id="horizontal-navtoggle"
+                         
+                         #navbarToggleBtn (click)="openSidebar()"
+                          class="opened animated-arrow">
+                          
+                          <span></span>
+                        </a>
+                        <span class="smllogo"><img src="/assets/images/logos/logo.png" width="150" alt="img" /></span>
+                        <span class="smllogo-white"><img src="/assets/images/logos/logo.png" width="150" alt="img" /></span>
+                        <a href="tel:245-6325-3256" class="callusbtn"><i class="fa fa-phone" aria-hidden="true"></i></a>
+                    
+                    
+                    
+                    
+                    
+                    </div>
+                </div>
+            </div>
+            <!-- /Mobile Header -->
+
+            <!--Horizontal-main -->
+            <div class="horizontal-main bg-dark-transparent clearfix">
+                <div class=" header-style horizontal-mainwrapper container clearfix">
+                    <nav class="horizontalMenu clearfix d-md-flex">
+                        <div class="horizontal-overlapbg" (click)="closeSidebar()"></div>
+                        <ul class="horizontalMenu-list">
+                            <li  (click)="closeSidebar()" aria-haspopup="true"><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"> {{'HOME' |translate }}</a></li>
+                           
+                            <ng-container *ngIf="(currentUser$ |async) !== null" >
+                                <!-- <li aria-haspopup="true" >
+                                    <a routerLink="/dashboard/courses" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                     لوحة التحكم
+                                    </a>
+                                </li> -->
+                                <!-- <li *ngIf="(currentUser$ | async).user?.type === 'admin'" aria-haspopup="true" >
+                                    <a routerLink="/dashboard/courses" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                     لوحة التحكم
+                                    </a>
+                                </li> -->
+                            </ng-container>
+                            <li (click)="closeSidebar()" aria-haspopup="true"><a routerLink="/courses" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"> {{'COURSES' |translate }}</a>
+
+                            <li (click)="closeSidebar()" aria-haspopup="true"><a routerLink="/diplomas" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"> {{'DIPLOMAS' |translate }}
+                                    </a></li>
+                            <!-- <li aria-haspopup="true"><a href="/Single-Pages-ar/consulting-ar.html"> الاستشارات</a></li> -->
+                            <li (click)="closeSidebar()" aria-haspopup="true"><a routerLink="/articals" routerLinkActive="active"> {{'ARTICALS' |translate }}</a></li>
+                            <li (click)="closeSidebar()" aria-haspopup="true"><a routerLink="/contact-us" routerLinkActive="active"> {{'CONTACT_US' |translate }}</a></li>
+                            <li aria-haspopup="true" class="li-list"><a href="#"> {{'MORE' |translate }}<span
+                                        class="fe fe-chevron-down"></span></a>
+                                <ul class="sub-menu">
+                                    <li  (click)="closeSidebar()" aria-haspopup="true"><a routerLink="/about-us" routerLinkActive="active">{{'ABOUT_US' |translate }}</a>
+                                    </li>
+                                    <!-- <li  (click)="closeSidebar()" aria-haspopup="true"><a href="/Single-Pages-ar/instructors-ar.html">الخبراء
+                                            والمحاضرين</a></li> -->
+                                    <li (click)="closeSidebar()" aria-haspopup="true"><a
+                                         routerLink="/join-us">
+                                         {{'JOIN_AS_INSTRUCTOR' |translate }}
+                                        
+                                        </a></li>
+                                    <!-- <li (click)="closeSidebar()" aria-haspopup="true"><a href="/Single-Pages-ar/offers-ar.html">صفحة العروض</a>
+                                    </li> -->
+                                    <!-- <li (click)="closeSidebar()" aria-haspopup="true"><a href="/Single-Pages-ar/testimonials-ar.html">اراء
+                                            العملاء</a></li> -->
+                                    <li aria-haspopup="true"><a
+                                            routerLink="/our-certificate" routerLinkActive="active">{{'CERTIFICATES' |translate }}</a></li>
+                                    <!-- <li aria-haspopup="true"><a href="/Index-english.html">English</a></li> -->
+                                </ul>
+                            </li>
+
+                            <li  (click)="closeSidebar()" aria-haspopup="true" class="d-lg-none mt-5 pb-5 mt-lg-0">
+
+                                <span><a class="btn btn-info" routerLink="/login">{{'JOIN_NOW' |translate }}</a></span>
+                                <li *ngIf="currentLang === 'ar'" (click)="changeCurrentLang('en')" class="float-left"
+                                  aria-haspopup="true">
+                                  <a href="#">
+                                    <img src="/assets/images/flags/usa.png" alt=""> English
+                                  </a>
+
+                                </li>
+                                <li *ngIf="currentLang === 'en'" (click)="changeCurrentLang('ar')" class="float-left"
+                                  aria-haspopup="true">
+                                  <a href="#">
+                                    <img src="/assets/images/flags/egypt.png" alt=""> عربي
+                                  </a>
+
+                                </li>
+                        </ul>
+                        <ul class="mb-0">
+                            <li (click)="closeSidebar()" aria-haspopup="true" class="d-none d-lg-block">
+                                <span><a class="btn btn-primary  ad-post"
+                                        routerLink="/login">{{'JOIN_NOW' |translate }}</a></span>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!--/Horizontal-main -->
+        <!--Section-->
+        <section>
+            <div class="sptb-2 sptb-tab">
+                <div class="header-text mb-0">
+                    <div class="container">
+                        <div class="text-center text-white mb-7">
+                            <h1 class="mb-4 ">{{'IMPORTANT_SOCIAL' |translate }}</h1>
+                            <p>{{'INVEST_YOURSELFE' |translate }}</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-12 col-md-12 d-block mx-auto">
+                                <div class="search-background bg-transparent">
+                                    <div class="form row no-gutters ">
+                                        <div class="form-group  col-xl-5 col-lg-5 col-md-12 mb-0 bg-white ">
+
+                                            <input type="text" class="form-control input-lg br-tr-md-0 br-br-md-0"
+                                                id="text4" placeholder="{{'NAME_OF_COURSE' |translate }}.....">
+
+                                        <!-- <input type="text" pInputText size="50" placeholder="Global Filter" (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto"> -->
+
+
+                                        </div>
+                                        <div class="form-group col-xl-3 col-lg-3 col-md-12 select2-lg  mb-0 bg-white">
+                                            <select class="form-control select2-show-search  border-bottom-0"
+                                                >
+                                                <optgroup label="{{'CATEGORIES' |translate }}">
+                                                    <option>{{'CHOOSE' |translate }}</option>
+                                                    <option value="9">التربية الخاصه</option>
+                                                    <option value="10">علم النفس</option>
+                                                    <option value="11">الارشاد و LifeCoach</option>
+                                                    <option value="12">المعلمين والمدربين</option>
+                                                    <option value="13">التنميه وتطوير الذات</option>
+                                                    <option value="14">التنميه النفسية والدعم النفسي</option>
+                                                    <option value="15">تربية الابناء</option>
+                                                    <option value="16">متنوعه</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-12 mb-0">
+                                            <a routerLink=""
+                                                class="btn btn-lg btn-block btn-primary br-tl-md-0 br-bl-md-0">{{'SEARCH' |translate }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /header-text -->
+            </div>
+        </section>
+        <!--/Section-->
+    </div>
+
+    <script>
+          //  	______________Active Class
+	$(".horizontalMenu-list li a").each(function(e) {
+		var pageUrl = window.location.href.split(/[?#]/)[0];
+			$(this).addClass("active");
+			$(this).parent().addClass("active"); // add active to li of the current link
+			$(this).parent().parent().prev().addClass("active"); // add active class to an anchor
+			$(this).parent().parent().prev().click(); // click the item to make it drop
+		
+	});
+    </script>

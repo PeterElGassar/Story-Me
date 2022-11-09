@@ -1,0 +1,944 @@
+<div class="row bg-dark mt-3">
+  <div class="col-md-12 d-flex flex-row">
+    <!-- New Employee Modal Button  -->
+    <div class="pt-3">
+      <button type="button" (click)="addNewClick()" class="btn btn-primary m-1" data-toggle="modal"
+        data-target="#NewEmployeeModal">
+        <i class="fas fa-user-plus mx-2"></i>
+        اضافة دورة جديد
+      </button>
+    </div>
+    <div class="pt-3">
+
+
+
+    </div>
+
+    <p class="h5 text-light py-3 ml-auto">إدارة الدورات</p>
+  </div>
+</div>
+
+
+<p-tabView>
+
+  <p-tabPanel header="الدورات غير المفعلة" [selected]="true">
+
+      <!-- غير المفعلين -->
+      <p-table id="table-for-print-1"  #empsTbl_1 [value]="notApprovedCourses" [globalFilterFields]="['name','description']" [paginator]="true" [rows]="10"
+        [rowsPerPageOptions]="[10,25,50]" [totalRecords]="this.recourdNumber" [pageLinks]="8">
+        <!-- [scrollable]="true"
+                scrollHeight="350px" -->
+        <ng-template pTemplate="caption">
+          <div class="p-d-flex d-flex justify-content-between flex-row-reverse">
+            <!-- <div class="add-new-btn">
+                      <a href="" data-toggle="modal" data-target="#emp-modal" title="أضافة موظف جديد"
+                      class="edit-emp-btn btn btn-info btn-sm mx-2">إضافة موظف جديد <i class="fas fa-user-edit mx-2"></i></a>
+                    </div> -->
+
+            <div class="search-warpper">
+              <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+                (click)="clear(empsTbl_1)"></button>
+              <span class="p-input-icon-left p-ml-auto">
+                <i class="pi pi-search"></i>
+                <input class="search-textbox" pInputText type="text"
+                  (input)="empsTbl_1.filterGlobal($event.target.value, 'contains')" placeholder="بحث الدورات" />
+              </span>
+            </div>
+            
+            <button class="btn print-certificate"
+            class="btn btn-info text-light"            
+            printSectionId="table-for-print-1"
+            [useExistingCss]="true"  
+            ngxPrint>
+            <i class="pi pi-print"></i>
+            طباعة تقرير 
+          </button>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th> ألاجراءات </th>
+            <th> تاريخ الانشاء </th>
+
+            <th> حالة الكورس </th>
+
+            <th pSortableColumn="price_before_discount">سعر قبل الخصم <p-sortIcon field="price_before_discount">
+              </p-sortIcon>
+            </th>
+            <th pSortableColumn="price_after_discount">سعر بعد الخصم <p-sortIcon field="price_after_discount">
+              </p-sortIcon>
+            </th>
+            <!-- <th pSortableColumn="Price">سعر بعد الخصم <p-sortIcon field="Price"></p-sortIcon> -->
+            <th> صورة الدورة </th>
+
+            <th pSortableColumn="name"> أسم <p-sortIcon field="name"></p-sortIcon>
+            </th>
+
+            <!-- <th pSortableColumn="instructorName">المحاضر<p-sortIcon field="instructorName"></p-sortIcon>
+                </th>
+                <th pSortableColumn="createdAt">تاريخ <p-sortIcon field="createdAt"></p-sortIcon>
+                </th> -->
+            <!-- <th pSortableColumn="description">وصف <p-sortIcon field="description"></p-sortIcon>
+                </th> -->
+            <!-- <th pSortableColumn="name"> أسم <p-sortIcon field="name"></p-sortIcon>
+                </th> -->
+
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-course>
+          <tr>
+            <td class="text-center">
+              <button type="button" data-toggle="modal" data-target="#CurriculumModal" 
+              pTooltip="تعديل بيانات المنهج" tooltipPosition="top" tooltipEvent="hover"
+                (click)="initCurriculamToEdit(course)" class="btn btn-info btn-sm">
+                <i class="fas fa-newspaper"></i>
+              </button>
+              <button type="button"
+               data-toggle="modal" 
+               pTooltip="فتح جزء من المنهج" tooltipPosition="top" tooltipEvent="hover"
+               (click)="initCurriculamToEdit(course)" data-target="#ParialCourseModal"
+                 class="btn btn-info m-1 btn-sm">
+                <i class="fas fa-desktop"></i>
+              </button>
+              <button type="button" data-toggle="modal"
+              pTooltip=" إضافة منهج جديد" tooltipPosition="top" tooltipEvent="hover"
+              data-target="#CurriculumModal" 
+              (click)="initCurriculamToAdd(course)"
+              class="btn btn-info btn-sm">
+                <i class="fas fa-plus">
+                </i>
+              </button>
+
+
+              <button data-toggle="modal" (click)="editClick(course)" data-target="#NewEmployeeModal"
+                pTooltip="تعديل بيانات الدورة" tooltipPosition="top" tooltipEvent="hover"
+                class="edit-emp-btn btn btn-primary m-1 btn-sm "><i
+                  class="fas fa-user-edit"></i></button>
+
+              <p-confirmPopup styleClass="custom-style"></p-confirmPopup>
+
+              <button (click)="deleteClick(course.id)" pTooltip="حذف الدورة" tooltipPosition="top" tooltipEvent="hover" class="btn btn-info m-1 btn-sm"><i
+                  class="fas fa-trash "></i></button>
+
+              <button routerLink="/quizzes/add-course-questions/{{course.id}}"
+              pTooltip="إضافة أسئلة" tooltipPosition="top" tooltipEvent="hover"
+                class="btn btn-warning btn-sm m-1">
+                <i class="fas fa-database "></i>
+              </button>
+
+           
+
+
+
+              <a target="_blank"
+              routerLink="/partial-purchase-users/{{course.id}}/{{course.name}}"
+              pTooltip="طلاب الدفع الاجل" tooltipPosition="top" tooltipEvent="hover"
+                class="btn btn-warning btn-sm">
+                <i class="pi pi-users"></i>
+              </a>
+
+
+              <!-- <div class="example-button-row">
+                <button mat-raised-button>Basic</button>
+                <button mat-raised-button color="primary">Primary</button>
+                <button mat-raised-button color="accent">Accent</button>
+                <button mat-raised-button color="warn">Warn</button>
+                <button mat-raised-button disabled>Disabled</button>
+                <a mat-raised-button routerLink=".">Link</a>
+              </div> -->
+
+
+            </td>
+            <td>
+              {{course.created_at |date}}
+             </td>
+           
+            <td>
+              <p-toggleButton [(ngModel)]="course.is_aproved"
+              (click)="toggleApproved(course)"
+              onLabel="دورة مفعلة"
+               offLabel="دورة غير مفعلة" 
+              onIcon="pi pi-check" offIcon="pi pi-times" [style]="{'width': '10em'}">
+              
+              </p-toggleButton>
+
+            
+          </td>
+
+
+            <td>{{course.price_before_discount}}</td>
+            <td>{{course.price_after_discount}}</td>
+            <td>
+              <img src="{{course.img_path}}" width="120">
+            </td>
+            <td>
+              <a type="button"  target="_blank"
+              routerLink="/purchase-course-info/{{course.id}}/{{course.name}}">
+                {{course.name}}
+              </a>
+            </td>
+
+          </tr>
+        </ng-template>
+
+      </p-table>
+      <!-- غير المفعلين -->
+  </p-tabPanel>
+
+  <p-tabPanel header="الدورات المفعلة">
+      <!--المفعلن -->
+      <p-table id="table-for-print-2" #empsTbl_2 [value]="approvedCourses" [globalFilterFields]="['name','description','instructor_first_name','instructor_second_name']" [paginator]="true" [rows]="10"
+        [rowsPerPageOptions]="[10,25,50]" [totalRecords]="this.recourdNumber" [pageLinks]="8">
+        <!-- [scrollable]="true"
+                scrollHeight="350px" -->
+        <ng-template pTemplate="caption">
+          <div class="p-d-flex d-flex justify-content-between flex-row-reverse">
+            <!-- <div class="add-new-btn">
+                      <a href="" data-toggle="modal" data-target="#emp-modal" title="أضافة موظف جديد"
+                      class="edit-emp-btn btn btn-info btn-sm mx-2">إضافة موظف جديد <i class="fas fa-user-edit mx-2"></i></a>
+                    </div> -->
+
+            <div class="search-warpper">
+              <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+                (click)="clear(empsTbl_2)"></button>
+              <span class="p-input-icon-left p-ml-auto">
+                <i class="pi pi-search"></i>
+                <input class="search-textbox" pInputText type="text"
+                  (input)="empsTbl_2.filterGlobal($event.target.value, 'contains')" placeholder="بحث الدورات" />
+              </span>
+            </div>
+            <button class="btn print-certificate"
+            class="btn btn-info text-light"            
+            printSectionId="table-for-print-2"
+            [useExistingCss]="true"  
+            ngxPrint>
+            <i class="pi pi-print"></i>
+            طباعة تقرير 
+          </button>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th> ألاجراءات </th>
+            <th> تاريخ الانشاء </th>
+            <th pSortableColumn="instructor_first_name"> المدرب
+              <p-sortIcon field="instructor_first_name">
+              </p-sortIcon>
+            </th>
+            <th> حالة الكورس </th>
+
+            <th pSortableColumn="price_before_discount">سعر قبل الخصم <p-sortIcon field="price_before_discount">
+              </p-sortIcon>
+            </th>
+            <th pSortableColumn="price_after_discount">سعر بعد الخصم <p-sortIcon field="price_after_discount">
+              </p-sortIcon>
+            </th>
+            <!-- <th pSortableColumn="Price">سعر بعد الخصم <p-sortIcon field="Price"></p-sortIcon> -->
+            <th> صورة الدورة </th>
+
+            <th pSortableColumn="name"> أسم <p-sortIcon field="name"></p-sortIcon>
+            </th>
+
+            <!-- <th pSortableColumn="instructorName">المحاضر<p-sortIcon field="instructorName"></p-sortIcon>
+                </th>
+                <th pSortableColumn="createdAt">تاريخ <p-sortIcon field="createdAt"></p-sortIcon>
+                </th> -->
+            <!-- <th pSortableColumn="description">وصف <p-sortIcon field="description"></p-sortIcon>
+                </th> -->
+            <!-- <th pSortableColumn="name"> أسم <p-sortIcon field="name"></p-sortIcon>
+                </th> -->
+
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-course>
+          <tr>
+            <td class="text-center">
+              <button type="button" data-toggle="modal" data-target="#CurriculumModal" 
+              pTooltip="تعديل بيانات المنهج" tooltipPosition="top" tooltipEvent="hover"
+                (click)="initCurriculamToEdit(course)" class="btn btn-info btn-sm">
+                <i class="fas fa-newspaper"></i>
+              </button>
+              <button type="button"
+               data-toggle="modal" 
+               pTooltip="فتح جزء من المنهج" tooltipPosition="top" tooltipEvent="hover"
+               (click)="initCurriculamToEdit(course)" data-target="#ParialCourseModal"
+                 class="btn btn-info m-1 btn-sm">
+                <i class="fas fa-desktop"></i>
+              </button>
+              <button type="button" data-toggle="modal"
+              pTooltip=" إضافة منهج جديد" tooltipPosition="top" tooltipEvent="hover"
+              data-target="#CurriculumModal" 
+              (click)="initCurriculamToAdd(course)"
+              class="btn btn-info btn-sm">
+                <i class="fas fa-plus"></i>
+              </button>
+
+
+              <button data-toggle="modal" (click)="editClick(course)" data-target="#NewEmployeeModal"
+                pTooltip="تعديل بيانات الدورة" tooltipPosition="top" tooltipEvent="hover"
+                class="edit-emp-btn btn btn-primary m-1 btn-sm "><i
+                  class="fas fa-user-edit"></i></button>
+
+              <p-confirmPopup styleClass="custom-style"></p-confirmPopup>
+
+              <button (click)="deleteClick(course.id)" pTooltip="حذف الدورة" tooltipPosition="top" tooltipEvent="hover" class="btn btn-info m-1 btn-sm"><i
+                  class="fas fa-trash "></i></button>
+
+              <button routerLink="/quizzes/add-course-questions/{{course.id}}"
+              pTooltip="إضافة أسئلة" tooltipPosition="top" tooltipEvent="hover"
+                class="btn btn-warning btn-sm">
+                <i class="fas fa-database "></i>
+              </button>
+    
+              <a target="_blank"
+              routerLink="/partial-purchase-users/{{course.id}}/{{course.name}}"
+              pTooltip="طلاب الدفع الاجل" tooltipPosition="top" tooltipEvent="hover"
+                class="btn btn-warning btn-sm">
+                <i class="pi pi-users"></i>
+              </a>
+
+            </td>
+           
+            <td>
+              {{course.created_at |date}}
+             </td>
+             <td>
+              {{course.instructor_first_name}}
+              {{course.instructor_second_name}}
+              {{course.instructor_last_name}}
+             </td>
+            <td>
+              <p-toggleButton [(ngModel)]="course.is_aproved" (click)="toggleApproved(course)" onLabel="دورة مفعلة"
+                offLabel="دورة غير مفعلة" onIcon="pi pi-check" offIcon="pi pi-times" [style]="{'width': '10em'}">
+              </p-toggleButton>
+            </td>
+
+
+            <td>{{course.price_before_discount}}</td>
+            <td>{{course.price_after_discount}}</td>
+            <td>
+              <img src="{{course.img_path}}" width="120">
+            </td>
+            <td>
+               <a type="button"  target="_blank"
+              routerLink="/purchase-course-info/{{course.id}}/{{course.name}}">
+                {{course.name}}
+            </a>
+            </td>
+
+          </tr>
+        </ng-template>
+
+      </p-table>
+      <!-- المفعلن -->
+  </p-tabPanel>
+
+  <p-tabPanel header="الدورات الاكثر مبيعا">
+      <!--المفعلن -->
+      <p-table id="table-for-print-3" #empsTbl_3 [value]="bestSellerCourses" [globalFilterFields]="['name','description','numberOfSeall']" [paginator]="true" [rows]="10"
+        [rowsPerPageOptions]="[10,25,50]" [totalRecords]="this.recourdNumber" [pageLinks]="8">
+        <!-- [scrollable]="true"
+                scrollHeight="350px" -->
+        <ng-template pTemplate="caption">
+          <div class="p-d-flex d-flex justify-content-between flex-row-reverse">
+            <!-- <div class="add-new-btn">
+                      <a href="" data-toggle="modal" data-target="#emp-modal" title="أضافة موظف جديد"
+                      class="edit-emp-btn btn btn-info btn-sm mx-2">إضافة موظف جديد <i class="fas fa-user-edit mx-2"></i></a>
+                    </div> -->
+
+            <div class="search-warpper">
+              <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+                (click)="clear(empsTbl_3)"></button>
+              <span class="p-input-icon-left p-ml-auto">
+                <i class="pi pi-search"></i>
+                <input class="search-textbox" pInputText type="text"
+                  (input)="empsTbl_3.filterGlobal($event.target.value, 'contains')" placeholder="بحث الدورات" />
+              </span>
+            </div>
+
+            <button class="btn print-certificate"
+            class="btn btn-info text-light"            
+            printSectionId="table-for-print-3"
+            [useExistingCss]="true"  
+            ngxPrint>
+            <i class="pi pi-print"></i>
+            طباعة تقرير 
+          </button>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th> ألاجراءات </th>
+            <th> حالة الكورس </th>
+            
+            <th pSortableColumn="numberOfSeall"> عدد مرات البيع <p-sortIcon field="numberOfSeall"></p-sortIcon></th>
+            <th>  المتحصلات النقدية</th>
+
+            <th pSortableColumn="price_before_discount">سعر قبل الخصم 
+              <p-sortIcon field="price_before_discount">
+              </p-sortIcon>
+            </th>
+
+            <th pSortableColumn="price_after_discount">سعر بعد الخصم <p-sortIcon field="price_after_discount">
+              </p-sortIcon>
+            </th>
+            <!-- <th pSortableColumn="Price">سعر بعد الخصم <p-sortIcon field="Price"></p-sortIcon> -->
+            <th> صورة الدورة </th>
+
+            <th pSortableColumn="name"> أسم <p-sortIcon field="name"></p-sortIcon>
+            </th>
+
+            <!-- <th pSortableColumn="instructorName">المحاضر<p-sortIcon field="instructorName"></p-sortIcon>
+                </th>
+                <th pSortableColumn="createdAt">تاريخ <p-sortIcon field="createdAt"></p-sortIcon>
+                </th> -->
+            <!-- <th pSortableColumn="description">وصف <p-sortIcon field="description"></p-sortIcon>
+                </th> -->
+            <!-- <th pSortableColumn="name"> أسم <p-sortIcon field="name"></p-sortIcon>
+                </th> -->
+
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-course>
+          <tr>
+            <td class="text-center">
+              <button type="button" data-toggle="modal" data-target="#CurriculumModal" 
+              pTooltip="تعديل بيانات المنهج" tooltipPosition="top" tooltipEvent="hover"
+                (click)="initCurriculamToEdit(course)" class="btn btn-info btn-sm">
+                <i class="fas fa-newspaper"></i>
+              </button>
+              <button type="button"
+               data-toggle="modal" class="mx-1"
+               pTooltip="فتح جزء من المنهج" tooltipPosition="top" tooltipEvent="hover"
+               (click)="initCurriculamToEdit(course)" data-target="#ParialCourseModal"
+                 class="btn btn-info m-1 btn-sm">
+                <i class="fas fa-desktop"></i>
+              </button>
+              <button class="mx-1" type="button" data-toggle="modal"
+              pTooltip=" إضافة منهج جديد" tooltipPosition="top" tooltipEvent="hover"
+              data-target="#CurriculumModal" 
+              (click)="initCurriculamToAdd(course)"
+              class="btn btn-info btn-sm">
+                <i class="fas fa-plus">
+
+                </i>
+              </button>
+
+
+              <button class="mx-1" data-toggle="modal" (click)="editClick(course)" data-target="#NewEmployeeModal"
+                pTooltip="تعديل بيانات الدورة" tooltipPosition="top" tooltipEvent="hover"
+                class="edit-emp-btn btn btn-primary m-1 btn-sm "><i
+                  class="fas fa-user-edit"></i></button>
+
+              <p-confirmPopup styleClass="custom-style"></p-confirmPopup>
+
+              <button class="mx-1" (click)="deleteClick(course.id)" pTooltip="حذف الدورة"
+               tooltipPosition="top" tooltipEvent="hover" class="btn btn-danger m-1 btn-sm"><i
+                  class="fas fa-trash "></i></button>
+
+              <button class="mx-1" routerLink="/quizzes/add-course-questions/{{course.id}}"
+              pTooltip="إضافة أسئلة" tooltipPosition="top" tooltipEvent="hover"
+                class="btn btn-warning btn-sm">
+                <i class="fas fa-database "></i>
+              </button>
+
+              <a target="_blank"class="mx-1"
+              routerLink="/partial-purchase-users/{{course.id}}/{{course.name}}"
+              pTooltip="طلاب الدفع الاجل" tooltipPosition="top" tooltipEvent="hover"
+                class="btn btn-warning btn-sm">
+                <i class="pi pi-users"></i>
+              </a>
+
+            </td>
+
+            <td>
+              <p-toggleButton [(ngModel)]="course.is_aproved" (click)="toggleApproved(course)" onLabel="دورة مفعلة"
+                offLabel="دورة غير مفعلة" onIcon="pi pi-check" offIcon="pi pi-times" [style]="{'width': '10em'}">
+              </p-toggleButton>
+            </td>
+
+            <td>{{course.numberOfSeall}}</td>
+            <td><span class="mx-auto">جنيه</span>{{course.numberOfSeall * course.price_after_discount}}</td>
+
+            <td><span class="mx-auto">جنيه</span>{{course.price_before_discount}}</td>
+            <td><span class="mx-auto">جنيه</span>{{course.price_after_discount}}</td>
+            <td>
+              <img src="{{course.img_path}}" width="120">
+            </td>
+            <td>
+              <a type="button"  target="_blank"
+              routerLink="/purchase-course-info/{{course.id}}/{{course.name}}">
+                {{course.name}}
+            </a>
+            </td>
+
+          </tr>
+        </ng-template>
+
+      </p-table>
+      <!-- المفعلن -->
+  </p-tabPanel>
+
+  <p-tabPanel header="الدورات ألاقل مبيعا">
+      <!--المفعلن -->
+      <p-table id="table-for-print-4" #empsTbl_4 [value]="lessSellerCourses" [globalFilterFields]="['name','description']" [paginator]="true" [rows]="10"
+        [rowsPerPageOptions]="[10,25,50]" [totalRecords]="this.recourdNumber" [pageLinks]="8">
+        <!-- [scrollable]="true"
+                scrollHeight="350px" -->
+        <ng-template pTemplate="caption">
+          <div class="p-d-flex d-flex justify-content-between flex-row-reverse">
+
+
+            <div class="search-warpper">
+              <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+                (click)="clear(empsTbl_4)"></button>
+              <span class="p-input-icon-left p-ml-auto">
+                <i class="pi pi-search"></i>
+                <input class="search-textbox" pInputText type="text"
+                  (input)="empsTbl_4.filterGlobal($event.target.value, 'contains')" placeholder="بحث الدورات" />
+              </span>
+            </div>
+            <button class="btn print-certificate"
+            class="btn btn-info text-light"            
+            printSectionId="table-for-print-4"
+            [useExistingCss]="true"  
+            ngxPrint>
+            <i class="pi pi-print"></i>
+            طباعة تقرير 
+          </button>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th> ألاجراءات </th>
+            <th> حالة الكورس </th>
+
+            <th pSortableColumn="numberOfSeall"> عدد مرات البيع <p-sortIcon field="numberOfSeall"></p-sortIcon></th>
+            <th>  المتحصلات النقدية</th>
+
+            <th pSortableColumn="price_before_discount">سعر قبل الخصم <p-sortIcon field="price_before_discount">
+              </p-sortIcon>
+            </th>
+            <th pSortableColumn="price_after_discount">سعر بعد الخصم <p-sortIcon field="price_after_discount">
+              </p-sortIcon>
+            </th>
+            <!-- <th pSortableColumn="Price">سعر بعد الخصم <p-sortIcon field="Price"></p-sortIcon> -->
+            <th> صورة الدورة </th>
+
+            <th pSortableColumn="name"> أسم <p-sortIcon field="name"></p-sortIcon>
+            </th>
+
+            <!-- <th pSortableColumn="instructorName">المحاضر<p-sortIcon field="instructorName"></p-sortIcon>
+                </th>
+                <th pSortableColumn="createdAt">تاريخ <p-sortIcon field="createdAt"></p-sortIcon>
+                </th> -->
+            <!-- <th pSortableColumn="description">وصف <p-sortIcon field="description"></p-sortIcon>
+                </th> -->
+            <!-- <th pSortableColumn="name"> أسم <p-sortIcon field="name"></p-sortIcon>
+                </th> -->
+
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-course>
+          <tr>
+            <td class="text-center">
+              <button class="mx-1" type="button" data-toggle="modal" data-target="#CurriculumModal" 
+              pTooltip="تعديل بيانات المنهج" tooltipPosition="top" tooltipEvent="hover"
+                (click)="initCurriculamToEdit(course)" class="btn btn-info btn-sm">
+                <i class="fas fa-newspaper"></i>
+              </button>
+              <button type="button"
+              class="mx-1"
+               data-toggle="modal" 
+               pTooltip="فتح جزء من المنهج" tooltipPosition="top" tooltipEvent="hover"
+               (click)="initCurriculamToEdit(course)" data-target="#ParialCourseModal"
+                 class="btn btn-info m-1 btn-sm">
+                <i class="fas fa-desktop"></i>
+              </button>
+              <button class="mx-1" type="button" data-toggle="modal"
+              pTooltip=" إضافة منهج جديد" tooltipPosition="top" tooltipEvent="hover"
+              data-target="#CurriculumModal" 
+              (click)="initCurriculamToAdd(course)"
+              class="btn btn-info btn-sm">
+                <i class="fas fa-plus"></i>
+              </button>
+
+
+              <button class="mx-1" data-toggle="modal" (click)="editClick(course)" data-target="#NewEmployeeModal"
+                pTooltip="تعديل بيانات الدورة" tooltipPosition="top" tooltipEvent="hover"
+                class="edit-emp-btn btn btn-primary m-1 btn-sm "><i
+                  class="fas fa-user-edit"></i>
+              </button>
+
+              <p-confirmPopup styleClass="custom-style"></p-confirmPopup>
+
+              <button class="mx-1" (click)="deleteClick(course.id)" 
+              pTooltip="حذف الدورة" tooltipPosition="top" tooltipEvent="hover" 
+              class="btn btn-danger m-1 btn-sm"><i
+                  class="fas fa-trash "></i></button>
+
+              <button class="mx-1" routerLink="/quizzes/add-course-questions/{{course.id}}"
+              pTooltip="إضافة أسئلة" tooltipPosition="top" tooltipEvent="hover"
+                class="btn btn-warning btn-sm">
+                <i class="fas fa-database "></i>
+              </button>
+
+              <a target="_blank"class="mx-1"
+              routerLink="/partial-purchase-users/{{course.id}}/{{course.name}}"
+              pTooltip="طلاب الدفع الاجل" tooltipPosition="top" tooltipEvent="hover"
+                class="btn btn-warning btn-sm">
+                <i class="pi pi-users"></i>
+              </a>
+
+            </td>
+
+            <td>
+              <p-toggleButton [(ngModel)]="course.is_aproved" (click)="toggleApproved(course)" onLabel="دورة مفعلة"
+                offLabel="دورة غير مفعلة" onIcon="pi pi-check" offIcon="pi pi-times" [style]="{'width': '10em'}">
+              </p-toggleButton>
+            </td>
+
+            <td>{{course.numberOfSeall}}</td>
+
+            <td><span class="mx-2">جنيه</span><span>{{course.numberOfSeall * course.price_after_discount}}</span> </td>
+
+            <td><span class="mx-2">جنيه</span>{{course.price_before_discount}} </td>
+            <td><span class="mx-2">جنيه</span>{{course.price_after_discount}} </td>
+            <td>
+              <img src="{{course.img_path}}" width="120">
+            </td>
+            <td>
+              <a type="button"  target="_blank"
+              routerLink="/purchase-course-info/{{course.id}}/{{course.name}}">
+                {{course.name}}
+            </a>
+            </td>
+
+          </tr>
+        </ng-template>
+
+      </p-table>
+      <!-- المفعلن -->
+  </p-tabPanel>
+
+  <p-tabPanel header="الدورات  الاعلي تقيما">
+      <!--المفعلن -->
+      <p-table id="table-for-print-5" #empsTbl_5 [value]="topRatedCourses" [globalFilterFields]="['name','description','rating_course']" [paginator]="true" [rows]="10"
+        [rowsPerPageOptions]="[10,25,50]" [totalRecords]="this.recourdNumber" [pageLinks]="8">
+        <!-- [scrollable]="true"
+                scrollHeight="350px" -->
+        <ng-template pTemplate="caption">
+          <div class="p-d-flex d-flex justify-content-between flex-row-reverse">
+            <!-- <div class="add-new-btn">
+                      <a href="" data-toggle="modal" data-target="#emp-modal" title="أضافة موظف جديد"
+                      class="edit-emp-btn btn btn-info btn-sm mx-2">إضافة موظف جديد <i class="fas fa-user-edit mx-2"></i></a>
+                    </div> -->
+
+            <div class="search-warpper">
+              <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+                (click)="clear(empsTbl_5)"></button>
+              <span class="p-input-icon-left p-ml-auto">
+                <i class="pi pi-search"></i>
+                <input class="search-textbox" pInputText type="text"
+                  (input)="empsTbl_5.filterGlobal($event.target.value, 'contains')" placeholder="بحث الدورات" />
+              </span>
+            </div>
+            <button class="btn print-certificate"
+            class="btn btn-info text-light"            
+            printSectionId="table-for-print-5"
+            [useExistingCss]="true"  
+            ngxPrint>
+            <i class="pi pi-print"></i>
+            طباعة تقرير 
+          </button>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th> ألاجراءات </th>
+            <th> حالة الكورس </th>
+            <th pSortableColumn="rating_course" >
+               تقيم الكورس
+               <p-sortIcon field="rating_course"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="price_before_discount">سعر قبل الخصم <p-sortIcon field="price_before_discount">
+              </p-sortIcon>
+            </th>
+            <th pSortableColumn="price_after_discount">سعر بعد الخصم <p-sortIcon field="price_after_discount">
+              </p-sortIcon>
+            </th>
+            <!-- <th pSortableColumn="Price">سعر بعد الخصم <p-sortIcon field="Price"></p-sortIcon> -->
+            <th> صورة الدورة </th>
+
+            <th pSortableColumn="name"> أسم <p-sortIcon field="name"></p-sortIcon>
+            </th>
+
+            <!-- <th pSortableColumn="instructorName">المحاضر<p-sortIcon field="instructorName"></p-sortIcon>
+                </th>
+                <th pSortableColumn="createdAt">تاريخ <p-sortIcon field="createdAt"></p-sortIcon>
+                </th> -->
+            <!-- <th pSortableColumn="description">وصف <p-sortIcon field="description"></p-sortIcon>
+                </th> -->
+            <!-- <th pSortableColumn="name"> أسم <p-sortIcon field="name"></p-sortIcon>
+                </th> -->
+
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-course>
+          <tr>
+            <td class="text-center">
+
+              <button  class="mx-1" pTooltip="تعديل بيانات المنهج" tooltipPosition="top" tooltipEvent="hover" type="button" data-toggle="modal" data-target="#CurriculumModal" 
+                (click)="initCurriculamToEdit(course)" class="btn btn-info btn-sm">
+                <i class="fas fa-newspaper"></i>
+              </button>
+
+              <button  class="mx-1"
+               pTooltip="فتح جزء من المنهج" tooltipPosition="top"
+               tooltipEvent="hover" type="button"
+               data-toggle="modal" 
+              
+               (click)="initCurriculamToEdit(course)" data-target="#ParialCourseModal"
+                 class="btn btn-info m-1 btn-sm">
+                <i class="fas fa-desktop"></i>
+              </button>
+
+              <button class="mx-1" pTooltip="Enter your username" tooltipPosition="top" tooltipEvent="hover" type="button" data-toggle="modal" data-target="#CurriculumModal" title=" إضافة منهج جديد"
+              (click)="initCurriculamToAdd(course)"
+              class="btn btn-info btn-sm">
+                <i class="fas fa-plus"></i>
+              </button>
+
+              <button pTooltip="تعديل بيانات الدورة" tooltipPosition="top" tooltipEvent="hover" data-toggle="modal" (click)="editClick(course)" data-target="#NewEmployeeModal"
+                 class="edit-emp-btn btn btn-primary m-1 btn-sm ">
+                 <i class="fas fa-user-edit"></i>
+              </button>
+
+              <p-confirmPopup styleClass="custom-style"></p-confirmPopup>
+
+              <button class="mx-1" pTooltip="حذف الدورة" tooltipPosition="top" 
+              tooltipEvent="hover" (click)="deleteClick(course.id)"  class="btn btn-danger m-1 btn-sm"><i
+                  class="fas fa-trash "></i></button>
+
+              <button class="mx-1" pTooltip="إضافة أسئلة" tooltipPosition="top" tooltipEvent="hover" routerLink="/quizzes/add-course-questions/{{course.id}}"
+                class="btn btn-warning btn-sm m-1">
+                <i class="fas fa-database "></i>
+              </button>
+
+              <a target="_blank" class="mx-1"
+              routerLink="/partial-purchase-users/{{course.id}}/{{course.name}}"
+              pTooltip="طلاب الدفع الاجل" tooltipPosition="top" tooltipEvent="hover"
+                class="btn btn-warning btn-sm m-1">
+                <i class="pi pi-users"></i>
+              </a>
+
+            </td>
+
+            <td>
+              <p-toggleButton [(ngModel)]="course.is_aproved" (click)="toggleApproved(course)" onLabel="دورة مفعلة"
+                offLabel="دورة غير مفعلة" onIcon="pi pi-check" offIcon="pi pi-times" [style]="{'width': '10em'}">
+              </p-toggleButton>
+            </td>
+            <td>{{course.rating_course}}</td>
+        
+            <td><span class="mx-2">جنيه</span>{{course.price_before_discount}} </td>
+            <td><span class="mx-2">جنيه</span>{{course.price_after_discount}} </td>
+            <td>
+              <img src="{{course.img_path}}" width="120">
+            </td>
+            <td>
+              <a type="button"  target="_blank"
+              routerLink="/purchase-course-info/{{course.id}}/{{course.name}}">
+                {{course.name}}
+            </a>
+            </td>
+
+          </tr>
+        </ng-template>
+
+      </p-table>
+      <!-- المفعلن -->
+  </p-tabPanel>
+
+
+
+  
+</p-tabView>
+
+<!-- New Course Modal -->
+<div class="modal fade" id="NewEmployeeModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="NewEmployeeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-light" id="NewEmployeeModalLabel">{{modalTitle}}</h4>
+        <button (click)="closeCourseModal()" type="button" class="close text-light" data-dismiss="modal"
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!-- render form here -->
+        <add-edit-cour [Course]="course" *ngIf="ActivateAddEditEmpComp">
+        </add-edit-cour>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeCourseModal()" data-dismiss="modal">اغلاق</button>
+        <!-- <button type="button" class="btn btn-primary m-1" > التغيرات حفظ</button> -->
+        <!-- <button type="button" class="btn btn-primary m-1">إضافة كورس جديد</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Details Modal -->
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="passwordModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-light" id="passwordModalLabel">تفاصيل الموظف</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+       
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- New Curriculum Modal -->
+<!-- New Curriculum Modal -->
+<div class="modal fade " id="CurriculumModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="NewEmployeeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-light" id="NewEmployeeModalLabel">تعديل بايانات المنهج</h4>
+        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+          <span (click)="closeCourseModal()" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body admin-model-body ">
+
+        <!-- render form here -->
+        <add-editcurriculum 
+
+        [ActiveEditMood]="ActiveEditMood" 
+        [CourseID]="IdToPath" 
+        [CurrSection]="CourseCurriculam"
+          *ngIf="ActivateAddEditCurruclum">
+        </add-editcurriculum>
+
+
+        <!-- <edit-currciulum-form [CourseID]="IdToPath"  [curric]="CourseCurriculam" *ngIf="ActivateAddEditEmpComp"></edit-currciulum-form> -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeCourseModal()" data-dismiss="modal">اغلاق</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================Copon Precentage=================== -->
+<div class="modal fade " id="copone-course"
+ data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="NewEmployeeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-light" id="NewEmployeeModalLabel">إضافة كبون خصم لهذة الدورة</h4>
+        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+          <span (click)="closeCourseModal()" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body admin-model-body ">
+        <p-toast position="top-right" key="ImageErrorMs"></p-toast>
+        <p-toast position="top-center" key="addInstructor"></p-toast>
+        
+        <form #f="ngForm">
+          <div class="row direction-instructor flex-row-reverse" >
+           
+            <div class="col-12">
+        
+            
+
+        
+              <div class="form-group">
+                <label for="yxz">نسبة كبون الخصم</label>                
+                <p-inputNumber [(ngModel)]="coponePrecentage" prefix="%"></p-inputNumber>
+              </div>
+        
+     
+           
+            </div>
+        
+            <div class="col-md-12 mt-3">
+        
+              <button [disabled]="!f.valid" class="btn btn-primary m-1">
+               إضافة كوبون الخصم
+              </button>
+            </div>
+        
+          </div>
+        
+        
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeCourseModal()" data-dismiss="modal">اغلاق</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================Add Partial Course=================== -->
+<div class="modal fade " id="ParialCourseModal"
+ data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="NewEmployeeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-light" id="NewEmployeeModalLabel">فتح الدورة للطالب  بالدفع الآجل</h4>
+        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+          <span (click)="closeCourseModal()" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body admin-model-body ">
+
+        <!-- render form here -->
+        <open-partail-course
+
+        [ActiveEditMood]="ActiveEditMood" 
+        [CourseID]="IdToPath" 
+        [CurrSection]="CourseCurriculam"
+          *ngIf="ActivateAddEditCurruclum">
+        </open-partail-course>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeCourseModal()" data-dismiss="modal">اغلاق</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+

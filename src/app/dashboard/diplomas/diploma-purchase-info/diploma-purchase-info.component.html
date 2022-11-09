@@ -1,0 +1,87 @@
+ <!-- PrimeNg Table ===========Aprroved Instructors =========-->
+ <p-table id="table-for-print-1" #approvedInstructorsx [value]="studentCourses" [globalFilterFields]="['name','description']" [paginator]="true" [rows]="10"
+ [rowsPerPageOptions]="[10,25,50]" [totalRecords]="this.recourdNumber" [pageLinks]="8">
+ <ng-template pTemplate="caption">
+   <div class="p-d-flex d-flex justify-content-between flex-row-reverse align-items-center">
+
+
+     <div class="search-warpper">
+       <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+         (click)="clear(approvedInstructorsx)"></button>
+       <span class="p-input-icon-left p-ml-auto">
+         <i class="pi pi-search"></i>
+         <input class="search-textbox" pInputText type="text"
+           (input)="approvedInstructorsx.filterGlobal($event.target.value, 'contains')" placeholder="بحث الاقسام" />
+       </span>
+     </div>
+
+     <h2 class="d-flex flex-row-reverse pt-4">
+        <span class="mx-1"> :عمليات البيع لدورة</span>
+
+         {{this.CourseName}}
+
+     </h2>
+     <button class="btn print-certificate"
+     class="btn btn-info text-light"            
+     printSectionId="table-for-print-1"
+     [useExistingCss]="true"  
+     ngxPrint>
+     <i class="pi pi-print"></i>
+     طباعة تقرير 
+   </button>
+   </div>
+ </ng-template>
+
+ <ng-template pTemplate="header">
+   <tr>
+     <th pSortableColumn="created_at">تاريخ عملية البيع<p-sortIcon field="created_at"></p-sortIcon>
+     </th>
+     <th pSortableColumn="created_at">المحاضرين<p-sortIcon field="created_at"></p-sortIcon>
+     </th>
+     <th pSortableColumn="number_of_questions">سعر البيع<p-sortIcon field="number_of_questions"></p-sortIcon>
+     </th>
+     <th pSortableColumn="correct_questions">نسبة المحاضرين <p-sortIcon field="correct_questions"></p-sortIcon>
+     </th>
+     <th pSortableColumn="attempts">المتحصلات النقدية للمحاضرين<p-sortIcon field="attempts"></p-sortIcon>
+     </th>
+     <th pSortableColumn="course.name">المتحصلات النقدية للمنصة<p-sortIcon field="course.name"></p-sortIcon>
+     </th>
+   </tr>
+ </ng-template>
+ <ng-template pTemplate="body" let-course>
+   <tr>
+     <td>
+       {{course.DateOfSale | date}}
+     </td>
+
+     <td>
+       <p *ngFor="let inst of course.Instructors">
+           {{inst.first_name }}
+           {{inst.second_name }}
+           {{inst.last_name}}
+       </p>
+     </td>
+     <td>
+       {{course.price_after_discount }}
+     </td>
+
+     <td>
+       <strong>{{course.LecturerRatio}}</strong>
+       <span class="mx-1"> %</span>
+     </td>
+     <td>
+       <strong>{{course.LecturerRatio *  course.price_after_discount / (100)}}</strong>
+       <span class="mx-1"> جنيه </span>
+     </td>
+     <td>
+       <strong>{{(100 - course.LecturerRatio)*course.price_after_discount / 100}}</strong>
+       <span class="mx-1"> جنيه</span>
+     </td>
+
+
+
+   </tr>
+ </ng-template>
+
+</p-table>
+<!-- End-PrimeNg Table ===========Aprroved Instructors =========-->

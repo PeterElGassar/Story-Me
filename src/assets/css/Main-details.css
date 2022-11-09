@@ -1,0 +1,426 @@
+.navbar-brand {
+    padding: 0px;
+}
+
+.navbar-expand-xl .navbar-nav .dropdown-menu li:hover {
+    /* background: rgba(217,181,58,0.5); */
+    background-color: rgb(215,176,40);
+}
+
+.navbar-expand-xl .navbar-nav .dropdown-menu li:hover a {
+    color: #fff;
+}
+
+.second-nav {
+    transition: all 1s;
+}
+.second-nav , .second-nav-bg {
+    background-color: rgb(0 0 0 / 85%) !important;
+  }
+.sticky-nav {
+    position: fixed;
+    transition: all .8s;
+    width: 100%;
+}
+
+.mobile-nav-sticky {
+    /* content: url(/assets/images/LOGO.png); */
+    background-color: rgba(243, 243, 243, 0.95) !important;
+}
+
+/* .big-screen-color-toggler {
+    background-color: rgb(253 253 253 / 95%) !important;
+} */
+
+.color-toggler {
+    /* background-color:  rgba(243, 243, 243, 0.95) !important; */
+    background-color: rgb(130 130 130) !important;
+
+}
+
+.search-frm {
+    background-color: rgb(130 130 130) !important;
+}
+
+
+.second-nav ul li a.nav-link , .second-nav-bg ul li a.nav-link{
+    color: #fff !important;
+    /* font-size: .95rem ; */
+    letter-spacing: .1px;
+}
+
+ul.dropdown-menu li , a.dropdown-item {
+    transition: all .3s;
+
+}
+
+a.dropdown-item {
+    color: #828282 ;
+}
+
+a.dropdown-item li:hover {
+    background: #7f517a !important;
+    /* border-radius: 3px; */
+}
+a.dropdown-item li:hover a {
+    color: #fff !important;
+}
+
+.login-btns {
+    color: #fff !important;
+}
+
+.navbar-light .navbar-nav .nav-link:hover{
+   color: rgb(130 130 130) !important;
+}
+a.text-dark:focus, a.text-dark:hover{
+    color: rgb(130 130 130) !important;
+
+}
+
+
+.fa-bars {
+    text-align: center !important;
+    display: block;
+  }
+  .first-nav{
+    background-color: rgba(243, 243, 243, 0.95);
+  }
+  .bg-blue{
+    background-color: rgba(243, 243, 243, 0.95);
+  }
+  
+  
+  
+  
+  ul.social-icons i.fab{
+    color:rgba(215, 176, 40, 0.8) !important
+  /* font-size: 1.1rem !important; */
+  }
+
+
+
+  label.text-secondary{
+  display: flex;
+  }
+  .custom-radio-group .custom-radio label{
+    width: calc(100% - 44px) !important;
+      padding: 0px 15px;
+  }
+
+  .navbar-dark .navbar-toggler{
+      /* display: flex; */
+      text-align: center;
+  }
+
+  ul.sc-nav  > li > a{
+font-size: 17px;
+  }
+
+.signin-link{
+    color: #d7b028!important;
+    font-size: 18px;
+}
+
+/* Teachers Page */
+
+.position-relative >img{
+    height: 220px;
+}
+.teacher-section{
+    display: none;
+    transition: all .8s !important;
+}
+
+.teacher-section-active{
+    display: inline-block;
+}
+
+.section-padding {
+    padding: 40px 0;
+}
+.mt-250{
+    margin-top: 250px;
+}
+.mb-250{
+    margin-bottom: 250px;
+}
+
+.custome-banner{
+    height: 60vh;
+    background-size:cover ;
+    background-position: top;
+}
+
+.nav-btn-active{
+    background-color: #d7b028 !important;
+}
+.page-header .breadcrumb .active a ,
+.gold {
+    color: #d7b028 !important;
+}
+
+/* Courses Page  */
+.banner-section{
+    /* background-image: url(/assets/images/page-header-02.jpg) */
+background: linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.7)),url(/assets/images/BG/img-3.jpg) no-repeat fixed;
+
+background-size: cover;
+}
+
+.result-number{
+padding: 3px 50px;
+}
+
+.result-number span , .result-number span{
+font-size: 16px ;
+font-weight: 500;
+font-family: 'hanimation' !important;
+}
+.cd-main-content.is-fixed .cd-gallery{
+    padding-bottom: 5px;
+}
+
+.disabled-btn{
+    pointer-events: none !important;
+}
+/*  End-Courses Page */
+
+/* Nested DropDown */
+ul.dropdown-menu li {
+    position: relative;
+}
+
+
+
+ul.dropdown-menu li ul.sub-menu li a {
+color: #828282 !important;
+}
+/* ======== */
+
+@media only screen and (min-width:1200px){
+    ul.dropdown-menu li ul.sub-menu {
+        visibility: hidden;
+        position: absolute;
+        /* background-color: red; */
+        width: 200px;
+        right: -123%;
+        top: -30px;
+        transition: 0.1s;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        background-color: #fff;
+        z-index: 200000;
+        opacity: 0;
+        margin-top: 15px;
+        border: 2px solid rgb(209, 174, 56, .5);
+        list-style-type: none;
+        border-radius: 3px;
+    
+        color: #828282;
+    }
+
+
+    ul.dropdown-menu > li:hover ul.sub-menu {
+        visibility: visible;
+        opacity: 1;
+        
+    }
+    ul.dropdown-menu li ul.sub-menu li a:hover {
+        color: #fff !important;
+    }
+}
+
+
+@media only screen and (max-width:1200px) {
+
+    ul.dropdown-menu li ul.sub-menu {
+        display: none;
+        position: absolute;
+        /* background-color: red; */       
+        width: 100%;
+        right: -50%;
+        top: 60%;
+
+        transition: 0.1s;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        background-color: #fff;
+        z-index: 200000;
+        opacity: 0;
+        margin-top: 15px;
+        border: 2px solid rgb(209, 174, 56, .5);
+        list-style-type: none;
+        border-radius: 3px;
+    
+        color: #828282;
+    }
+
+
+    ul.dropdown-menu>li:active ul.sub-menu {
+        display: block;
+        opacity: 1;
+       
+    }
+    ul.dropdown-menu li ul.sub-menu li a:active {
+        color: #fff !important;
+    }
+}
+
+
+header .nav-item .nav-link{
+    padding-left: 20px ;
+    padding-right: 20px ;
+    font-size: .95rem;
+}
+
+/* responsive Section  */
+.drop-show{
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* End-Nested DropDown */
+
+ul.social-icons i.fab{
+    color: rgb(0 0 0 / 85%) !important;
+    font-size: 2rem;
+}
+
+
+/*  Social media Icons */
+
+ul#social-icons {
+    position: absolute;
+    top: 30%;
+    right: 5%;
+    left: auto;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  ul#social-icons li {
+    list-style: none;
+    margin: 5px 0px;
+  }
+  
+  
+  ul#social-icons li a {
+    position: relative;
+    width:60px;
+    height:60px;
+    display:block;
+    text-align:center;
+    margin:0 10px;
+    border-radius: 50%;
+    padding: 6px;
+    box-sizing: border-box;
+    text-decoration:none;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+    background: linear-gradient(0deg, #ddd, #fff);
+    transition: .5s;
+  }
+  
+  
+  ul#social-icons li a:hover {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    text-decoration:none;
+  }
+  
+  
+  ul#social-icons li a .fab {
+    width: 100%;
+    height:100%;
+    display:block;
+    background: linear-gradient(0deg, #fff, #ddd);
+    border-radius: 50%;
+    line-height: calc(60px - 12px);
+    font-size:24px;
+    color: #262626;
+    transition: .5s;
+  }
+  
+  
+  ul#social-icons li:nth-child(1) a:hover .fab {
+    color: #3b5998;
+  }
+  
+  
+  ul#social-icons li:nth-child(2) a:hover .fab {
+    color: #00aced;
+  }
+  
+  
+  ul#social-icons li:nth-child(3) a:hover .fab {
+    color: #dd4b39;
+  }
+  
+  
+  ul#social-icons li:nth-child(4) a:hover .fab {
+    color: #007bb6;
+  }
+  
+  
+  ul#social-icons li:nth-child(5) a:hover .fab {
+    color: #e4405f;
+  }
+
+
+  /* Download pdf btn */
+  .download-pdf {
+    font-family: Hack, monospace;
+    background: #efc900;
+    color: #1d1d1d;
+    cursor: pointer;
+    font-size: 2em;
+    padding: 1.2rem;
+    border: 0;
+    transition: all 0.5s;
+    border-radius: 10px;
+    width: auto;
+    position: relative;
+    min-width: 250px;
+  
+  
+  
+  }
+    
+    .download-pdf:hover {
+      background: #242424;
+      transition: all 0.5s;
+      border-radius: 10px;
+      box-shadow: 0px 6px 15px #242424;
+      padding: 1.2rem 3rem 1.5rem 1.5rem;
+      color: #ffffff;
+  
+     
+    }
+    .download-pdf::after {
+        opacity: 1;
+        transition: all 0.5s;
+        color: #ffffff;
+      }
+
+      .edu-section .course-card .card-img-top{
+        max-height: 120px;
+      }
+
+
+
+      /* .primary-section{
+        background: linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.3)),url(/assets/images/BG/pattern-2.jpg) no-repeat;
+        background-size: cover;
+
+    } */
+
+      /* .pricing-body{
+        background: linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url(/assets/images/BG/pattern-4.jpg) no-repeat;
+        background-size: cover;
+
+    } */
+  /* End-Download pdf btn */

@@ -1,0 +1,233 @@
+<!-- <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog> -->
+<!-- <p-button (click)="confirm1()" icon="pi pi-check" label="Confirm" styleClass="p-mr-2"></p-button> -->
+
+<p-toast position="top-right" key="AddToCartMS"></p-toast>
+<p-toast position="top-right" key="AddToCartMessageWarning"></p-toast>
+
+<div class="item" *ngIf="!isSlider">
+  <div class="card mb-5">
+    <div class="power-ribbon power-ribbon-top-right text-warning"><span class="bg-warning"><i
+          class="fa fa-bolt"></i></span></div>
+    <div class="item-card2-img">
+      <a routerLink="/course-details/{{course.id}}"></a>
+      <img src="{{course.img_path}}" alt="img" class="cover-image" style="height: 162px">
+
+
+
+    </div>
+    <div class="item-card2-icons">
+      <a href="#" class="item-card2-icons-l mx-1"> <i class="fa fa-share-alt"></i></a>
+
+      <a #whislistBtn [ngClass]="statusBtn ? 'in-withlist' : 'out-withlist'"
+        (click)="toggleWishlist($event.target , course)" class="item-card2-icons-l mx-1">
+        <i class="fa fa-heart mx-1"></i>
+      </a>
+
+    </div>
+    <div class="category-badge">
+      <span class="font-weight-bold badge badge-danger ">
+        {{course.nameSection}}
+      </span>
+    </div>
+    <div class="card-body">
+      <div class="item-card2">
+        <div class="item-card2-desc">
+          <div class="item-card2-text mb-3">
+            <a href="#" class="text-dark">
+              <h4 class="mb-2 course-name">
+
+                <a routerLink="/course-details/{{course.id}}">
+                  {{(course.name.length>20)? (course.name | slice:0:50)+'..':(course.name)}}
+                </a>
+
+              </h4>
+            </a>
+            <div class="item-card9-desc mb-2 d-flex justify-content-between">
+              <a routerLink="/instructor-profile/{{course.instructors_id}}" class="ml-4 float-right course-instructor">
+                <span class="text-muted instructor-name">
+                  <!-- <i class="fa fa-user text-muted ml-1"></i>  -->
+                  <img class="rounded-circle" src="{{course.CourseInstructors[0].img_path}}" width="40px">
+                </span>
+                <!-- <p class="text-muted instructor-name">
+
+                  {{course.CourseInstructors[0].first_name}}
+                  {{course.CourseInstructors[0].second_name}}
+                  {{course.CourseInstructors[0].last_name}}
+                </p> -->
+              </a>
+              <a href="#" class=" float-right course-date">
+                <!-- <span class="font-weight-bold"><i class="fa fa-clock-o"></i> :</span>
+                <span class="">{{course.date}}</span> -->
+                <p class="text-muted instructor-name">
+
+                  {{course.CourseInstructors[0].first_name}}
+                  {{course.CourseInstructors[0].second_name}}
+                  {{course.CourseInstructors[0].last_name}}
+                </p>
+              </a>
+            </div>
+          </div>
+          <p
+            innerHTML="{{(course.description.length>20)? (course.description | slice:0:50)+'..':(course.description)}}">
+
+          </p>
+          <div class="w-100" *ngIf="removeAddToCart">
+            <a (click)="addToBasket(course)" class="btn btn-primary text-white float-left w-100">
+              {{'SUBSCRIBE_NOW' |translate}}
+
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="item-card2-footer p-3 ">
+
+
+
+        <div class="item-tag float-right">
+          <h6 class="mb-0 price-after">{{course.price_after_discount}} <span
+              class="mx-1">{{'EG_POUND' |translate}}</span></h6>
+          <del class="mb-0">{{course.price_before_discount}} <span class="mx-1">{{'EG_POUND' |translate}}</span></del>
+        </div>
+
+        <div class="item-overly-trans float-left ">
+          <div class="rating-stars d-flex">
+            <!-- <p-rating [cancel]="false" [(ngModel)]="course.rating_course"></p-rating> -->
+
+            <p-rating [ngModel]="course.rating_course" disabled="true" [cancel]="false" stars="5"></p-rating>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<section class="sptb courses-section" *ngIf="isSlider">
+  <div class="container">
+    <div class="section-title center-block text-center">
+      <h2>{{sliderTitle}}</h2>
+      <span class="sectiontitle-design"><span class="icons"></span></span>
+    </div>
+
+    <!-- خصومات علي جميع هذه الدورات -->
+    <owl-carousel-o [options]="customOptions">
+
+      <ng-container *ngFor="let cour of coursesList">
+        <ng-template carouselSlide [id]="cour.id">
+          <!-- <img [src]="diplo.img_path" > -->
+
+          <!-- repeat from here -->
+          <div class="card mb-5">
+            <div class="power-ribbon power-ribbon-top-right text-warning"><span class="bg-warning"><i
+                  class="fa fa-bolt"></i></span></div>
+            <div class="item-card2-img">
+              <a routerLink="/{{cour.id}}"></a>
+              <img [src]="cour.img_path" alt="img" class="cover-image" style="height: 162px">
+
+
+            </div>
+            <div class="item-card2-icons">
+              <a class="item-card2-icons-l mx-1"> <i class="fa fa-share-alt"></i></a>
+              <a #whislistBtn (click)="toggleWishlist($event.target,cour)"
+                [ngClass]="statusBtn ? 'in-withlist' : 'out-withlist'" class="item-card2-icons-l mx-1">
+                <i class="fa fa-heart mx-1"></i>
+              </a>
+            </div>
+            <div class="category-badge">
+              <span class="font-weight-bold badge badge-danger ">
+                {{cour.nameSection}}
+              </span>
+            </div>
+            <div class="card-body">
+              <div class="item-card2">
+                <div class="item-card2-desc">
+                  <div class="item-card2-text mb-3">
+                    <a routerLink="/course-details/{{cour.id}}" class="text-dark">
+                      <h4 class="mb-2 course-name">
+
+                        {{(cour.name.length>20)? (cour.name | slice:0:50)+'..':(cour.name)}}
+
+                      </h4>
+                    </a>
+                    <div class="item-card9-desc mb-2 d-flex justify-content-between">
+
+                      <a href="#" class=" float-right course-date text-left">
+                        <!-- <span class="font-weight-bold"><i class="fa fa-clock-o"></i> :</span> -->
+                        <!-- <span class="">
+                          {{cour.created_at | date}}                   
+                        </span> -->
+                        <p class="text-muted instructor-name">
+                          {{cour.CourseInstructors[0].first_name}}
+                          {{cour.CourseInstructors[0].second_name}}
+                          {{cour.instructor_last_name}}
+                        </p>
+                      </a>
+                      <a href="#" class="ml-4 float-right course-instructor">
+                        <span class="text-muted instructor-name">
+                          <!-- <i class="fa fa-user text-muted ml-1"></i>  -->
+                          <img class="rounded-circle float-right" [src]="cour.CourseInstructors[0].img_path"
+                            style="width: 40px !important;" width="40px">
+                        </span>
+                        <br>
+                        <br>
+                        <!-- <p class="text-muted instructor-name">
+
+                          {{cour.CourseInstructors[0].first_name}}
+                          {{cour.CourseInstructors[0].second_name}}
+                          {{cour.instructor_last_name}}
+                        </p> -->
+                      </a>
+                    </div>
+                  </div>
+                  <p
+                    innerHTML="{{(cour.description.length>20)? (cour.description | slice:0:50)+'..':(cour.description)}}">
+
+                  </p>
+                  <div class="w-100">
+                    <a (click)="addToBasket(cour)" class="btn btn-primary text-white float-left w-100">
+                      {{'SUBSCRIBE_NOW' |translate}}
+
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="item-card2-footer p-3 ">
+
+
+                <div class="item-tag float-right">
+                  <h6 class="mb-0 price-after">{{cour.price_after_discount}} <span
+                      class="mx-1">{{'EG_POUND' |translate}}</span></h6>
+                  <del class="mb-0">{{cour.price_before_discount}} <span
+                      class="mx-1">{{'EG_POUND' |translate}}</span></del>
+                </div>
+
+                <div class="item-overly-trans float-left">
+                  <div class="rating-stars d-flex">
+                    <!-- <span class="text-white mr-1 pl-1">{{cour.rating_course}}</span> -->
+
+                    <div class="rating-stars-container rating-slider">
+                      <p-rating [ngModel]="cour.rating_course" disabled="true" [cancel]="false" stars="5"></p-rating>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </ng-template>
+      </ng-container>
+
+    </owl-carousel-o>
+
+  </div>
+</section>

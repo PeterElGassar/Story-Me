@@ -1,0 +1,355 @@
+[
+  {
+    "id": 81,
+    "name": "\u062f\u0628\u0644\u0648\u0645\u0629 \u062a\u0635\u0645\u064a\u0645 \u0645\u0648\u0627\u0642\u0639 \u0627\u0644\u0648\u064a\u0628",
+    "description": "<p>Web developers are the professionals working behind the scenes of the internet. They are in the business of creating and maintaining websites. That may sound simple, at first. However, web development is an art. When you land on a site that looks awesome, loads fast, and provides you with a seamless user experience, you can be sure a good developer has been hard at work.</p><p><em>Disclaimer: Some courses may include an affiliate link. Courses were chosen first based on the methodology with affiliate links only added after the ranking was complete.</em></p><p>The field is broad, and encompasses many different sectors, including:</p><p>\u2022 Website development</p><p>\u2022 Mobile development</p><p>\u2022 Security development</p><p>\u2022 Game development</p><p>\u2022 Backend development</p><p>\u2022 Front-end development</p><p>\u2022 Full-Stack development</p>",
+    "price_before_discount": 5000,
+    "price_after_discount": 3200,
+    "img": "Diploma-60ba9b7272166.png",
+    "rate_instructor": null,
+    "profit_instructor": 0,
+    "profit_admin": 3200,
+    "created_at": "2021-06-04T19:30:26.000000Z",
+    "updated_at": "2021-06-07T17:48:44.000000Z",
+    "numberOfSeall": 2,
+    "img_path": "http://psycholoicaldashboard.innovations-eg.com/public/uploads/Diplomas/Diploma-60ba9b7272166.png",
+    "coursesCount": 2,
+    "instructorsCount": 2,
+    "rating_diploma": 0,
+    "Courses": [
+      {
+        "id": 74,
+        "name": "html and css3 then java script",
+        "price_before_discount": 340,
+        "price_after_discount": 200,
+        "img": "Courses-60b83674bb4e2.jpg",
+        "pdf": "",
+        "description": "<p class=\"ql-align-justify\">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p><p><br></p>",
+        "date": "2021-06-03",
+        "instructors_id": 10,
+        "rate_instructor": null,
+        "profit_instructor": 0,
+        "profit_admin": 200,
+        "is_aproved": 1,
+        "sections_courses_id": 15,
+        "created_at": "2021-06-02T23:55:00.000000Z",
+        "updated_at": "2021-06-02T23:55:11.000000Z",
+        "img_path": "http://psycholoicaldashboard.innovations-eg.com/public/uploads/Coursess/Courses-60b83674bb4e2.jpg",
+        "CourseInstructors": [
+          {
+            "id": 10,
+            "first_name": "naguib",
+            "second_name": "youssef",
+            "last_name": "youssef",
+            "description": "test",
+            "experience": 3,
+            "phone": "01270913980",
+            "email": "",
+            "cv_file": "Ps_instructor-6093ee33a5a20.docx",
+            "img": "Ps_instructor-6093ee33a73e4.jpg",
+            "user_id": 17,
+            "is_aproved": 1,
+            "img_path": "http://psycholoicaldashboard.innovations-eg.com/public/uploads/Ps_instructors/img/Ps_instructor-6093ee33a73e4.jpg",
+            "cv_path": "http://psycholoicaldashboard.innovations-eg.com/public/uploads/Ps_instructors/c.v/Ps_instructor-6093ee33a5a20.docx",
+            "specialtiesCount": 1
+          }
+        ],
+        "rating_course": 0,
+        "Sections": [
+          {
+            "id": 45,
+            "title": "Section_1",
+            "course_id": 74,
+            "created_at": "2021-06-04T14:38:55.000000Z",
+            "updated_at": "2021-06-04T14:38:55.000000Z",
+            "links": [
+              {
+                "link": "http://static.videogular.com/assets/videos/elephants-dream.mp4",
+                "id": 62
+              },
+              {
+                "link": "http://static.videogular.com/assets/videos/elephants-dream.mp4",
+                "id": 63
+              },
+              {
+                "link": "https://www.rmp-streaming.com/media/big-buck-bunny-360p.mp4",
+                "id": 64
+              }
+            ],
+            "name": [
+              { "name": "lectrue_1", "id": 62 },
+              { "name": "lecture_2", "id": 63 },
+              { "name": "lecture_3", "id": 64 }
+            ]
+          },
+          {
+            "id": 46,
+            "title": "Section_1",
+            "course_id": 74,
+            "created_at": "2021-06-04T14:39:09.000000Z",
+            "updated_at": "2021-06-04T14:39:09.000000Z",
+            "links": [
+              {
+                "link": "http://techslides.com/demos/sample-videos/small.mp4",
+                "id": 65
+              },
+              {
+                "link": "http://static.videogular.com/assets/videos/elephants-dream.mp4",
+                "id": 66
+              },
+              {
+                "link": "http://techslides.com/demos/sample-videos/small.mp4",
+                "id": 67
+              }
+            ],
+            "name": [
+              { "name": "lecture_1", "id": 65 },
+              { "name": "lecture_2", "id": 66 },
+              { "name": "lecture_3", "id": 67 }
+            ]
+          }
+        ],
+        "nameSection": "Design"
+      },
+      {
+        "id": 69,
+        "name": "C# Intermediate: Classes, Interfaces and OOP",
+        "price_before_discount": 600,
+        "price_after_discount": 500,
+        "img": "Courses-60b83730757e7.jpg",
+        "pdf": "",
+        "description": "An in-depth, step-by-step guide to classes, interfaces and object-oriented programming (OOP) with C#",
+        "date": "2021-05-23",
+        "instructors_id": 18,
+        "rate_instructor": null,
+        "profit_instructor": 0,
+        "profit_admin": 500,
+        "is_aproved": 1,
+        "sections_courses_id": 9,
+        "created_at": "2021-05-23T13:33:29.000000Z",
+        "updated_at": "2021-06-03T12:14:56.000000Z",
+        "img_path": "http://psycholoicaldashboard.innovations-eg.com/public/uploads/Coursess/Courses-60b83730757e7.jpg",
+        "CourseInstructors": [
+          {
+            "id": 18,
+            "first_name": "alaa",
+            "second_name": "tarek",
+            "last_name": "elsaeed",
+            "description": "alaa alaa alaa",
+            "experience": 20,
+            "phone": "0102365987562145",
+            "email": "alaa@ali.comd",
+            "cv_file": "Ps_instructor-60b8b63f46ab1.pdf",
+            "img": "Ps_instructor-60b8b63f4763c.PNG",
+            "user_id": 67,
+            "is_aproved": 0,
+            "img_path": "http://psycholoicaldashboard.innovations-eg.com/public/uploads/Ps_instructors/img/Ps_instructor-60b8b63f4763c.PNG",
+            "cv_path": "http://psycholoicaldashboard.innovations-eg.com/public/uploads/Ps_instructors/c.v/Ps_instructor-60b8b63f46ab1.pdf",
+            "specialtiesCount": 0
+          }
+        ],
+        "rating_course": 2,
+        "Sections": [
+          {
+            "id": 35,
+            "title": "Section-1",
+            "course_id": 69,
+            "created_at": "2021-05-23T13:35:51.000000Z",
+            "updated_at": "2021-05-23T13:35:51.000000Z",
+            "links": [
+              {
+                "link": "[\"https:\\/\\/www.learningcontainer.com\\/wp-content\\/uploads\\/2020\\/05\\/sample-mp4-file.mp4444\"]",
+                "id": 33
+              },
+              {
+                "link": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                "id": 34
+              },
+              {
+                "link": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                "id": 35
+              },
+              {
+                "link": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                "id": 36
+              }
+            ],
+            "name": [
+              { "name": "l", "id": 33 },
+              { "name": "luc-2", "id": 34 },
+              { "name": "luc-3", "id": 35 },
+              { "name": "luc-4", "id": 36 }
+            ]
+          },
+          {
+            "id": 36,
+            "title": "Section-2",
+            "course_id": 69,
+            "created_at": "2021-05-23T13:36:18.000000Z",
+            "updated_at": "2021-05-23T13:36:18.000000Z",
+            "links": [
+              {
+                "link": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4+++",
+                "id": 37
+              },
+              {
+                "link": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                "id": 38
+              },
+              {
+                "link": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                "id": 39
+              },
+              {
+                "link": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                "id": 40
+              }
+            ],
+            "name": [
+              { "name": "lec-1+++", "id": 37 },
+              { "name": "luc-2", "id": 38 },
+              { "name": "luc-3", "id": 39 },
+              { "name": "luc-4", "id": 40 }
+            ]
+          },
+          {
+            "id": 37,
+            "title": "Section-3",
+            "course_id": 69,
+            "created_at": "2021-05-23T13:36:24.000000Z",
+            "updated_at": "2021-05-23T13:36:24.000000Z",
+            "links": [
+              {
+                "link": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                "id": 41
+              },
+              {
+                "link": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                "id": 42
+              },
+              {
+                "link": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                "id": 43
+              },
+              {
+                "link": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                "id": 44
+              }
+            ],
+            "name": [
+              { "name": "lec-1", "id": 41 },
+              { "name": "luc-2", "id": 42 },
+              { "name": "luc-3", "id": 43 },
+              { "name": "luc-4", "id": 44 }
+            ]
+          },
+          {
+            "id": 38,
+            "title": "Section-4",
+            "course_id": 69,
+            "created_at": "2021-05-23T13:36:35.000000Z",
+            "updated_at": "2021-05-23T13:36:35.000000Z",
+            "links": [
+              {
+                "link": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                "id": 45
+              },
+              {
+                "link": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                "id": 46
+              },
+              {
+                "link": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                "id": 47
+              },
+              {
+                "link": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                "id": 48
+              }
+            ],
+            "name": [
+              { "name": "lec-1", "id": 45 },
+              { "name": "luc-2", "id": 46 },
+              { "name": "luc-3", "id": 47 },
+              { "name": "luc-4", "id": 48 }
+            ]
+          },
+          {
+            "id": 39,
+            "title": "Section-5",
+            "course_id": 69,
+            "created_at": "2021-05-23T13:36:44.000000Z",
+            "updated_at": "2021-05-23T13:36:44.000000Z",
+            "links": [
+              {
+                "link": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                "id": 49
+              },
+              {
+                "link": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                "id": 50
+              },
+              {
+                "link": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                "id": 51
+              },
+              {
+                "link": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                "id": 52
+              }
+            ],
+            "name": [
+              { "name": "lec-1", "id": 49 },
+              { "name": "luc-2", "id": 50 },
+              { "name": "luc-3", "id": 51 },
+              { "name": "luc-4", "id": 52 }
+            ]
+          }
+        ],
+        "nameSection": "Development"
+      }
+    ],
+    "Instructors": [
+      {
+        "id": 9,
+        "first_name": "peter",
+        "second_name": "nagy",
+        "last_name": "halem",
+        "description": "test",
+        "experience": 5,
+        "phone": "01270913980",
+        "email": "",
+        "cv_file": "Ps_instructor-6092f7781c700.docx",
+        "img": "Ps_instructor-6092f7781c909.png",
+        "user_id": 16,
+        "is_aproved": 0,
+        "img_path": "http://psycholoicaldashboard.innovations-eg.com/public/uploads/Ps_instructors/img/Ps_instructor-6092f7781c909.png",
+        "cv_path": "http://psycholoicaldashboard.innovations-eg.com/public/uploads/Ps_instructors/c.v/Ps_instructor-6092f7781c700.docx",
+        "specialtiesCount": 1
+      },
+      {
+        "id": 12,
+        "first_name": "Gemy1",
+        "second_name": "Gemy1",
+        "last_name": "Gemy1",
+        "description": "Gemy",
+        "experience": 4,
+        "phone": "01279898992",
+        "email": "",
+        "cv_file": "Ps_instructor-60a591a10688a.pdf",
+        "img": "Ps_instructor-60a591a106b33.jpg",
+        "user_id": 47,
+        "is_aproved": 1,
+        "img_path": "http://psycholoicaldashboard.innovations-eg.com/public/uploads/Ps_instructors/img/Ps_instructor-60a591a106b33.jpg",
+        "cv_path": "http://psycholoicaldashboard.innovations-eg.com/public/uploads/Ps_instructors/c.v/Ps_instructor-60a591a10688a.pdf",
+        "specialtiesCount": 2
+      }
+    ]
+  }
+]
+
+
+
+
+
+

@@ -1,0 +1,140 @@
+<breadcrumb [breadcrumb]="breadCrumb"></breadcrumb>
+
+<!--/Breadcrumb-->
+
+
+<!--All courses-->
+<section *ngIf="studentCourses !== null" class="sptb courses-section">
+  <div class="container">
+    <div class="section-title center-block text-center">
+      <div class="">
+        <h2>جميع الدورات والدبلومات المشترك بها</h2>
+        <span class="sectiontitle-design"><span class="icons"></span></span>
+      </div>
+
+
+
+
+    
+    </div>
+    <!--Coursed lists-->
+    <div class="mb-lg-0">
+      <div>
+        <div class="row" *ngIf="studentCourses === null && studentDiplomas.length === 0">
+          <div class="col-8 mx-auto">
+            <div class="alert alert-success">
+              <h2 class="text-center">لا يوجد اي دورات بعد</h2>
+            </div>
+          </div>
+        </div>
+        <div class="item2-gl ">
+          <div *ngIf="studentCourses" class="row best-saller">
+            <!-- courses -->
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3"
+              *ngFor="let item of studentCourses | paginate: { itemsPerPage: 8, currentPage: coursePage }">
+
+              <latest-courses [removeAddToCart]="false" [removeInstructorName]="true" [course]="item" [ngSwitch]="false">
+
+              </latest-courses>
+            </div>
+            <!-- End courses -->
+
+          </div>
+
+          <div *ngIf="studentCourses" class="row justify-content-center pagination-row">
+            <div class="col-7 d-flex justify-content-center">
+              <pagination-controls class="pagination" (pageChange)="coursePage = $event"></pagination-controls>
+            </div>
+          </div>
+        </div>
+
+
+        <div *ngIf="studentDiplomas.length > 0" class="item2-gl">
+          <div class="row best-saller">
+
+            <!-- Diplomas -->
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3"
+              *ngFor="let diplo of studentDiplomas | paginate: { itemsPerPage: 6, currentPage: diplomaPage }">
+              <!-- repeat -->
+              <div class="card overflow-hidden">
+                <div class="item-card9-img">
+                  <div class="item-card9-imgs">
+                    <a routerLink="/diploma-detials/{{diplo.id}}"></a>
+                    <img [src]="diplo.img_path" alt="img" class="cover-image" style="height: 250px">
+                  </div>
+                  <div class="item-card9-icons">
+                    <a #whislistBtn [ngClass]="statusBtn ? 'in-withlist' : 'out-withlist'"
+                      (click)="toggleWishlist($event.target , diplo)" class="item-card2-icons-l mx-1">
+                      <i class="fa fa-heart mx-1"></i>
+                    </a>
+                    <a href="#" class="item-card9-icons1 bg-black-trasparant"> <i class="fa fa fa-share-alt"></i>
+                    </a>
+                  </div>
+                  <div class="item-overly-trans">
+
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="item-card9">
+
+                    <a routerLink="/diploma-detials/{{diplo.id}}" class="text-dark mt-2">
+                      <h3 class="font-weight-semibold mt-2 mb-2">
+                        {{ (diplo.name>20) ? (diplo.name | slice:0:50)+'..':(diplo.name)}}
+
+                      </h3>
+                    </a>
+
+                    <p class="mb-0"
+                      innerHTML="{{(diplo.description.length>20)? (diplo.description | slice:0:80)+'..':(diplo.description)}}">
+
+
+                    </p>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="item-card9-footer d-flex">
+                    <div class="item-card9-cost">
+                      <!-- <h4 class="text-dark font-weight-semibold mb-0 mt-0">580.00</h4> -->
+
+                      <h4 class="mb-0 price-color">{{diplo.price_after_discount}} جنيه</h4>
+                      <del class="mb-0">{{diplo.price_before_discount}} جنيه</del>
+                    </div>
+                    <div class="mr-auto">
+                      <div class="rating-stars block item-card9-icons">
+                        <!-- <strong class="item-card9-icons1 bg-black-trasparant p-2">6</strong> -->
+                        <a href="#" class="item-card9-icons1 bg-black-trasparant">
+                          <span class="text-light">
+                            {{diplo.coursesCount}}
+                          </span>
+                        </a>
+                        <span class="mr-2">دورات</span>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- repeat -->
+
+
+            </div>
+            <!-- End Diplomas -->
+
+
+          </div>
+
+          <div class="row justify-content-center pagination-row">
+            <div class="col-7 d-flex justify-content-center">
+              <pagination-controls class="pagination" (pageChange)="diplomaPage = $event"></pagination-controls>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!--/Coursed lists-->
+  </div>
+</section>
+
+
+<!--All courses-->

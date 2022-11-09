@@ -1,0 +1,74 @@
+<!-- *************************************
+***********START QUIZ SECTION************
+**************************************-->
+<section *ngIf="!ActiveFinalResult" class="quiz-container" >
+    <div class="quiz-wrapper">
+
+        <!-- <h2 id="asked-question-text">Why do you want to become developer?</h2> -->
+        <h2 id="asked-question-text">{{QuestionToDisplay.question}}</h2>
+
+        <div class="instant-answer-container" [ngStyle]="this.showAlertMessage && {'opacity': 1}">
+
+            <!-- <img id="emotion" src="Images/Smiling Emoji with Eyes Opened.png" width="30" height="30"> -->
+
+            <div
+            id="instant-answer-wrapper"
+            [ngClass]="this.worngOrCorrect == 1 ? 'green' : 'red'" >
+                <p id="instant-answer-text" >
+                    {{instAnswerText[worngOrCorrect]}}
+                </p>
+                <button (click)="nextQuestion()" id="next-question-btn">السؤال التالي</button>
+            </div>
+
+        </div>
+
+        <div class="quiz-options-wrapper" [ngClass]="this.disableChooses && 'disableChooses' ">
+
+            <div [attr.data-is-true]="singleChoice.is_correct"
+            (click)="checkAnswer($event.target)" *ngFor="let singleChoice of QuestionToDisplay.chooses;
+             let i =index" class="choice-0">
+
+                <span  class="choice-0">{{charactersList[i]}}</span>
+                <p   class="choice-0">{{singleChoice.answer}}</p>
+            </div>
+
+            <!-- <div class="choice-1"><span class="choice-1">B</span>
+                <p class="choice-1">test2</p>
+            </div>
+            <div class="choice-2"><span class="choice-2">C</span>
+                <p class="choice-2">test3</p>
+            </div>
+            <div class="choice-3"><span class="choice-3">D</span>
+                <p class="choice-3">test4</p>
+            </div> -->
+        </div>
+
+    </div>
+
+    <!--***********PROGRESS BAR***********-->
+    <div class="progressBar">
+        <p id="progress">{{indexOfQuestion + 1}}/{{AllQuestions.length}}</p>
+        <progress value="{{indexOfQuestion + 1}}" max="{{AllQuestions.length}}"></progress>
+    </div>
+</section>
+<!-- ************************************
+***********END QUIZ SECTION*************
+**************************************-->
+
+
+
+<!-- **************************************
+***********START FINAL RESULT PAGE********
+**************************************-->
+<student-final-result 
+[score]="studentScore"
+[questionLength]="AllQuestions.length"
+[certificat]="this.certificat"
+*ngIf="ActiveFinalResult" 
+
+>
+
+</student-final-result>
+<!-- **************************************
+***********END START FINAL RESULT PAGE********
+**************************************-->

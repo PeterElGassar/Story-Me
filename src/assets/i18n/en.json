@@ -1,0 +1,264 @@
+{
+  "HOME": "Home",
+  "LOG_IN": "Login",
+  "LOG_OUT": "Logout",
+  "COURSES": "Course",
+  "DIPLOMAS": "Diplomas",
+  "ABOUT_US": "About Us",
+  "CONTACT_US": "Contact Us",
+  "CONTACT_US_DESCRIPTION": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt, similique? Eum neque cum nam nesciunt.",
+
+  "ADD_TO_BASKET": "Add to Cart",
+  "WISHLIST": "Wishlist",
+  "BASKET": "Cart",
+  "CHECKOUT": "Checkout",
+  "TOTAL_CART": "Total",
+  "EG_POUND": "EGP",
+  "LANGUAGES": "languages",
+  "RATE": "Rate",
+  "BEST_SELLER_COURSES": "Best Seller Courses",
+  "MORE": "More",
+  "SUBSCRIBE_NOW": "Subscribe Now",
+  "DIPLOMA_SECTION": "Intgrated Diplomas",
+
+  "JOIN_AS_INSTRUCTOR": "Join us as Instructor",
+  "JOIN_AS_INSTRUCTOR_DESCRIPTION": "Lorem ipsum dolor sit amet consectetur  ipsum dolor sit amet consectetur adipisicing elit. Culpa,",
+  "JOIN_AS_STUDENT": "Join us now as Student in Tattwer",
+  "JOIN_AS_STUDENT_DESCRIPTION": "Lorem ipsum dolor sit amet consectetur  ipsum dolor sit amet consectetur  adipisicing elit. Culpa,",
+  "START_teaching_BTN": "Start Now",
+  "START_studying_BTN": "Start Now",
+
+  "SELECTED_COURSES": "Selected Courses",
+  "SUBSCRIBE_TITLE_SECTION": "Subscribe to Receive our News",
+  "EMAIL_ADDRESS": "Email",
+  "SUBSCRIBE_TITLE_BTN": "Subscribe",
+  "SUBSCRIBE_TITLE_BTN_NOW": " إشتراك الان",
+  "SUBSCRIBE_DESCRIPTION_SECTION": "It is truly amazing the damage that we, as parents, can inflict on our children. So why do we do it? For the most part, we don’t do it intentionally or with malice. ",
+
+  "FOOTER_COL_ONE": "Follow us",
+  "FOOTER_COL_TOW": "Courses",
+  "FOOTER_COL_THREE": "information",
+
+  "FIND_RIGHT_COURSE": "Find the right course for you",
+  "NAME_OF_COURSE": "Name Of Course",
+  "LOCATION": "Location",
+  "SEARCH": "Search",
+  "SORT_BY": "Sore By",
+  "SHOW_BY": "Show By",
+  "SHOW": "Show",
+  "FROM": "From",
+
+  "DATE_FROM_OLDEST_TO_RECENT": "FROM OLDEST TO RECENT",
+  "DATE_FROM_TO_RECENT_OLDEST": "FROM TO RECENT OLDEST",
+  "PRICE_FROM_OLDEST_TO_RECENT": "From the lowest price to the highest",
+  "PRICE_FROM_TO_RECENT_OLDEST": "From the highest price to the lowest",
+
+  "CATEGORIES": "Categories",
+  "SORT_BY_PRICE": "Sort By Price",
+  "SORT_BY_INSTRUCTOR": "Choose Instructor",
+  "PRICE": "price",
+  "INSTRUCTOR": "instructor",
+  "ALL_INSTRUCTOR": "All Instructors",
+
+  "PHONE": "Phone",
+  "SUBJECT": "Subject",
+  "MESSAGE": "Messgae",
+  "SEND": "Send",
+  "NAME": "Name",
+
+  "OUR_CONTACT_INFO": "Our Contatc Information",
+  "CONTAT_US": "Contact Us",
+  "MESSAGE_US": "Messaging Us",
+
+  "CUSTOMER_SERVICE": "Customer Service",
+  "CUSTOMER_SERVICE_TITLE": "Customer Service Center",
+  "CUSTOMER_SERVICE_DESCRIPTION": "Contact us by calling the Customer Service Center",
+  "OUR_ADDRESS": "Contact us by calling the Customer Service Center",
+
+  "CONFIREM_EMAIL_LOGIN": "Enter Email Address",
+  "PASSWORD": "Password",
+  "CONFIREM_PASSWORD_LOGIN": "Enter Password",
+  "REGISTER": "Register",
+
+  "CREATE_INSTRUCTOR_ACCOUNT": "Create Instructor Account",
+  "CREATE_STUDENT_ACCOUNT": "Create Student Account",
+  "CONFIREM_NAME": "Enter Name",
+
+  "CONFIREM_PASSWORD": "Confirm Password",
+  "ENTER_CONFIREM_PASSWORD": "Enter Confirm Password",
+
+  "GENDER_MALE": "male",
+  "GENDER_FEMALE": "female",
+  "HAVE_ACCOUNT?": "You are Have an Account ?",
+  "NOT_HAVE_ACCOUNT?": "You are Not Have an Account ?",
+
+  "F_NAME": "First Name",
+  "S_NAME": "Second Name",
+  "L_NAME": "Last Name",
+
+  "ENTER_F_NAME": "Please Enter First Name",
+  "ENTER_S_NAME": "Please Enter Second Name",
+  "ENTER_L_NAME": "Please Enter Last Name",
+
+  "MINLENGTH_F_NAME": "Min Length is",
+
+  "MAXLENGTH_F_NAME": "Max Length is",
+
+  "DESCRIPTION": "Brife For Your Specilaization",
+  "ENTER_DESCRIPTION": "Please Enter Description",
+  "MIN_DESCRIPTION": "Min Length is",
+
+  "MOBILE": "Mobile",
+  "ENTER_PHONE": "Please Enter Mobile Phone",
+  "INVALID_EMAIL": "Email is Invalid",
+  "EXPERIENCE": "year Of Experience",
+  "ENTER_EXPERIENCE": "Enter year Of Experience",
+  "CHOOSE_CATEGORIES": "Choose Category",
+  "VALIDATION_CATEGORIES": "Please Choose at least one Specilaization",
+  "CV": "Resume",
+  "REGISTER_AS_INSTRUCTOR": "Join as Instructor",
+
+  "BESTWAY_FOR_LEARING": "best experiment to learning online",
+  "BESTWAY_FOR_LEARING_DESCRIPTION": "It is truly amazing the damage that we, as parents, can inflict on our children. So why do we do it? For the most part, we don’t do it intentionally or with malice. ",
+
+  "Award": "Award",
+  "COURSE": "Course",
+  "STUDENT": "Student",
+  "ACHIEVE_YOUR_GOALS_TITLE": "achieve your goals",
+
+
+  "ACHIEVE_YOUR_GOALS_DESCRIPTION": "Achieve Your Goals With Our Platform",
+  "PLAN_TITLE": "Create your own time plan for completing the course and stick to it.",
+  "PLAN_DESCRIPTION": "Achieve Your Goals With Our Platform",
+  "START_NOW": "Start Now",
+
+  "ANY_WARE_TITLE": "any time and any place",
+  "ANY_WARE_DESC": " Ability to learn anytime and anywhere",
+  "EXPIER_TITLE": "Validity for the course for life",
+  "EXPIER_DESC": "The best way to develop and advance",
+  "MANY_OF_COURSES_TITLE": "More than 250 courses",
+  "MANY_OF_COURSES_DESC": "Many options available.",
+
+
+  
+  "BUYING_SUCCESS": "Buying Succeeded",
+  "DATE_OF_COURSE": "release course date",
+  
+  "NUMBER_OF_SECTIONS": "Number of Sections",
+  "COURSE_INFO": "Course Information",
+  "SHARE": "SHARE",
+  "COURSE_DETAILS": "Course Details",
+  "TEST_YOURSELF": "test Your Knowledge",
+  "FILED_ALL_ATTEMPTS": "You are Finished All Your Attempts",
+  "SHOW_YOUR_CERTIFICATE": "Show Your Certificate",
+  "CATEGORY": "Category",
+  "SUBSCRIBERS": "SUBSCRIBERS",
+  "COURSE_CONTENT": "Course Content",
+  "SIMILAR_COURSES": "Similar Courses",
+  
+  "SIMILAR_DIPLOMA": "Similar Diplomas",
+  "DIPLOMA_CONTENT": "Diploma Content",
+  "DATE_OF_DIPLOMA": "release course Diploma",
+  "DIPLOMA_DETAILS": "Diploma Details",
+  "NUMBER_OF_DIPLOMA_COURSES": "Number Of Course",
+
+  "SIMILAR_DIPLOMAS": " Similar Diplomas",
+
+
+
+  "LATEST_ARTICALS":"Latest Articals",
+  "PARTENER_AND_CERTIFICATE":"Partenars And Certificates",
+  "ARTICALS":"Articals",
+
+
+"Coment":"=================================================",
+"NAV_DESCRIPTION":"affiliated with the Institute for Psychological Studies",
+"CERTIFICATES":"Certificates",
+"NAVBAR_EN_MODE":"NAVBAR_EN_MODE",
+"JOIN_NOW":"Join Now",
+
+
+"IMPORTANT_SOCIAL":"Psychology is the most important social science",
+"INVEST_YOURSELFE":"Invest in yourself earn millions",
+"LATEST_COURSES":"Latest Courses",
+"BEST_SELLING_COURSES":"best selling courses",
+
+"CHOOSE":"Choose",
+
+
+"NUMBER_OF_SUBSCRIPER":"Number of Subscriber",
+"NUMBER_OF_COURSES":"Number of Courses",
+"COURSES_OF_INSTRUCTOR": "Courses of Instructor",
+
+"NUMBER_OF_INSTRUCTORS":"Number of Instructors",
+"INSTRUCTOR_DESCRIPTION": "About the Instructor",
+
+"NUMBER_OF_DIPLOMAS":"Number of Diplomas",
+
+
+
+"USER_HOME__TITLE":"Change starts here",
+"USER_HOME__DESC":"Do not hesitate.. Take a serious step.. Stop laziness and postponement. It is an opportunity to change your life for the better. An opportunity to realize a new science that makes your life better. Register your name and number and choose the course you want now.. and start with us.",
+"USER_HOME_FORM_TITLE":"Register your details to contact customer service",
+
+
+"USER_HOME_SCOIALMEDIA_TITLE":"Share with us on social media..be part of our community",
+"FACEBOOK":"Feacebook",
+"TWITTER":"Twitter",
+
+
+
+
+"FOOTER__COL_ONE_DEC":"The largest distance education platform specialized in psychological studies with the best online system in the world that combines interaction and continuity. Our branches: Cairo - Egypt Alexandria - Egypt Tanta - Egypt Sidon - Lebanon Riyadh - Saudi ArabiaDubai - UAE",
+
+"QUICK_LINKS":"quick Links",
+
+
+"PAYMENT_METHODS":"Payment Methods",
+"NEWALETTERS":"News Letters",
+  
+"ALL_COURSES":"All Courses",
+"OFFER_ON_ALL_COURSES":"Offer On All This Courses",
+
+
+
+
+"DEFFERENCE_BETWEEN_COURSES":"What is the difference between a diploma and a course?",
+"DEFFERENCE_BETWEEN_COURSES_DEC":"Lorem ipsum dolor sit amet consectetur, adipisicing elit. At vel dolorem fuga necessitatibus explicabo non.",
+"MOST_POPULAR_DIPLOMAS":"Most Popular Diplomas",
+"NAME_OF_DIPLOMA":"Name Of Diploma",
+"NO_DIPLOMAS": "No Diploams yet",
+"ARTICAL_DETAILS": "Articals Detials",
+
+"OFFER_ON_ALL_50":"Discounts up to 50% on these Diplomas",
+
+
+"HOW_SITE_WORKS": "How does our site work?",
+"OUR_STORY": "Out Story ?",
+"OUR_STORY_DEC": "We started in 2016 with a training and development company for the Egyptian market, and we succeeded and expanded, but without a clear specialization. After a short period of time, we found some people talking to us and involving us in changing their lives, and that after the diplomas in psychological and family counseling, their lives changed and things changed with them. They realize that science solves a lot of problems just by understanding your partner's personality. Once you know and understand the requirements of marriage well, it becomes more effective. With the large number of divorces in the community, psychological crises, depression, suicide and perversions, we decided to participate in changing society, to contribute even a little to improving the family, education and the Egyptian home. That is why we have become the largest platform for teaching psychological studies in Egypt and the Arab world. All thanks to the hardworking supporters, lecturers and doctors are a great reason for our success and the Ministry of Social Solidarity for supporting it with certificates and credits.",
+
+"STPE_1": "Choose the appropriate diploma",
+"STPE_1_DEC": "In our platform, you will find many accredited courses and diplomas. Choose the diploma you want",
+"STPE_2": "Watch diploma lectures",
+"STPE_2_DEC": "After subscribing to the diploma, a large collection of no less than 30 recorded videos will be opened for you to benefit from",
+"STPE_3": "Doing the subject test",
+"STPE_3_DEC": " After completing the course, you will take an exam to pass this course and get your certificate",
+
+
+"JOIN_US_DESCRIPTION": "Join a large number of counselors and psychologists from different countries of the world",
+"JOIN_US_TITLE": "What our site offers you",
+
+"JOIN_US_1": "The ability to work from anywhere while saving time, effort and cost.",
+"JOIN_US_2": "The ability to communicate with customers by text or through audio and video.",
+"JOIN_US_3": "Confidentiality and complete security",
+"JOIN_US_4": "Clients from all over the world not just your country",
+"JOIN_US_5": "Record notes and medical reports of your clients on the site.",
+"JOIN_US_6": "You can send reports to your clients.",
+
+
+"DOENLOAD_BTN": "Download",
+"DOENLOAD_BTN_TITLE": "Download the course summary in PDF"
+
+}
+
+

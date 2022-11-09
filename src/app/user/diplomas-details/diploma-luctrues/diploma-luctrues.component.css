@@ -1,0 +1,27 @@
+.single-course{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+ul li p{
+    display: flex !important;
+      justify-content: space-between !important;
+      flex-direction: row-reverse !important;
+      align-items: center;
+  }
+
+  .disabled-btn {
+    pointer-events: none !important;
+}
+
+li.open-lec:hover{
+    background: #eee;
+    border-radius: 5px;
+    color: #d21212;
+    pointer-events: painted;
+    cursor: pointer;
+}
+li.close-lec{
+    pointer-events: none !important;
+}

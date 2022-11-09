@@ -1,0 +1,386 @@
+<p-toast position="top-center" key="successMs"></p-toast>
+<p-toast position="top-center" key="warnMs"></p-toast>
+<p-toast position="top-right" key="CVErrorMs"></p-toast>
+<p-toast position="top-right" key="ImageErrorMs"></p-toast>
+
+<!--Register-Section-->
+<section class="sptb">
+  <div class="container customerpage">
+    <div class="row">
+      <div class="single-page">
+        <div class="col-lg-5  col-md-6 d-block mx-auto">
+          <div class="wrapper wrapper2">
+
+
+            <tabset>
+              <tab heading="{{'CREATE_STUDENT_ACCOUNT'| translate}}">
+                <!-- Form Here -->
+                <!-- Form Here -->
+                <!-- Form Here -->
+                <div class="wrapper wrapper2">
+                  <h4 class="mt-3 text-center font-weight-bold">
+                    {{'STUDENT'| translate}}
+
+                  </h4>
+
+                  <form [formGroup]="registerForm" class="card-body" tabindex="500">
+                    <!-- using for type -->
+                    <input type="hidden" formControlName="type">
+                    <!-- using for type -->
+
+                    <div class="mail">
+                      <input type="name" class="form-control" formControlName="name">
+                      <span *ngIf="name.touched && name.invalid" class="text-danger">ادخل الاسم</span>
+                      <label>
+                        
+                        {{'STUDENT'| translate}}
+
+                      </label>
+                    </div>
+
+                    <div class="mail">
+                      <input type="email" class="form-control" formControlName="email">
+                      <span *ngIf="email.touched && email.invalid" class="text-danger">{{'CONFIREM_EMAIL_LOGIN'| translate}}</span>
+
+                      <label>{{'EMAIL_ADDRESS'| translate}}</label>
+                    </div>
+                    <div class="passwd">
+                      <input id="password" type="password" class="form-control " formControlName="password">
+
+                      <span *ngIf="password.touched && password.invalid" class="text-danger">{{'CONFIREM_PASSWORD_LOGIN'| translate}}</span>
+
+                      <label>{{'PASSWORD'| translate}}</label>
+                    </div>
+                    <div class="passwd">
+                      <input type="password" class="form-control " formControlName="password_confirmation">
+                      <span *ngIf="password_confirmation.touched && password_confirmation.invalid" class="text-danger">
+                        {{'ENTER_CONFIREM_PASSWORD'| translate}}</span>
+
+
+                      <label>{{'CONFIREM_PASSWORD'| translate}}</label>
+                    </div>
+
+                    <div class="mail">
+                     
+                      <div class="p-field-radiobutton">
+                        <p-radioButton name="gender" value="female" formControlName="gender" inputId="female">
+                        </p-radioButton>
+                        <label class="mx-2 mt-1 gender-text" for="female">{{'GENDER_FEMALE'| translate}}</label>
+                      </div>
+                      
+                    </div>
+
+                    <div class="mail">
+                     
+                      <div class="p-field-radiobutton">
+                        <p-radioButton name="gender" value="male" formControlName="gender" inputId="male"></p-radioButton>
+                        <label class="mx-2 mt-1 gender-text" for="male">{{'GENDER_MALE'| translate}}</label>
+                      </div>
+                      
+                    </div>
+
+                    <div class="submit">
+                      <button (click)="submitStudentForm()" type="submit" class="btn btn-primary btn-block"
+                        [disabled]="!registerForm.valid">
+                        {{'REGISTER'| translate}}
+                      </button>
+                    </div>
+                    <p class="text-dark mb-0 text-center">
+                      
+                      {{'HAVE_ACCOUNT?'| translate}}
+                      <a routerLink='/login' class="text-primary ml-1">{{'LOG_IN'| translate}}</a>
+                    </p>
+                  </form>
+                </div>
+                <!-- End Form Here -->
+                <!-- End Form Here -->
+                <!-- End Form Here -->
+              </tab>
+
+              <tab heading="{{'REGISTER'| translate}}">
+                <!-- Form Here -->
+                <!-- Form Here -->
+                <!-- Form Here -->
+                <div class="wrapper wrapper2">
+                  <h4 class="mt-3 text-center font-weight-bold">
+                    
+                    {{'INSTRUCTOR'| translate}}
+                  </h4>
+
+
+                  <form #instructorForm="ngForm"  class="card-body"
+                    tabindex="500">
+
+                    <div class="col-6 mx-auto">
+                      <div class="form-group ">
+                        <img class="img-fluid rounded" width="200" [src]="this.instructor.img_path">
+                        <input class="mt-4" (change)="uploadPhoto($event.target)" type="file" name="" id="">
+                      </div>
+                      
+                    </div>
+
+                    <!-- FNAME -->
+                    <div class="mail">
+                      <input type="name" class="form-control" [(ngModel)]="first_name" ngModel name="first_name"
+                        (change)="logValue(fNameVar)" #fNameVar="ngModel" required maxlength="20" minlength="3">
+
+                      <div class="" *ngIf="fNameVar.touched &&  !fNameVar.valid">
+                        <p class="text-danger" *ngIf="fNameVar.errors.required">{{'ENTER_F_NAME'| translate}}</p>
+                        <p class="text-danger" *ngIf="fNameVar.errors.minlength">{{'F_NAME'| translate}}
+                          {{fNameVar.errors.minlength.requiredLength}}</p>
+                        <p class="text-danger" *ngIf="fNameVar.errors.maxlength">
+                          
+                          {{'MINLENGTH_F_NAME'| translate}}
+                          {{sNameVar.errors.minlength.requiredLength}}
+                        </p>
+                      </div>
+
+                      <label> {{'F_NAME'| translate}}</label>
+                    </div>
+
+                    <!-- SNAME -->
+                    <div class="mail">
+                      <input type="name" class="form-control" [(ngModel)]="second_name" ngModel name="second_name"
+                        (change)="logValue(sNameVar)" #sNameVar="ngModel" required maxlength="20" minlength="3">
+
+                      <div class="" *ngIf="sNameVar.touched &&  !sNameVar.valid">
+                        <p class="text-danger" *ngIf="sNameVar.errors.required">{{'ENTER_S_NAME'| translate}}</p>
+                        <p class="text-danger" *ngIf="sNameVar.errors.minlength">
+                          {{'MINLENGTH_F_NAME'| translate}}
+                          {{sNameVar.errors.minlength.requiredLength}}</p>
+                        <p class="text-danger" *ngIf="sNameVar.errors.maxlength">
+                          
+                          {{'MAXLENGTH_F_NAME'| translate}}
+                          {{sNameVar.errors.maxlength.requiredLength}}
+                        </p>
+                      </div>
+
+                      <label>
+                        
+                        {{'S_NAME'| translate}}
+                      </label>
+                    </div>
+
+                    <!-- LNAME -->
+                    <div class="mail">
+                      <input type="name" class="form-control" [(ngModel)]="last_name" ngModel name="last_name"
+                        (change)="logValue(lNameVar)" #lNameVar="ngModel" required maxlength="20" minlength="3">
+
+                      <div class="" *ngIf="lNameVar.touched &&  !lNameVar.valid">
+                        <p class="text-danger" *ngIf="lNameVar.errors.required">{{'ENTER_L_NAME'| translate}}</p>
+                        <p class="text-danger" *ngIf="lNameVar.errors.minlength">
+                          {{'MAXLENGTH_F_NAME'| translate}}
+                          {{lNameVar.errors.minlength.requiredLength}}
+                        </p>
+                        <p class="text-danger" *ngIf="lNameVar.errors.maxlength">
+                          
+                          {{'MINLENGTH_F_NAME'| translate}}
+                          {{lNameVar.errors.maxlength.requiredLength}}
+                        </p>
+                      </div>
+
+                      <label>{{'L_NAME'| translate}}</label>
+                    </div>
+
+                    <!-- description -->
+                    <div class="mail">
+
+                      <textarea class="form-control" cols="10" rows="3" [(ngModel)]="description" ngModel
+                        name="description" (change)="logValue(descriptionVar)" #descriptionVar="ngModel" required>
+
+
+                      </textarea>
+                      <div class="" *ngIf="descriptionVar.touched &&  !descriptionVar.valid">
+                        <p class="text-danger" *ngIf="descriptionVar.errors.required">{{'ENTER_DESCRIPTION'| translate}}</p>
+                        <p class="text-danger" *ngIf="descriptionVar.errors.maxlength">
+                          
+                          
+                          {{'MIN_DESCRIPTION'| translate}}
+                          {{descriptionVar.errors.maxlength.requiredLength}}
+
+                        </p>
+                      </div>
+                      <label>{{'DESCRIPTION'| translate}}</label>
+                    </div>
+
+                    <!-- Phone Number-->
+                    <div class="mail">
+                      <input type="name" class="form-control" [(ngModel)]="phone" ngModel name="phone"
+                        (change)="logValue(phoneVar)" #phoneVar="ngModel" required maxlength="13" minlength="11">
+
+                      <div class="" *ngIf="phoneVar.touched &&  !phoneVar.valid">
+                        <p class="text-danger" *ngIf="phoneVar.errors.required">{{'ENTER_PHONE'| translate}}</p>
+                        <p class="text-danger" *ngIf="phoneVar.errors.minlength">
+                          {{'MIN_DESCRIPTION'| translate}}
+                          {{phoneVar.errors.minlength.requiredLength}}</p>
+                        <!-- <p class="text-danger" *ngIf="phoneVar.errors.maxlength">لايجب ان يقل الاسم عن 11 رقم</p> -->
+                      </div>
+
+                      <label>{{'MOBILE'| translate}}</label>
+                    </div>
+                    <!-- <div class=" form-group">
+                      <span class="mt-4">
+                        <label  for="float-input">رقم الموبيل</label>
+                         <p-inputMask           
+                         mask="(999) 9999-9999"
+                         [(ngModel)]="this.phone"
+                         name="this.phone"
+                         placeholder="(120) 9999-9999"
+                         ngModel
+                         required
+                         #phoneTemp="ngModel">
+                          
+                          </p-inputMask>
+                      </span>
+                      <p class="text-danger" *ngIf="!phoneTemp.valid && phoneTemp.touched">  أدخل رقم الموبيل </p>
+                    </div> -->
+                    <!--Email-->
+                    <div class="mail">
+                      <input type="email" class="form-control" [(ngModel)]="instEmail" ngModel name="instEmail"
+                        (change)="logValue(emailVar)" #emailVar="ngModel" required email>
+
+                      <div class="" *ngIf="emailVar.touched &&  !emailVar.valid">
+
+                        <p class="text-danger" *ngIf="emailVar.errors.required"> {{'CONFIREM_EMAIL_LOGIN'| translate}}</p>
+                        <p class="text-danger" *ngIf="emailVar.errors.email"> {{'INVALID_EMAIL'| translate}}</p>
+
+                      </div>
+
+                      <label>{{'EMAIL_ADDRESS'| translate}}</label>
+                    </div>
+
+
+                    <!--Experience-->
+                    <div class="mail">
+                      <input type="number" class="form-control" [(ngModel)]="experience" ngModel name="experience"
+                        (change)="logValue(experienceVar)" #experienceVar="ngModel" required maxlength="40"
+                        minlength="1">
+
+                      <div class="" *ngIf="experienceVar.touched &&  !experienceVar.valid">
+
+                        <p class="text-danger" *ngIf="experienceVar.errors.required"> {{'ENTER_EXPERIENCE'| translate}}</p>
+
+                      </div>
+
+                      <label>{{'EXPERIENCE'| translate}}</label>
+                    </div>
+                    <div class="mail mb-2">
+
+
+
+                      <div class="mail">
+                      
+
+                          <!-- Specs -->
+                          <div class="form-group ">
+                            <p-multiSelect class="w-100 d-flex justify-content-center"
+                            defaultLabel="{{'CHOOSE_CATEGORIES'| translate}}"
+                            [options]="instructorsSpecs"
+                            name="instructorsSpecs"
+                            [(ngModel)]="selectedSpecs"
+                            optionLabel="name"
+                            [maxSelectedLabels]="5"
+                            required
+                            ngModel
+                            #specTemp="ngModel"
+
+                              >         
+                            </p-multiSelect>
+                            <p class="text-danger mr-2" *ngIf="!specTemp.valid && specTemp.touched"> {{'VALIDATION_CATEGORIES'| translate}}</p>
+
+                          </div>
+                          <!-- ///Specs/// -->
+
+
+
+                      </div>
+                      <div class="mail">
+                        <div class="form-group">
+                          <div class="form-group position-relative">
+                            <label for="yxz">{{'CV'| translate}}</label>
+
+                            <input accept=".pdf, .doc, .docx" class="mt-4" (change)="uploadCv($event.target)"
+                              type="file">
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <!--Password-->
+                    <div class="mail">
+                      <input type="password" class="form-control" [(ngModel)]="pass" ngModel name="pass"
+                        (change)="logValue(emailVar)" #passVar="ngModel" required>
+
+                      <div class="" *ngIf="passVar.touched &&  !passVar.valid">
+                        <p class="text-danger" *ngIf="passVar.errors.required">{{'CONFIREM_PASSWORD_LOGIN'| translate}}</p>
+                      </div>
+
+                      <label>{{'PASSWORD'| translate}}</label>
+                    </div>
+
+                    <!-- Confirm Password-->
+                    <div class="mail">
+                      <input type="password" class="form-control" [(ngModel)]="confPass" ngModel name="confPass"
+                        (change)="checkMatch(confPassVar)" #confPassVar="ngModel" required>
+
+                      <div class="" *ngIf="confPassVar.touched &&  !confPassVar.valid">
+                        <p class="text-danger" *ngIf="confPassVar.errors.required">{{'ENTER_CONFIREM_PASSWORD'| translate}}</p>
+                      </div>
+                      
+                      <label>{{'CONFIREM_PASSWORD'| translate}}</label>
+                    </div>
+
+
+                    <!-- <div class="mail">
+  <h2 class="text-danger">{{passwordIsMatch}}</h2>
+</div> -->
+
+                    <div class="submit">
+                      <button type="submit" (click)="addInstructor()" class="btn btn-primary btn-block"
+                        [disabled]="instructorForm.invalid">
+                        {{'CREATE_INSTRUCTOR_ACCOUNT'| translate}}
+                        
+                      </button>
+                    </div>
+                  </form>
+
+
+                </div>
+                <!-- End Form Here -->
+                <!-- End Form Here -->
+                <!-- End Form Here -->
+              </tab>
+              
+            </tabset>
+
+            <hr class="divider">
+            <div class="card-body">
+              <div class="text-center">
+                <div class="btn-group">
+                  <a href="https://www.facebook.com/" class="btn  ml-2 btn-icon brround">
+                    <span class="fa fa-facebook"></span>
+                  </a>
+                </div>
+                <div class="btn-group">
+                  <a href="https://www.google.com/gmail/" class="btn  ml-2 btn-icon brround">
+                    <span class="fa fa-google"></span>
+                  </a>
+                </div>
+                <div class="btn-group">
+                  <a href="https://twitter.com/" class="btn  btn-icon brround">
+                    <span class="fa fa-twitter"></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/Register-Section-->
+
+
+
